@@ -1,3 +1,4 @@
+import { AppConfig } from '@/utils/AppConfig';
 import {
   Logo,
   NavbarTwoColumns,
@@ -5,6 +6,8 @@ import {
   NavMenuItem,
   Section,
 } from 'astro-boilerplate-components';
+
+const blogUser = AppConfig.author + "'s Blog";
 
 const Navbar = () => (
   <Section>
@@ -28,14 +31,14 @@ const Navbar = () => (
               <path d="M4 20h14"></path>
             </svg>
           }
-          name="Ixartz's Blog"
+          name={blogUser}
         />
       </a>
 
       <NavMenu>
         <NavMenuItem href="/posts">Blogs</NavMenuItem>
         <NavMenuItem href="/">GitHub</NavMenuItem>
-        <NavMenuItem href="/">Twitter</NavMenuItem>
+        {/* <NavMenuItem href="/">Twitter</NavMenuItem> */}
       </NavMenu>
     </NavbarTwoColumns>
   </Section>
