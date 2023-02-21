@@ -1,14 +1,9 @@
-/* eslint-disable import/no-extraneous-dependencies, global-require */
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './src/**/*.{astro,html,js,jsx,svelte,ts,tsx,vue}',
-    './node_modules/astro-boilerplate-components/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {},
   },
-  plugins: [
-    require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/typography'),
-  ],
-};
+  plugins: [],
+  darkMode: ['class', '.darkmode'],
+}

@@ -1,130 +1,63 @@
-# Astro Boilerplate with TypeScript and Tailwind CSS [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40Ixartz)](https://twitter.com/ixartz)
+# Accessible Astro Starter
 
-🚀 Astro Boilerplate is starter code for your blog or portfolio based on Astro
-with Tailwind CSS 3.0. ⚡️ Made with Astro, TypeScript, ESLint, Prettier,
-Tailwind CSS.
+![social-preview-image](https://user-images.githubusercontent.com/3909046/219942674-9894853e-def8-4180-84b8-6b577dacfcaa.png)
 
-Clone this project and use it to create your own Astro blog. You can check the
-[Astro templates demo](https://creativedesignsguru.com/demo/astro-boilerplate/).
+Accessible Astro Starter is a ready to use, SEO and a11y friendly blogging theme. It contains plenty of accessible components to build several page types, Tailwind CSS to help you build faster and example pages such as a dynamic Blog, 404, Markdown and MDX. This theme is designed to help you build your project faster and provide a solid base for accessibility!
 
-## Features
+🚀 [Live Preview](https://accessible-astro.dev)
 
-A complete Blog feature:
+## ♿ (Accessibility) Features
 
-- 🎈 Syntax Highlighting
-- 🤖 SEO friendly with sitemap.xml and robots.txt
-- ⚙️ RSS feed
-- 📖 Pagination
-- 🌈 Include a dark blog theme
-- ⬇️ Markdown
-- 📦 Image lazy loading
-- 💎 Responsive design
+- Tailwind CSS support
+- Prettier integration with `prettier-plugin-astro` and `prettier-plugin-tailwind`
+- ESLint integration with strict accessibility settings for `eslint-plugin-jsx-a11y`
+- Markdown and MDX support with examples included in the theme
+- Uses the awesome `astro-icon` package for the icons
+- Excellent Lighthouse/PageSpeed scores
+- Accessible landmarks such as `header`, `main`, `footer`, `section` and `nav`
+- Outline focus indicator which works on dark and light backgrounds
+- Several `aria` attributes which provide a better experience for screen reader users
+- `[...page].astro` and `[post].astro` demonstrate the use of dynamic routes and provide a basic blog with breadcrumbs and pagination
+- `404.astro` provides a custom 404 error page which you can adjust to your needs
+- `Header.astro` component included in the `DefaultLayout.astro` layout
+- `Footer.astro` component included in the `DefaultLayout.astro` layout
+- `SkipLinks.astro` component to skip to either the main menu or the main content
+- `Navigation.astro` component with keyboard accessible (dropdown) navigation (arrow keys, escape key)
+- `ResponsiveToggle.astro` component with an accessible responsive toggle button for the mobile navigation
+- `DarkMode.astro` component toggle with accessible button and a user system preferred color scheme setting
+- `SiteMeta.astro` SEO component for setting custom meta data on different pages
+- `.sr-only` utility class for screen reader only text content (hides text visually)
+- `prefers-reduced-motion` disables animations for users that have this preference turned on
+- Ships with many components such as Accordions, Breadcrumbs, Modals, Pagination [and many more](https://accessible-astro.dev/accessible-components)
+- A collection of utility classes such as breakpoints, button classes, font settings, resets and outlines in `src/assets/scss/base`
 
-Developer experience first:
+## 🚀 Getting started
 
-- 🔥 Astro
-- 🎨 Tailwind CSS with aspect ratio and typography plugin
-- 🎉 TypeScript
-- ✏️ ESLint compatible with .astro files
-- 🛠 Prettier compatible with .astro files
-- 🦊 Husky
-- 🚫 lint-staged
-- 🚨 Commitlint
-- 🔧 One-click deploy on Netlify (or, manual if you prefer)
-
-ESLint with:
-
-- Airbnb styled guide
-- TypeScript compatible
-- Astro compatible
-- Automatically remove unused imports
-- Import sorting
-- Tailwind CSS plugin
-
-### Philosophy
-
-- Minimal code
-- SEO-friendly
-- 🚀 Production-ready
-
-### Requirements
-
-- Node.js and npm
-
-#### Optional
-
-- [nvm](https://github.com/nvm-sh/nvm)
-- [volta](https://volta.sh/)
-
-While Astro-boilerplate should work with the latest Node version, it has been
-tested with the versions in .nvmrc & the bottom of package.json. At current
-writing, that's Node v16.15.1
-
-### Getting started
-
-Run the following command on your local environment:
-
-``` bash
-git clone --depth=1 https://github.com/ixartz/Astro-boilerplate
-cd my-project-name
-npm install
-```
-
-Then, you can run locally in development mode with live reload:
-
-``` bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your favorite browser
-to see your project.
-
-### Deploy to production (manual)
-
-You can create an optimized production build with:
-
-```shell
-npm run build
-```
-
-Now, your blog is ready to be deployed. All generated files are located at
-`dist` folder, which you can deploy the folder to any hosting service you
-prefer.
-
-### Deploy to Netlify
-
-Clone this repository on own GitHub account and deploy to Netlify:
-
-[![Netlify Deploy button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ixartz/Astro-boilerplate)
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
+Clone this theme locally and run any of the following commands in your terminal:
 
 | Command           | Action                                       |
-|:----------------  |:-------------------------------------------- |
+| :---------------- | :------------------------------------------- |
 | `npm install`     | Installs dependencies                        |
 | `npm run dev`     | Starts local dev server at `localhost:3000`  |
 | `npm run build`   | Build your production site to `./dist/`      |
 | `npm run preview` | Preview your build locally, before deploying |
-| `npm run clean`   | Remove `./dist` folder                       |
-| `npm run lint`    | Run ESLint and report styling error          |
 
-### Contributions
+## 📦 Other Accessible Astro projects
 
-Everyone is welcome to contribute to this project.
-Feel free to open an issue if you have question or found a bug.
+- [Accessible Astro Dashboard](https://github.com/markteekman/accessible-astro-dashboard/)
+- [Accessible Astro Components](https://github.com/markteekman/accessible-astro-components/)
 
-### Additional Checks
+## ❤️ Helping out
 
-This README.md was linted with
-[markdownlint](https://github.com/igorshubovych/markdownlint-cli)
+If you find that something isn't working right then I'm always happy to hear it to improve this starter! You can contribute in many ways and forms. Let me know by either:
 
-### License
+1. [Filing an issue](https://github.com/markteekman/accessible-astro-starter/issues)
+2. [Submitting a pull request](https://github.com/markteekman/accessible-astro-starter/pulls)
+3. [Starting a discussion](https://github.com/markteekman/accessible-astro-starter/discussions)
+4. [Buying me a coffee!](https://www.buymeacoffee.com/markteekman)
 
-Licensed under the MIT License, Copyright © 2022
+## ☕ Thank you!
 
----
+A big thank you to the creators of the awesome Astro static site generator and to all using this starter to make the web a bit more accessible for all people around the world :)
 
-Made with ♥ by [CreativeDesignsGuru](https://creativedesignsguru.com)
-[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40Ixartz)](https://twitter.com/ixartz)
+[![buymeacoffee-button](https://user-images.githubusercontent.com/3909046/150683481-be070424-7bb0-4dd7-a3cb-43b5605163f5.png)](https://www.buymeacoffee.com/markteekman)
