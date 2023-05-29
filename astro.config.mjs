@@ -9,7 +9,7 @@ export default defineConfig({
   // site: "https://moofywoofy.github.io",
   site: "https://JonasCaptain.github.io",
   // base: "/Bob-blog",
-  base: "/",
+  // base: "/",
   markdown: {
     shikiConfig: {
       theme: "one-dark-pro",
