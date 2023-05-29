@@ -1,0 +1,227 @@
+<!DOCTYPE html><html lang="en" class="astro-H24362AN">
+  <head>
+    <title>高性能Mysql</title>
+<meta charset="UTF-8">
+
+<meta name="author" content="gwalnut">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Blog,Astro">
+<meta name="description" content="主要摘抄至出版书籍">
+<meta name="category" content="Blog">
+<link rel="canonical" href="https://jonascaptain.github.io/blog/articles/HighPerformanceMySQL/">
+<meta name="generator" content="Astro v1.1.1">
+
+<!-- Robot.txt -->
+<meta name="robots" content="index,follow">
+<meta name="Googlebot" content="index,follow">
+<meta name="AdsBot-Google" content="index,follow">
+
+<!-- FaceBook Meta data -->
+<meta property="og:site_name" content="https://jonascaptain.github.io/blog/articles/HighPerformanceMySQL/">
+<meta property="og:title" content="高性能Mysql">
+<meta property="og:description" content="主要摘抄至出版书籍">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonascaptain.github.io/blog/articles/HighPerformanceMySQL/">
+
+<!-- Twitter Meta data -->
+<meta name="twitter:card" content="My personal blog">
+<meta name="twitter:url" content="https://jonascaptain.github.io/blog/articles/HighPerformanceMySQL/">
+<meta name="twitter:title" content="高性能Mysql">
+<meta name="twitter:site" content="https://jonascaptain.github.io/blog/articles/HighPerformanceMySQL/">
+<meta name="application-name" content="高性能Mysql">
+<meta name="twitter:description" content="主要摘抄至出版书籍">
+
+<meta name="apple-mobile-web-app-title" content="高性能Mysql">
+<meta name="apple-touch-icon" content="/favicon.ico">
+<meta name="summary" content="My personal blog">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+<script>
+  if (localStorage.theme === 'night' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.querySelector('html').setAttribute('data-theme', 'night');
+  } else {
+    document.querySelector('html').setAttribute('data-theme', 'cmyk');
+  }
+</script>
+  <link rel="stylesheet" href="/assets/50c6c343.ed30341b.css" />
+<link rel="stylesheet" href="/assets/d5e0e75b.7bb9d23f.css" />
+<link rel="stylesheet" href="/assets/5b4135e6.e480e920.css" /><script type="module" src="/hoisted.b525123c.js"></script></head>
+
+  <body class="astro-H24362AN">
+    <a href="#main" class="absolute bg-info text-info-content px-6 py-2 rounded-br-md translate-x-[-100%] focus-within:translate-x-0 transition-all astro-H24362AN">Skip navigation</a>
+    <header class="container mx-auto flex items-center justify-between mb-16 astro-H24362AN">
+      <div class="p-4 astro-H24362AN">
+        <!-- Logo -->
+        <svg width="84" height="37" viewBox="0 0 84 37" fill="none" xmlns="http://www.w3.org/2000/svg" class="astro-H24362AN">
+          <path d="M26.5625 23.2266C26.5625 25.1953 26.2266 26.9922 25.5547 28.6172C24.8828 30.2422 23.9688 31.6406 22.8125 32.8125C21.6562 33.9688 20.2969 34.8672 18.7344 35.5078C17.1875 36.1484 15.5234 36.4688 13.7422 36.4688C11.9766 36.4688 10.3125 36.1406 8.75 35.4844C7.20312 34.8281 5.84375 33.9141 4.67188 32.7422C3.51562 31.5703 2.60156 30.1797 1.92969 28.5703C1.25781 26.9453 0.921875 25.1641 0.921875 23.2266V0.914062H7.34375V12.6328C7.6875 12.1953 8.10156 11.8047 8.58594 11.4609C9.08594 11.1172 9.61719 10.8359 10.1797 10.6172C10.7578 10.3984 11.3516 10.2344 11.9609 10.125C12.5703 10 13.1641 9.9375 13.7422 9.9375C15.5234 9.9375 17.1875 10.2734 18.7344 10.9453C20.2969 11.6016 21.6562 12.5234 22.8125 13.7109C23.9688 14.8984 24.8828 16.3047 25.5547 17.9297C26.2266 19.5391 26.5625 21.3047 26.5625 23.2266ZM20.1172 23.2266C20.1172 22.2578 19.9453 21.3594 19.6016 20.5312C19.2734 19.6875 18.8203 18.9609 18.2422 18.3516C17.6641 17.7422 16.9844 17.2656 16.2031 16.9219C15.4375 16.5781 14.6172 16.4062 13.7422 16.4062C12.8672 16.4062 12.0391 16.6016 11.2578 16.9922C10.4922 17.3672 9.82031 17.875 9.24219 18.5156C8.66406 19.1406 8.21094 19.8672 7.88281 20.6953C7.55469 21.5078 7.39062 22.3516 7.39062 23.2266C7.39062 24.1953 7.55469 25.0938 7.88281 25.9219C8.21094 26.75 8.66406 27.4688 9.24219 28.0781C9.82031 28.6875 10.4922 29.1719 11.2578 29.5312C12.0391 29.875 12.8672 30.0469 13.7422 30.0469C14.6172 30.0469 15.4375 29.875 16.2031 29.5312C16.9844 29.1719 17.6641 28.6875 18.2422 28.0781C18.8203 27.4688 19.2734 26.75 19.6016 25.9219C19.9453 25.0938 20.1172 24.1953 20.1172 23.2266ZM54.3828 23.2266C54.3828 25.1016 54.0469 26.8516 53.375 28.4766C52.7031 30.0859 51.7891 31.4844 50.6328 32.6719C49.4766 33.8438 48.1172 34.7734 46.5547 35.4609C45.0078 36.1328 43.3438 36.4688 41.5625 36.4688C39.7969 36.4688 38.1328 36.1328 36.5703 35.4609C35.0234 34.7734 33.6641 33.8438 32.4922 32.6719C31.3359 31.4844 30.4219 30.0859 29.75 28.4766C29.0781 26.8516 28.7422 25.1016 28.7422 23.2266C28.7422 21.3203 29.0781 19.5547 29.75 17.9297C30.4219 16.3047 31.3359 14.9062 32.4922 13.7344C33.6641 12.5469 35.0234 11.6172 36.5703 10.9453C38.1328 10.2734 39.7969 9.9375 41.5625 9.9375C43.3438 9.9375 45.0078 10.2578 46.5547 10.8984C48.1172 11.5234 49.4766 12.4219 50.6328 13.5938C51.7891 14.75 52.7031 16.1484 53.375 17.7891C54.0469 19.4141 54.3828 21.2266 54.3828 23.2266ZM47.9375 23.2266C47.9375 22.1953 47.7656 21.2656 47.4219 20.4375C47.0938 19.5938 46.6406 18.875 46.0625 18.2812C45.4844 17.6719 44.8047 17.2109 44.0234 16.8984C43.2578 16.5703 42.4375 16.4062 41.5625 16.4062C40.6875 16.4062 39.8594 16.5703 39.0781 16.8984C38.3125 17.2109 37.6406 17.6719 37.0625 18.2812C36.5 18.875 36.0547 19.5938 35.7266 20.4375C35.3984 21.2656 35.2344 22.1953 35.2344 23.2266C35.2344 24.1953 35.3984 25.0938 35.7266 25.9219C36.0547 26.75 36.5 27.4688 37.0625 28.0781C37.6406 28.6875 38.3125 29.1719 39.0781 29.5312C39.8594 29.875 40.6875 30.0469 41.5625 30.0469C42.4375 30.0469 43.2578 29.8828 44.0234 29.5547C44.8047 29.2266 45.4844 28.7656 46.0625 28.1719C46.6406 27.5781 47.0938 26.8594 47.4219 26.0156C47.7656 25.1719 47.9375 24.2422 47.9375 23.2266ZM83.0469 23.2266C83.0469 25.1953 82.7109 26.9922 82.0391 28.6172C81.3672 30.2422 80.4531 31.6406 79.2969 32.8125C78.1406 33.9688 76.7812 34.8672 75.2188 35.5078C73.6719 36.1484 72.0078 36.4688 70.2266 36.4688C68.4609 36.4688 66.7969 36.1406 65.2344 35.4844C63.6875 34.8281 62.3281 33.9141 61.1562 32.7422C60 31.5703 59.0859 30.1797 58.4141 28.5703C57.7422 26.9453 57.4062 25.1641 57.4062 23.2266V0.914062H63.8281V12.6328C64.1719 12.1953 64.5859 11.8047 65.0703 11.4609C65.5703 11.1172 66.1016 10.8359 66.6641 10.6172C67.2422 10.3984 67.8359 10.2344 68.4453 10.125C69.0547 10 69.6484 9.9375 70.2266 9.9375C72.0078 9.9375 73.6719 10.2734 75.2188 10.9453C76.7812 11.6016 78.1406 12.5234 79.2969 13.7109C80.4531 14.8984 81.3672 16.3047 82.0391 17.9297C82.7109 19.5391 83.0469 21.3047 83.0469 23.2266ZM76.6016 23.2266C76.6016 22.2578 76.4297 21.3594 76.0859 20.5312C75.7578 19.6875 75.3047 18.9609 74.7266 18.3516C74.1484 17.7422 73.4688 17.2656 72.6875 16.9219C71.9219 16.5781 71.1016 16.4062 70.2266 16.4062C69.3516 16.4062 68.5234 16.6016 67.7422 16.9922C66.9766 17.3672 66.3047 17.875 65.7266 18.5156C65.1484 19.1406 64.6953 19.8672 64.3672 20.6953C64.0391 21.5078 63.875 22.3516 63.875 23.2266C63.875 24.1953 64.0391 25.0938 64.3672 25.9219C64.6953 26.75 65.1484 27.4688 65.7266 28.0781C66.3047 28.6875 66.9766 29.1719 67.7422 29.5312C68.5234 29.875 69.3516 30.0469 70.2266 30.0469C71.1016 30.0469 71.9219 29.875 72.6875 29.5312C73.4688 29.1719 74.1484 28.6875 74.7266 28.0781C75.3047 27.4688 75.7578 26.75 76.0859 25.9219C76.4297 25.0938 76.6016 24.1953 76.6016 23.2266Z" fill="#FF0000" class="astro-H24362AN"></path>
+        </svg>
+      </div>
+
+      <label aria-label="Hamburger Menu" id="nav-toggle" class="btn btn-circle swap swap-rotate fixed z-[999] top-4 right-4 hidden astro-H24362AN" aria-controls="primary-nav" aria-expanded="false">
+        <input type="checkbox" class="astro-H24362AN">
+        <!-- hamburger icon -->
+        <svg class="swap-off fill-current astro-H24362AN" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" class="astro-H24362AN"></path>
+        </svg>
+        <!-- close icon -->
+        <svg class="swap-on fill-current astro-H24362AN" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" class="astro-H24362AN"></polygon>
+        </svg>
+      </label>
+
+      <nav class="mr-6 astro-H24362AN">
+        <ul id="primary-nav" class="flex grow gap-8 items-center justify-center z-[100] astro-H24362AN" data-visible="false">
+          <li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Home</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/blog/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Blog</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/search/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Search</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/tags/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Tags</span>
+  </a>
+</li>
+          <li class="astro-H24362AN">
+            <!-- Theme, Light/Dark mode -->
+            <label id="themeSetting" class="swap swap-rotate astro-H24362AN">
+              <!-- this hidden checkbox controls the state -->
+              <input type="checkbox" class="astro-H24362AN">
+              <!-- sun icon -->
+              <svg data-set-theme="cmyk" data-act-class="ACTIVECLASS" class="swap-on fill-current w-6 h-6 astro-H24362AN" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" class="astro-H24362AN"></path>
+              </svg>
+              <!-- moon icon -->
+              <svg data-set-theme="night" data-act-class="ACTIVECLASS" class="swap-off fill-current w-6 h-6 astro-H24362AN" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" class="astro-H24362AN"></path>
+              </svg>
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main" class="container mx-auto astro-H24362AN">
+      <h1 class="text-3xl md:text-5xl 2xl:text-6xl mb-[0.8em] font-extrabold mx-auto w-fit">高性能Mysql</h1><div class="flex flex-wrap justify-evenly mb-9 mt-2">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <time datetime="2023-02-20T00:00:00.000Z">20 February 2023</time>
+    </div>
+
+    <div class="flex flex-wrap gap-2">
+      <a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/MySQL/">MySQL</a><a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/Performance/">Performance</a><a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/性能/">性能</a>
+    </div>
+  </div><div class="prose md:prose-lg 2xl:prose-xl px-4 mx-auto prose-pre:font-mono">
+    <h2 id="优化特定类型的查询">优化特定类型的查询</h2>
+<h3 id="1优化count查询">1.优化count()查询</h3>
+<p>作用：</p>
+<ol>
+<li>统计某个列值的数量。要求列值是非空的（不统计NULL值）。如果在count()的括号中指定了列或列的表达式，则统计的就是这个表达式有值的结果数。</li>
+<li>统计行数。当MySQL确认括号内的表达式值不可能为空时，实际上就是在统计行数。最简单的就是在使用count(*)时，这种情况下通配符*并不会像我们猜想的那样扩展成所有的列，实际上，它会忽略所有的列而直接统计所有的行数。</li>
+</ol>
+<p>简单的优化：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">## 如何快速查找到所有ID大于5的城市</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">count</span><span style="color: #ABB2BF">(*) </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">world</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">City</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> id </span><span style="color: #56B6C2">></span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">5</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">## 这样做的结果是该查询需要扫描4097行数据，如果将条件反转一下，先查找ID小于5的城市数</span></span>
+<span class="line"><span style="color: #ABB2BF">## 然后用总城市数一减就能得到同样的结果，却可以将扫描的行数减少到5行以内</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> (</span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">count</span><span style="color: #ABB2BF">(*) </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">world</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">City</span><span style="color: #ABB2BF">) - </span><span style="color: #56B6C2">count</span><span style="color: #ABB2BF">(*) </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">world</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">City</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> ID </span><span style="color: #56B6C2">&#x3C;=</span><span style="color: #D19A66">5</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">## 这样做可以大大减少需要扫描的行数，是因为在查询优化阶段会将其中的子查询直接当做一个常数来处理。</span></span></code></pre>
+<p>有时候会遇到这样的问题，在同一个查询中统计同一个列中不同值的数量，以减少查询的语句量。假如：假设可能需要同归一个查询返回各种不同颜色的商品数量，此时不能使用or语句。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">count</span><span style="color: #ABB2BF">(color</span><span style="color: #56B6C2">=</span><span style="color: #98C379">'blue'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> color</span><span style="color: #56B6C2">=</span><span style="color: #98C379">'red'</span><span style="color: #ABB2BF">) </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> items;</span></span>
+<span class="line"><span style="color: #ABB2BF">## 上面这样做就无法区分不同颜色的商品数量，也不能在where条件中指定颜色</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">count</span><span style="color: #ABB2BF">(*) </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> items </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> color</span><span style="color: #56B6C2">=</span><span style="color: #98C379">'blue'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> color</span><span style="color: #56B6C2">=</span><span style="color: #98C379">'red'</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">## 因为颜色条件是互斥的</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## 下面查询可以在一定程度上解决这个问题</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">sum</span><span style="color: #ABB2BF">(</span><span style="color: #C678DD">if</span><span style="color: #ABB2BF">(color</span><span style="color: #56B6C2">=</span><span style="color: #98C379">'blue'</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">)) </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> blue, </span><span style="color: #56B6C2">sum</span><span style="color: #ABB2BF">(</span><span style="color: #C678DD">if</span><span style="color: #ABB2BF">(color</span><span style="color: #56B6C2">=</span><span style="color: #98C379">'red'</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">)) </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> red </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> items;</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">sum</span><span style="color: #ABB2BF">(color</span><span style="color: #56B6C2">=</span><span style="color: #98C379">'blue'</span><span style="color: #ABB2BF">) </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> blue, </span><span style="color: #56B6C2">sum</span><span style="color: #ABB2BF">(color</span><span style="color: #56B6C2">=</span><span style="color: #98C379">'red'</span><span style="color: #ABB2BF">) </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> red </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> items;</span></span>
+<span class="line"><span style="color: #ABB2BF">## 或者</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">count</span><span style="color: #ABB2BF">(color</span><span style="color: #56B6C2">=</span><span style="color: #98C379">'blue'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">null</span><span style="color: #ABB2BF">) </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> blue, </span><span style="color: #56B6C2">count</span><span style="color: #ABB2BF">(color</span><span style="color: #56B6C2">=</span><span style="color: #98C379">'red'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">null</span><span style="color: #ABB2BF">) </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> red </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> items;</span></span></code></pre>
+<p>使用近似值：</p>
+<p>有时候某些业务并不要求完全精确的count值，此时可以用近似值来替代。explain出来的优化器估算的行数就是一个不错的近似值，执行explain并不需要真正地去执行查询，所以成本很低。很多时候，精确计算的成本非常高，而计算近似值则非常简单。</p>
+<p>曾今有一个客户希望统计他的网站的当前活跃用户数是多少，这个活跃用户数保存在缓存中，过期时间为30分钟，所以每个30分钟需要重新计算并放入缓存。因此这个活跃用户数本身就不是精确值，所以使用近似值替代是可以接受的。另外，如果要精确统计在线人数，通常where条件是会很复杂，一方面需要剔除当前非活跃用户，另一方面还要剔除系统中某些特定ID的“默认”用户，去掉这些约束条件对总数的影响很小，但却可能很好地提升该查询的性能。更进一步的优化则可以尝试删除distinct这样的约束来避免文件排序。这样重写过的查询要比原来的精确统计的查询快很多，而返回的结果则几乎相同。</p>
+<p>更复杂的优化：</p>
+<p>通常来说，count()都需要扫描大量的行才能获得精确地结果，因此很难优化。除了之前的方法，在MySQL层面还能做的就只有索引覆盖扫描了。如果这不够，就需要考虑修改应用架构，可以增加汇总表或者增加类似memcached这样的外部缓存系统。</p>
+<h3 id="2优化关联查询">2.优化关联查询</h3>
+<ul>
+<li>确保ON或者USING子句中的列上有索引。在创建索引的时候要考虑到关联的顺序。当表A和表B用列C关联时，如果优化器的关联顺序是B、A，那么就不需要在B表的对应列上建立索引。没有用到的索引只会带来额外的负担。一般来说，除非其他理由，否则只需要在关联顺序中的第二个表的相应列上创建索引。</li>
+<li>确保任何的GROUP BY和ORDER BY中的表达式只涉及到一个表中的列，这样MySQL才有可能使用索引来优化这个过程。</li>
+<li>当升级MySQL的时候需要注意：关联语法、运算符优先级等其他可能会发生变化的地方。因为以前是普通关联的地方可能会变成笛卡尔积，不同类型的关联可能会生成不同的结果等。</li>
+</ul>
+<h3 id="3优化子查询">3.优化子查询</h3>
+<p>关于子查询优化我们给出的最重要的优化建议就是尽可能使用关联查询代替，至少当前的MySQL版本需要这样。</p>
+<h3 id="4优化group-by-和distinct">4.优化GROUP BY 和DISTINCT</h3>
+<p>在很多场景下，MySQL都使用同样的办法优化这两种查询，事实上，MySQL优化器会在内部处理的时候相互转换这两类查询。它们都可以使用索引来优化，这也是最有效的优化办法。</p>
+<p>在MySQL中，当无法使用索引的时候，GROUP BY 使用两种策略来完成：使用临时表或者文件排序来做分组。对于任何查询语句，这两策略的性能都有可以提升的地方。可以通过使用提示SQL_BIG_RESULT 和 SQL_SMALL_RESULT 来让优化器按照你希望的方式运行。</p>
+<p>如果需要对关联查询做分组(GROUP BY)，并且是按照查找表中的某个列进行分组，那么通常采用查找表的标识列分组的效率会比其他列更高。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">## 例如下面的查询效率不会很好</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">actor</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">first_name</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">actor</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">last_name</span><span style="color: #ABB2BF">, </span><span style="color: #56B6C2">count</span><span style="color: #ABB2BF">(*)</span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">sakila</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">film_actor</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">inner join</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">sakila</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">actor</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">using</span><span style="color: #ABB2BF">(actor_id)</span></span>
+<span class="line"><span style="color: #C678DD">group by</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">acotr</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">first_name</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">actor</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">last_name</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## 假如按照下面的写法效率会更高</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">actor</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">first_name</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">actor</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">last_name</span><span style="color: #ABB2BF">, </span><span style="color: #56B6C2">count</span><span style="color: #ABB2BF">(*)</span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">sakila</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">film_actor</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">inner join</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">sakila</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">actor</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">using</span><span style="color: #ABB2BF">(actor_id)</span></span>
+<span class="line"><span style="color: #C678DD">group by</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">film_actor</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">actor_id</span><span style="color: #ABB2BF">;</span></span></code></pre>
+<p>这个查询利用了actor的id直接相关的特点，因此改写后的结果不受影响，但显然不是所哟的关联语句的分组查询都可以改写成在select中直接使用非分组列的形式的。甚至可能会在服务器上设置SQL_MODE来禁止这样的写法。如果是这样，也可以通过MIN()或者MAX()函数来绕过这种限制，但一定要清楚，select后面出现的非分组列一定是直接依赖分组列，并且在每个组内的值是唯一的，或者是业务上根本不在乎这个值具体是什么：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">min</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66">actor</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">first_name</span><span style="color: #ABB2BF">), </span><span style="color: #56B6C2">max</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66">actor</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">last_name</span><span style="color: #ABB2BF">), ....;</span></span></code></pre>
+<p><strong>优化GROUP BY WITH ROLLUP</strong>
+分组查询的一个变种就是要求MySQL对返回的分组结果再做一次超级聚合。可以使用with rollup子句来实现这种逻辑，但可能会不够优化。可以通过explain来观察其执行计划，特别要注意分组是否是通过文件排序或者临时表实现的。然后再去掉with rollup子句看执行计划是否相同。</p>
+<h3 id="5优化limit分页">5.优化LIMIT分页</h3>
+<p>在偏移量非常大的时候，例如可能是 limit 10000,20这样的查询，这是MySQL需要查询10020条记录然后只返回最后的20条，前面的10000条记录都将被抛弃。如果所有的页面被访问的频率都相同，那么这样的查询平均需要访问半个表的数据。要优化这种查询，要么是在页面中限制分页的数量，要么是优化大偏移量的性能。</p>
+<p>优化此类分页查询的一个最简单的办法就是尽可能的使用索引覆盖扫描，而不是查询所有的列。然后根据需要做一次关联操作再返回所需的列。对于偏移量很大的时候，这样做的效率会提升非常大。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> film_id, </span><span style="color: #C678DD">description</span><span style="color: #ABB2BF">, </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">sakila</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">film</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">order by</span><span style="color: #ABB2BF"> title </span><span style="color: #C678DD">limit</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">50</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">5</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">## </span><span style="color: #D19A66">如果sakila</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">film表非常大</span><span style="color: #ABB2BF">，这个查询最好改写成下面的样子</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">film</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">film_id</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">film</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">description</span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">sakila</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">film</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">inner join</span><span style="color: #ABB2BF">(</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> film_id </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">sakila</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">film</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">order by</span><span style="color: #ABB2BF"> title </span><span style="color: #C678DD">limit</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">50</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">5</span></span>
+<span class="line"><span style="color: #ABB2BF">    ) </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> lim </span><span style="color: #C678DD">using</span><span style="color: #ABB2BF">(film_id);</span></span></code></pre>
+<p>这里的“延迟关联”将大大提升查询效率，它让MySQL扫描尽可能少的页面，获取需要访问的记录后再根据关联列会原表查询需要的所有列。这个技术也可以用于优化关联查询中的limit子句。</p>
+<p>有时候也可以将limit查询转换为已知位置的查询，让MySQL通过范围扫描获得到对应的结果。例如，如果在一个位置列上有索引，并且预先计算出了边界值，上面的查询就可以改写为：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> film_id, </span><span style="color: #C678DD">description</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">sakila</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">film</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> position </span><span style="color: #C678DD">between</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">50</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">54</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">order by</span><span style="color: #ABB2BF"> position;</span></span></code></pre>
+<p>对数据进行排名的问题也与此类似，但往往还会同时和GROUP BY混合使用。在这种情况下通常都需要预先计算并存储排名信息。</p>
+<p>limit和offset问题，其实是offset的问题，它会导致MySQL扫描大量不需要的行然后抛弃掉。如果可以使用书签记录上次取数据的位置，那么下次就可以直接从该书签记录的位置开始扫描，这样就可以避免使用offset。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> * </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">sakila</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">rental</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">order by</span><span style="color: #ABB2BF"> rental_id </span><span style="color: #C678DD">desc</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">limit</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">20</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">## 假设上面的查询返回的是主键为16049到16030的记录，那么下一页查询就可以从16030这个点开始</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> * </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">sakila</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">rental</span><span style="color: #ABB2BF"> </span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> rental_id </span><span style="color: #56B6C2">&#x3C;</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">16030</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">order by</span><span style="color: #ABB2BF"> rental_id </span><span style="color: #C678DD">desc</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">limit</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">20</span><span style="color: #ABB2BF">;</span></span></code></pre>
+<p>此类改写的好处是无论翻页到多么靠后，其性能都会很好。</p>
+  </div>
+    </main>
+
+    <svg xmlns="http://www.w3.org/2000/svg" id="scrollButton" viewBox="0 0 512 512" class="w-10 h-10 fill-primary fixed bottom-5 right-5 animate-[jump_1500ms_infinite] cursor-pointer bg-base-100 rounded-full astro-H24362AN" style="display: none">
+      <path d="M256 0C114.6 0 0 114.6 0 256c0 141.4 114.6 256 256 256s256-114.6 256-256C512 114.6 397.4 0 256 0zM382.6 254.6c-12.5 12.5-32.75 12.5-45.25 0L288 205.3V384c0 17.69-14.33 32-32 32s-32-14.31-32-32V205.3L174.6 254.6c-12.5 12.5-32.75 12.5-45.25 0s-12.5-32.75 0-45.25l103.1-103.1C241.3 97.4 251.1 96 256 96c4.881 0 14.65 1.391 22.65 9.398l103.1 103.1C395.1 221.9 395.1 242.1 382.6 254.6z" class="astro-H24362AN"></path>
+    </svg>
+
+    <footer class="border-t px-4 py-6 mt-6 astro-H24362AN">
+      <p class="text-center text-sm astro-H24362AN">
+        &copy; 2023
+        gwalnut
+      </p>
+      <p class="text-center text-xs astro-H24362AN">
+        Built with <a class="text-cyan-600 hover:text-black dark:hover:text-white astro-H24362AN" href="https://astro.build" target="_blank" rel="noreferrer noopener">Astro v1.1.1
+        </a>
+      </p>
+    </footer>
+  </body>
+</html>
+
+
+

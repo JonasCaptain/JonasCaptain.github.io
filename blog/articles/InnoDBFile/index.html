@@ -1,0 +1,354 @@
+<!DOCTYPE html><html lang="en" class="astro-H24362AN">
+  <head>
+    <title>MySQL文件</title>
+<meta charset="UTF-8">
+
+<meta name="author" content="gwalnut">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Blog,Astro">
+<meta name="description" content="主要摘抄至出版书籍">
+<meta name="category" content="Blog">
+<link rel="canonical" href="https://jonascaptain.github.io/blog/articles/InnoDBFile/">
+<meta name="generator" content="Astro v1.1.1">
+
+<!-- Robot.txt -->
+<meta name="robots" content="index,follow">
+<meta name="Googlebot" content="index,follow">
+<meta name="AdsBot-Google" content="index,follow">
+
+<!-- FaceBook Meta data -->
+<meta property="og:site_name" content="https://jonascaptain.github.io/blog/articles/InnoDBFile/">
+<meta property="og:title" content="MySQL文件">
+<meta property="og:description" content="主要摘抄至出版书籍">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonascaptain.github.io/blog/articles/InnoDBFile/">
+
+<!-- Twitter Meta data -->
+<meta name="twitter:card" content="My personal blog">
+<meta name="twitter:url" content="https://jonascaptain.github.io/blog/articles/InnoDBFile/">
+<meta name="twitter:title" content="MySQL文件">
+<meta name="twitter:site" content="https://jonascaptain.github.io/blog/articles/InnoDBFile/">
+<meta name="application-name" content="MySQL文件">
+<meta name="twitter:description" content="主要摘抄至出版书籍">
+
+<meta name="apple-mobile-web-app-title" content="MySQL文件">
+<meta name="apple-touch-icon" content="/favicon.ico">
+<meta name="summary" content="My personal blog">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+<script>
+  if (localStorage.theme === 'night' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.querySelector('html').setAttribute('data-theme', 'night');
+  } else {
+    document.querySelector('html').setAttribute('data-theme', 'cmyk');
+  }
+</script>
+  <link rel="stylesheet" href="/assets/50c6c343.ed30341b.css" />
+<link rel="stylesheet" href="/assets/d5e0e75b.7bb9d23f.css" />
+<link rel="stylesheet" href="/assets/5b4135e6.e480e920.css" /><script type="module" src="/hoisted.b525123c.js"></script></head>
+
+  <body class="astro-H24362AN">
+    <a href="#main" class="absolute bg-info text-info-content px-6 py-2 rounded-br-md translate-x-[-100%] focus-within:translate-x-0 transition-all astro-H24362AN">Skip navigation</a>
+    <header class="container mx-auto flex items-center justify-between mb-16 astro-H24362AN">
+      <div class="p-4 astro-H24362AN">
+        <!-- Logo -->
+        <svg width="84" height="37" viewBox="0 0 84 37" fill="none" xmlns="http://www.w3.org/2000/svg" class="astro-H24362AN">
+          <path d="M26.5625 23.2266C26.5625 25.1953 26.2266 26.9922 25.5547 28.6172C24.8828 30.2422 23.9688 31.6406 22.8125 32.8125C21.6562 33.9688 20.2969 34.8672 18.7344 35.5078C17.1875 36.1484 15.5234 36.4688 13.7422 36.4688C11.9766 36.4688 10.3125 36.1406 8.75 35.4844C7.20312 34.8281 5.84375 33.9141 4.67188 32.7422C3.51562 31.5703 2.60156 30.1797 1.92969 28.5703C1.25781 26.9453 0.921875 25.1641 0.921875 23.2266V0.914062H7.34375V12.6328C7.6875 12.1953 8.10156 11.8047 8.58594 11.4609C9.08594 11.1172 9.61719 10.8359 10.1797 10.6172C10.7578 10.3984 11.3516 10.2344 11.9609 10.125C12.5703 10 13.1641 9.9375 13.7422 9.9375C15.5234 9.9375 17.1875 10.2734 18.7344 10.9453C20.2969 11.6016 21.6562 12.5234 22.8125 13.7109C23.9688 14.8984 24.8828 16.3047 25.5547 17.9297C26.2266 19.5391 26.5625 21.3047 26.5625 23.2266ZM20.1172 23.2266C20.1172 22.2578 19.9453 21.3594 19.6016 20.5312C19.2734 19.6875 18.8203 18.9609 18.2422 18.3516C17.6641 17.7422 16.9844 17.2656 16.2031 16.9219C15.4375 16.5781 14.6172 16.4062 13.7422 16.4062C12.8672 16.4062 12.0391 16.6016 11.2578 16.9922C10.4922 17.3672 9.82031 17.875 9.24219 18.5156C8.66406 19.1406 8.21094 19.8672 7.88281 20.6953C7.55469 21.5078 7.39062 22.3516 7.39062 23.2266C7.39062 24.1953 7.55469 25.0938 7.88281 25.9219C8.21094 26.75 8.66406 27.4688 9.24219 28.0781C9.82031 28.6875 10.4922 29.1719 11.2578 29.5312C12.0391 29.875 12.8672 30.0469 13.7422 30.0469C14.6172 30.0469 15.4375 29.875 16.2031 29.5312C16.9844 29.1719 17.6641 28.6875 18.2422 28.0781C18.8203 27.4688 19.2734 26.75 19.6016 25.9219C19.9453 25.0938 20.1172 24.1953 20.1172 23.2266ZM54.3828 23.2266C54.3828 25.1016 54.0469 26.8516 53.375 28.4766C52.7031 30.0859 51.7891 31.4844 50.6328 32.6719C49.4766 33.8438 48.1172 34.7734 46.5547 35.4609C45.0078 36.1328 43.3438 36.4688 41.5625 36.4688C39.7969 36.4688 38.1328 36.1328 36.5703 35.4609C35.0234 34.7734 33.6641 33.8438 32.4922 32.6719C31.3359 31.4844 30.4219 30.0859 29.75 28.4766C29.0781 26.8516 28.7422 25.1016 28.7422 23.2266C28.7422 21.3203 29.0781 19.5547 29.75 17.9297C30.4219 16.3047 31.3359 14.9062 32.4922 13.7344C33.6641 12.5469 35.0234 11.6172 36.5703 10.9453C38.1328 10.2734 39.7969 9.9375 41.5625 9.9375C43.3438 9.9375 45.0078 10.2578 46.5547 10.8984C48.1172 11.5234 49.4766 12.4219 50.6328 13.5938C51.7891 14.75 52.7031 16.1484 53.375 17.7891C54.0469 19.4141 54.3828 21.2266 54.3828 23.2266ZM47.9375 23.2266C47.9375 22.1953 47.7656 21.2656 47.4219 20.4375C47.0938 19.5938 46.6406 18.875 46.0625 18.2812C45.4844 17.6719 44.8047 17.2109 44.0234 16.8984C43.2578 16.5703 42.4375 16.4062 41.5625 16.4062C40.6875 16.4062 39.8594 16.5703 39.0781 16.8984C38.3125 17.2109 37.6406 17.6719 37.0625 18.2812C36.5 18.875 36.0547 19.5938 35.7266 20.4375C35.3984 21.2656 35.2344 22.1953 35.2344 23.2266C35.2344 24.1953 35.3984 25.0938 35.7266 25.9219C36.0547 26.75 36.5 27.4688 37.0625 28.0781C37.6406 28.6875 38.3125 29.1719 39.0781 29.5312C39.8594 29.875 40.6875 30.0469 41.5625 30.0469C42.4375 30.0469 43.2578 29.8828 44.0234 29.5547C44.8047 29.2266 45.4844 28.7656 46.0625 28.1719C46.6406 27.5781 47.0938 26.8594 47.4219 26.0156C47.7656 25.1719 47.9375 24.2422 47.9375 23.2266ZM83.0469 23.2266C83.0469 25.1953 82.7109 26.9922 82.0391 28.6172C81.3672 30.2422 80.4531 31.6406 79.2969 32.8125C78.1406 33.9688 76.7812 34.8672 75.2188 35.5078C73.6719 36.1484 72.0078 36.4688 70.2266 36.4688C68.4609 36.4688 66.7969 36.1406 65.2344 35.4844C63.6875 34.8281 62.3281 33.9141 61.1562 32.7422C60 31.5703 59.0859 30.1797 58.4141 28.5703C57.7422 26.9453 57.4062 25.1641 57.4062 23.2266V0.914062H63.8281V12.6328C64.1719 12.1953 64.5859 11.8047 65.0703 11.4609C65.5703 11.1172 66.1016 10.8359 66.6641 10.6172C67.2422 10.3984 67.8359 10.2344 68.4453 10.125C69.0547 10 69.6484 9.9375 70.2266 9.9375C72.0078 9.9375 73.6719 10.2734 75.2188 10.9453C76.7812 11.6016 78.1406 12.5234 79.2969 13.7109C80.4531 14.8984 81.3672 16.3047 82.0391 17.9297C82.7109 19.5391 83.0469 21.3047 83.0469 23.2266ZM76.6016 23.2266C76.6016 22.2578 76.4297 21.3594 76.0859 20.5312C75.7578 19.6875 75.3047 18.9609 74.7266 18.3516C74.1484 17.7422 73.4688 17.2656 72.6875 16.9219C71.9219 16.5781 71.1016 16.4062 70.2266 16.4062C69.3516 16.4062 68.5234 16.6016 67.7422 16.9922C66.9766 17.3672 66.3047 17.875 65.7266 18.5156C65.1484 19.1406 64.6953 19.8672 64.3672 20.6953C64.0391 21.5078 63.875 22.3516 63.875 23.2266C63.875 24.1953 64.0391 25.0938 64.3672 25.9219C64.6953 26.75 65.1484 27.4688 65.7266 28.0781C66.3047 28.6875 66.9766 29.1719 67.7422 29.5312C68.5234 29.875 69.3516 30.0469 70.2266 30.0469C71.1016 30.0469 71.9219 29.875 72.6875 29.5312C73.4688 29.1719 74.1484 28.6875 74.7266 28.0781C75.3047 27.4688 75.7578 26.75 76.0859 25.9219C76.4297 25.0938 76.6016 24.1953 76.6016 23.2266Z" fill="#FF0000" class="astro-H24362AN"></path>
+        </svg>
+      </div>
+
+      <label aria-label="Hamburger Menu" id="nav-toggle" class="btn btn-circle swap swap-rotate fixed z-[999] top-4 right-4 hidden astro-H24362AN" aria-controls="primary-nav" aria-expanded="false">
+        <input type="checkbox" class="astro-H24362AN">
+        <!-- hamburger icon -->
+        <svg class="swap-off fill-current astro-H24362AN" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" class="astro-H24362AN"></path>
+        </svg>
+        <!-- close icon -->
+        <svg class="swap-on fill-current astro-H24362AN" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" class="astro-H24362AN"></polygon>
+        </svg>
+      </label>
+
+      <nav class="mr-6 astro-H24362AN">
+        <ul id="primary-nav" class="flex grow gap-8 items-center justify-center z-[100] astro-H24362AN" data-visible="false">
+          <li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Home</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/blog/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Blog</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/search/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Search</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/tags/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Tags</span>
+  </a>
+</li>
+          <li class="astro-H24362AN">
+            <!-- Theme, Light/Dark mode -->
+            <label id="themeSetting" class="swap swap-rotate astro-H24362AN">
+              <!-- this hidden checkbox controls the state -->
+              <input type="checkbox" class="astro-H24362AN">
+              <!-- sun icon -->
+              <svg data-set-theme="cmyk" data-act-class="ACTIVECLASS" class="swap-on fill-current w-6 h-6 astro-H24362AN" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" class="astro-H24362AN"></path>
+              </svg>
+              <!-- moon icon -->
+              <svg data-set-theme="night" data-act-class="ACTIVECLASS" class="swap-off fill-current w-6 h-6 astro-H24362AN" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" class="astro-H24362AN"></path>
+              </svg>
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main" class="container mx-auto astro-H24362AN">
+      <h1 class="text-3xl md:text-5xl 2xl:text-6xl mb-[0.8em] font-extrabold mx-auto w-fit">MySQL文件</h1><div class="flex flex-wrap justify-evenly mb-9 mt-2">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <time datetime="2023-02-20T00:00:00.000Z">20 February 2023</time>
+    </div>
+
+    <div class="flex flex-wrap gap-2">
+      <a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/MySQL/">MySQL</a><a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/InnoDB/">InnoDB</a><a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/File/">File</a><a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/Log/">Log</a>
+    </div>
+  </div><div class="prose md:prose-lg 2xl:prose-xl px-4 mx-auto prose-pre:font-mono">
+    <h2 id="第3章-文件">第3章 文件</h2>
+<h3 id="1-参数文件">1. 参数文件</h3>
+<blockquote>
+<p>默认情况下，MySQL实例会按照一定顺序在指定的位置进行读取配置文件，通过命令mysql —help|grep my.cnf 来寻找即可。</p>
+</blockquote>
+<p>参数分为两种类型：</p>
+<ul>
+<li>动态参数(dynamic)</li>
+<li>静态参数(static)</li>
+</ul>
+<p>动态参数在MySQL运行中可以进行修改，静态参数不能进行修改，类似于只读概念。</p>
+<h3 id="2-日志文件">2. 日志文件</h3>
+<h4 id="21-错误日志error-log">2.1 错误日志(error log)</h4>
+<p>错误日志文件对MySQL的启动、运行、关闭过程进行了记录。遇到问题时应该首先查看该文件以便定位问题。该文件记录了所有的错误信息，也记录一些警告信息或正确的信息。用户可以通过命令show variables like ‘log_error’来定位文件。</p>
+<h5 id="22--慢查询日志slow-log">2.2  慢查询日志(slow log)</h5>
+<p>MySQL启动时有一个参数long_query_time，默认值为10，代表10秒。当SQL执行时长超过此阈值时，将会记录SQL到慢查询日志中。因为执行时间过长的SQL往往都是有问题的SQL，需要优化。默认情况下，MySQL并不启动慢查询日志，需要手动将这个参数设置为ON。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> show variables like 'long_query_time'; ## 查询阈值</span></span>
+<span class="line"><span style="color: #abb2bf">mysql> show variables like 'log_slow_queries'; ## 查询慢日志开关</span></span></code></pre>
+<p>需要注意的是，运行时间刚好等于long_query_time的语句，并不会被记录下，也就是说，在源代码中判断的是大于，并非大于等于。从MySQL5.1开始，long_query_time开始以微秒记录SQL的运行时间。另一个和慢查询日志有关的参数是log_queries_not_using_indexes，如果运行的SQL语句没有使用索引，则MySQL数据库同样会将这条SQL语句记录到慢查询日志文件。首先确认打开了log_queries_not_using_indexes:</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> show variables like 'log_queries_not_using_indexes';</span></span></code></pre>
+<p>MySQL5.6.5版本开始新增了一个参数log_throttle_queries_not_using_indexes，用来表示每分钟允许记录到slow log的且未使用索引的SQL语句次数。该值默认为0，表示没有限制。在生产环境下，若没有使用索引，此类SQL语句会频繁被记录到slow log，从而导致slow log文件的大小不断增加。</p>
+<p>随着MySQL运行时间的增加，可能会有越来越多的SQL被记录到慢查询日志中，此时要分析该文件就不那么简单直观了。可以使用数据库提供的mysqldumpslow命令，可以很好的解决该问题</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysqldumpslow nh122-190-slow.log</span></span>
+<span class="line"><span style="color: #abb2bf">如果希望得到执行时间最长的10条SQL语句</span></span>
+<span class="line"><span style="color: #abb2bf">mysqldumpslow -s al -n 10 david.log</span></span></code></pre>
+<p>MySQL5.1开始可以将慢查询的日志记录放入一张表中，慢查询表在mysql库下，名为slow_log，其表结构定义如下：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">CREATE TABLE `slow_log` (</span></span>
+<span class="line"><span style="color: #abb2bf">  `start_time` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),</span></span>
+<span class="line"><span style="color: #abb2bf">  `user_host` mediumtext NOT NULL,</span></span>
+<span class="line"><span style="color: #abb2bf">  `query_time` time(6) NOT NULL,</span></span>
+<span class="line"><span style="color: #abb2bf">  `lock_time` time(6) NOT NULL,</span></span>
+<span class="line"><span style="color: #abb2bf">  `rows_sent` int NOT NULL,</span></span>
+<span class="line"><span style="color: #abb2bf">  `rows_examined` int NOT NULL,</span></span>
+<span class="line"><span style="color: #abb2bf">  `db` varchar(512) NOT NULL,</span></span>
+<span class="line"><span style="color: #abb2bf">  `last_insert_id` int NOT NULL,</span></span>
+<span class="line"><span style="color: #abb2bf">  `insert_id` int NOT NULL,</span></span>
+<span class="line"><span style="color: #abb2bf">  `server_id` int unsigned NOT NULL,</span></span>
+<span class="line"><span style="color: #abb2bf">  `sql_text` mediumblob NOT NULL,</span></span>
+<span class="line"><span style="color: #abb2bf">  `thread_id` bigint unsigned NOT NULL</span></span>
+<span class="line"><span style="color: #abb2bf">) ENGINE=CSV DEFAULT CHARSET=utf8 COMMENT='Slow log'</span></span></code></pre>
+<p>参数log_output指定了慢查询输出的格式，默认为FILE，可以将它设为TABLE，然后就可以查询mysql.slow_log表了。参数log_output是全局动态的，因此用户可以在线修改。查看slow_log表的定义会发现该表使用的引擎是CSV，对大数据量下的查询效率可能不高。用户可以把slow_log表的引擎切换到MyISAM，并在start_time列上添加索引进一步的提高查询效率。但是，如果已经启动了慢查询，将会提示错误。</p>
+<p>MySQL的slow log通过运行时间来对SQL语句进行捕获，但是当数据库容量较小时，可能因为数据库刚建立，此时非常大的可能是数据全部缓存在缓冲池汇总，SQL语句运行的时间可能都是非常短的。</p>
+<h4 id="23-查询日志query-log">2.3 查询日志(query log)</h4>
+<p>查询日志记录了所有对MySQL数据库请求的信息，无论这些请求是否得到了正确的执行。默认文件名：主机名.log。</p>
+<h4 id="24-二进制日志binary-log">2.4 二进制日志(binary log)</h4>
+<p>二进制日志记录了对MySQL数据库执行更改的所有操作，但是不包括SELECT和SHOW这类操作，因为操作本身没有对数据进行修改。然而，若操作本身并没有导致数据库发生变化，那么该操作可能也会写入二进制日志。</p>
+<p>二进制日志主要有以下几种作用：</p>
+<ul>
+<li>恢复（recovery）：某些数据的恢复需要二进制日志，例如，在一个数据库全备文件恢复后，用户可以通过二进制日志进行point-in-time的恢复。</li>
+<li>复制（replication）：其原理与恢复类似，通过复制和执行二进制日志使一条远程的MySQL数据库(一般称为slave或standby)与一台MySQL数据库(一般称为master或primary)进行实时同步。</li>
+<li>审计（audit）：用户可以通过二进制日志中的信息来进行审计，判断是否有对数据库进行注入的攻击。</li>
+</ul>
+<p>二进制日志文件在默认情况下并没有启动，需要手动指定参数来启动。开启二进制日志，会使性能下降1%，但考虑到可以使用复制（replication）和point-in-time的恢复，这些性能损失绝对是可以且应该被接受的。</p>
+<p>以下配置文件的参数影响这二进制日志记录的信息和行为：</p>
+<ul>
+<li>max_binlog_size</li>
+<li>binlog_cache_size</li>
+<li>sync_binlog</li>
+<li>binlog-do-db</li>
+<li>binlog-ignore-db</li>
+<li>log-slave-update</li>
+<li>binlog_format</li>
+</ul>
+<p>参数<strong>max_binlog_size</strong>指定了单个二进制日志文件的最大值，如果超过该值，则产生新的二进制文件，后缀名+1，并记录到.index文件。当使用事务的表存储引擎（如InnoDB）时，所有未提交（uncommitted）的二进制日志会被记录到一个缓存中去，等该事务提交（committed）时直接将缓冲中的二进制日志写入二进制日志文件，而该缓冲的大小有<strong>binlog_cache_size</strong>决定，默认大小为32K。此外binlog_cache_size是基于会话（session）的，也就是说，当月一个线程开始一个事务时，MySQL会自动分配一个大小为binlog_cache_size的缓存，因此该值的设置需要相当小心，不能设置过大。当一个事务的记录大于设定的binlog_cache_size时，MySQL会把缓冲中的日志写入一个临时文件中，因此该值又不能设置的太小。通过show global status命令查看binlog_cache_use、binlog_cache_disk_use的状态，可以判断当前binlog_cache_size的设置是否合适。binlog_cache_use记录了使用缓冲写二进制日志的次数，binlog_cache_disk_use记录了使用临时文件写二进制日志的次数。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> show variables like 'binlog_cache_size';</span></span>
+<span class="line"><span style="color: #abb2bf">+------------------+---------+</span></span>
+<span class="line"><span style="color: #abb2bf">|Variable_name     |  Value  |</span></span>
+<span class="line"><span style="color: #abb2bf">+------------------+---------+</span></span>
+<span class="line"><span style="color: #abb2bf">|binlog_cache_size |  32768  |</span></span>
+<span class="line"><span style="color: #abb2bf">+------------------+---------+</span></span>
+<span class="line"><span style="color: #abb2bf">mysql> show global status like 'binlog_cache%';</span></span>
+<span class="line"><span style="color: #abb2bf">+----------------------+---------+</span></span>
+<span class="line"><span style="color: #abb2bf">|Variable_name         |  Value  |</span></span>
+<span class="line"><span style="color: #abb2bf">+----------------------+---------+</span></span>
+<span class="line"><span style="color: #abb2bf">|binlog_cache_disk_use |    0    |</span></span>
+<span class="line"><span style="color: #abb2bf">|binlog_cache_use      |  33553  |</span></span>
+<span class="line"><span style="color: #abb2bf">+----------------------+---------+</span></span></code></pre>
+<p>使用缓冲次数为33553，临时文件使用次数为0。</p>
+<p>在默认情况下，二进制日志并不是在每次写的时候同步到磁盘（用户可以理解为缓冲写）。因此，当数据库所在操作系统发生宕机时，可能会有最后一部分数据没有写入二进制日志文件中，这会给恢复和复制带来问题。参数<strong>sync_binlog</strong>=[N]表示每写缓冲多少次就同步磁盘。如果将N设为1，即sync_binlog=1，表示采用同步写磁盘的方式来写二进制日志，这时写操作不使用操作系统的缓冲来写二进制日志。sync_binlog的默认值为0，如果使用InnoDB存储引擎进行复制，并且想得到最大的高可用性，建议将该值设为ON。不过该值为ON时，确实会对数据库的IO系统带来一定的影响。</p>
+<p>参数<strong>binlog-do-db</strong>和<strong>binlog-ignore-db</strong>表示需要写入或忽略写入哪些库的日志。默认为空，表示需要同步所有库的日志到二进制日志。</p>
+<p>如果当前数据库是复制中的slave角色，则它不会将从master取得并执行的二进制日志写入自己的二进制日志文件中去。如果需要写入，要设置<strong>log-slave-update</strong>。如果需要搭建master->slave->slave架构的复制，则必须设置该参数。</p>
+<p><strong>binlog_format</strong>参数十分重要，它影响了二进制日志的格式。该参数可设置的值有：STATEMENT、ROW、MIXED。</p>
+<ol>
+<li>STATEMENT格式和之前的MySQL版本一样，二进制日志文件记录的是逻辑SQL语句。</li>
+<li>在ROW格式下，二进制日志记录的不再是简单的SQL语句，而是记录表的行更改情况。基于ROW格式的复制类似于Oracle的物理Standby（当然还是有区别）。同时，对上述提及的Statement格式下复制的问题予以解决。从MySQL5.1版本开始，如果设置了binlog_format为ROW，可以将InnoDB的事务隔离基本设为READ COMMITTED，以获得更好的并发性。</li>
+<li>在MIXED格式下，MySQL默认采用STATEMENT格式进行二进制日志文件的记录，但是在一些情况下会使用ROW格式，可能的情况有：
+<ol>
+<li>表的存储引擎为NDB，这是对表的DML操作都会以ROW格式记录。</li>
+<li>使用了UUID()、USER()、CURRENT_USER()、FOUND_ROWS()、ROW_COUNT()等不确定函数。</li>
+<li>使用了INSERT DELAY语句。</li>
+<li>使用了用户定义的函数（UDF）</li>
+<li>使用了临时表（temporary table）</li>
+</ol>
+</li>
+</ol>
+<p>此外，binlog_format参数还有对于存储引擎的限制</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>存储引擎</th><th>Row格式</th><th>Statement格式</th></tr></thead><tbody><tr><td>InnoDB</td><td>Yes</td><td>Yes</td></tr><tr><td>MyISAM</td><td>Yes</td><td>Yes</td></tr><tr><td>HEAP</td><td>Yes</td><td>Yes</td></tr><tr><td>MERGE</td><td>Yes</td><td>Yes</td></tr><tr><td>NDB</td><td>Yes</td><td>No</td></tr><tr><td>Archive</td><td>Yes</td><td>Yes</td></tr><tr><td>CSV</td><td>Yes</td><td>Yes</td></tr><tr><td>Federate</td><td>Yes</td><td>Yes</td></tr><tr><td>Blockhole</td><td>No</td><td>Yes</td></tr></tbody></table>
+<p>通常情况下，将参数binlog_format设置为ROW，可以为数据库的恢复和复制带来更好的可靠性。但是也会增加二进制文件的大小，有些语句下的ROW格式可能需要更大的容量。而且由于复制是采用传输二进制日志方式实现的，因此复制的网络开销也有所增加。</p>
+<p>查看二进制日志文件的方式，通过mysqlbinlog命令完成。</p>
+<h4 id="3-套接字文件">3. 套接字文件</h4>
+<p>在UNIX系统下本地连接MySQL可以采用UNIX域套接字方式，这种方式需要一个套接字(socket)文件。套接字文件可由参数socket控制。一般在/tmp/目录下，名为mysql.sock。</p>
+<h4 id="4-pid文件">4. pid文件</h4>
+<p>MySQL启动后，会将自己的进程ID写入一个文件中，这个文件就是pid文件。该文件可由参数pid_file控制，默认位于数据库目录下，文件名为主机名.pid。</p>
+<h4 id="5-表结构定义文件">5. 表结构定义文件</h4>
+<p>因为MySQL插件式存储引擎体系结构的关系，MySQL数据的存储是根据表进行的，每个表都会有与之对应的文件。但不论表采用何种引擎，MySQL都有一个亿frm为后缀名的文件，这个文件记录了该表的表结构定义。frm还用来存放视图的定义，如用户创建了一个v_a视图，那么对应的会产生一个v_a.frm文件，用来记录视图的定义，该文件是文本文件，可以直接使用cat命令进行查看。</p>
+<h4 id="6-innodb存储引擎文件">6. InnoDB存储引擎文件</h4>
+<h5 id="61-表空间文件">6.1 表空间文件</h5>
+<p>InnoDB采用将存储的数据按表空间（tablespace）进行存放的设计。在默认配置下会有一个初始大小为10MB，名为ibdata1的文件。该文件就是默认的表空间文件（tablespace file），用户可以通过参数innodb_data_file_path对其进行设置。格式如下：</p>
+<p><code>innodb_data_file_path=datafile_spec1[;datafile_spec2]...</code></p>
+<p>用户可以通过多个文件组成一个表空间，同时制定文件的属性，如：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #61AFEF">[mysqld]</span></span>
+<span class="line"><span style="color: #C678DD">innodb_data_file_path</span><span style="color: #98C379"> </span><span style="color: #ABB2BF">=</span><span style="color: #98C379"> /db/ibdata1:2000M</span><span style="color: #7F848E; font-style: italic">;/dr2/db/ibdata2:2000M:autoextend</span></span></code></pre>
+<p>这里将/db/ibdata1和/dr2/db/ibdata2两个文件用来组成表空间。若这两个文件位于不同的磁盘上，磁盘的负载可能被平均，因此可以提高数据库的整体性能。同时，两个文件的文件名后都跟了属性，表示文件ibdata1的大小为2000MB，文件ibdata2的大小为2000MB，如果用完这2000MB，该文件可以自动增长(autoextend)。</p>
+<p>设置innodb_data_file_path参数后，所有基于InnoDB存储引擎的表的数据都会记录到该共享表空间中。若设置了参数innodb_file_per_table，则用户可以将每个基于InnoDB存储引擎的表产生一个独立的表空间。独立表空间的命名规则为：表名.ibd。通过这样的方式，用户不用将所有的数据都存放与默认的表空间中。</p>
+<p>需要注意的是，单独的表空间文件仅存储该表的数据、索引和插入缓冲BITMAP等信息，其余信息还是存放在默认的表空间中。</p>
+<p><img src="/mysql/Innodb%E8%A1%A8%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%BD%93%E6%96%87%E4%BB%B6.png" alt="Innodb表存储引擎体文件"></p>
+<p>######## 6.2 重做日志文件</p>
+<p>在默认情况下，在InnoDB存储引擎的数据目录下会有两个名为ib_logfile0和ib_logfile1的文件。在MySQL官方手册中将其称为InnoDB存储引擎的日志文件，不过更准确的定义应该是重做日志文件（redo log file）。它们记录了对于INNODB存储引擎的事务日志。</p>
+<p>当实例或介质失败（media failure）时，重做日志文件就能派上用场。例如，数据库由于所在主机掉电导致实例失败，InnoDB存储引擎会使用重做日志恢复到掉电前的时刻，以此来保证数据的完整性。</p>
+<p>每个InnoDB存储引擎至少有1个重做日志文件组（group），每个文件组下至少有2个重做日志文件，如默认的ib_logfile0和ib_logfile1。为了得到更高的可靠性，用户可以设置多个的镜像日志组（mirrored log groups），将不同的文件组放在不同的磁盘上，以此提高重做日志的高可用性。在日志组中每个重做日志文件的大小一致，并以循环写入的方式运行。InnoDB存储引擎先写重做日志文件1，当达到文件的末尾时，会切换至重做日志文件2，再当重做日志文件2也被写满时，会切回到重做日志文件1中。</p>
+<p><img src="/mysql/InnoDB%E9%87%8D%E5%81%9A%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%BB%84.png" alt="InnoDB重做日志文件组"></p>
+<p>下列参数影响这重做日志文件的属性：</p>
+<ul>
+<li>innodb_log_file_size</li>
+<li>innodb_log_files_in_group</li>
+<li>innodb_mirrored_log_groups</li>
+<li>innodb_log_group_home_dir</li>
+</ul>
+<p>参数<strong>innodb_log_file_size</strong>指定每个重做日志文件的大小。</p>
+<p>参数<strong>innodb_log_files_in_group</strong>指定了日志文件组中重做日志文件的数量，默认为2。</p>
+<p>参数<strong>innodb_mirrored_log_groups</strong>指定了日志镜像文件组的数量，默认为1，表示只有一个日志文件组，没有镜像。若磁盘本身已经做了高可用的方案，如磁盘这列，那么可以不开启重做日志镜像的功能。</p>
+<p>参数<strong>innodb_log_group_home_dir</strong>指定了日志文件组所在路径，默认为./，表示在MySQL数据库的数据目下。</p>
+<hr>
+<p>重做日志文件的大小设置对于InnoDB存储引擎的性能有着非常大的影响。重做日志文件不能设置的太大，太大在恢复时可能需要很长的时间；太小，容易导致一个事务的日志需要多次切换重做日志文件。此外，重做日志文件太小会导致频繁发生async checkpoint，导致性能抖动。</p>
+<p>既然同样是记录事务日志，与之前的二进制日志有什么区别？</p>
+<p>首先，二进制日志会记录所有与MySQL数据库有关的日志记录，包括InnoDB、MyISAM、HEAP等其他存储引擎的日志。而InnoDB存储引擎的重做日志只记录有关自己本身的事务日志。</p>
+<p>其次，记录的内容不同，无论用户将二进制日志文件记录的格式设为STATEMENT还是ROW，又或者是MIXED，其记录的都是关于一个事务的具体操作内容，即该日志是逻辑日志。而InnoDB存储引擎的重做日志文件记录的是关于每个页(page)的更改的物理情况。</p>
+<p>此外，写入的时间也不同，二进制日志文件仅在事务提交前进行提交，即只写磁盘一次，不论这时该事务多大。而在事务进行的过程中，却不断有重做日志条目(redo entry)被写入到重做日志文件中。</p>
+<hr>
+<p>写入重做日志文件的操作不是直接写，而是先写入一个重做日志缓冲(redo log buffer)中，然后按照一定的条件顺序地写入日志文件。</p>
+<p><img src="/mysql/%E9%87%8D%E5%81%9A%E6%97%A5%E5%BF%97%E5%86%99%E5%85%A5%E8%BF%87%E7%A8%8B.png" alt="重做日志写入过程"></p>
+<p>从重做日志缓冲往磁盘写入时，是按512个字节，也就是一个扇区的大小进行写入。因为扇区是写入的最小单位，因此可以保证写入必定是成功的。因此在重做日志的写入过程中不需要有doublewrite。</p>
+<p><strong>重做日志缓冲按照什么样的条件顺序写入日志文件？</strong></p>
+<p>主线程(master thread)每秒会将重做日志缓冲写入磁盘的重做日志文件中，不论事务是否已经提交。另一个触发写磁盘的过程是有参数innodb_flush_log_at_trx_commit控制，表示在提交(commit)操作时，处理重做日志的方式。</p>
+<p>参数<strong>innodb_flush_log_at_trx_commit</strong>的有效值为0、1、2。</p>
+<ul>
+<li>0代表当事务提交时，并不将事务的重做日志写入磁盘上的日志文件，而是等待主线程每秒的刷新。</li>
+<li>1表示在执行commit时将重做日志缓冲同步写到磁盘，即伴有fsync的调用。</li>
+<li>2表示将重做日志异步写到磁盘，即写文件系统的缓存中。因此不能完全保证在执行commit时肯定会写入重做日志文件，只是有这个动作发生。</li>
+</ul>
+<p>因此为了保证事务ACID中的持久性，必须将innodb_flush_log_at_trx_commit设置为1，也就是每当有事务提交时，就必须确保事务都已经写入重做日志文件。那么当数据库因为意外发生宕机时，可以通过重做日志文件恢复，并保证可以恢复已经提交的事务。而将重做日志文件设置为0或2，都有可能发生恢复时部分事务丢失。不同之处在于，设置为2时，当MySQL数据库发生宕机而操作系统及服务器并没有发生宕机时，由于此时未写入磁盘的事务日志保存在文件系统缓存中，当恢复时同样能保证数据不丢失。</p>
+  </div>
+    </main>
+
+    <svg xmlns="http://www.w3.org/2000/svg" id="scrollButton" viewBox="0 0 512 512" class="w-10 h-10 fill-primary fixed bottom-5 right-5 animate-[jump_1500ms_infinite] cursor-pointer bg-base-100 rounded-full astro-H24362AN" style="display: none">
+      <path d="M256 0C114.6 0 0 114.6 0 256c0 141.4 114.6 256 256 256s256-114.6 256-256C512 114.6 397.4 0 256 0zM382.6 254.6c-12.5 12.5-32.75 12.5-45.25 0L288 205.3V384c0 17.69-14.33 32-32 32s-32-14.31-32-32V205.3L174.6 254.6c-12.5 12.5-32.75 12.5-45.25 0s-12.5-32.75 0-45.25l103.1-103.1C241.3 97.4 251.1 96 256 96c4.881 0 14.65 1.391 22.65 9.398l103.1 103.1C395.1 221.9 395.1 242.1 382.6 254.6z" class="astro-H24362AN"></path>
+    </svg>
+
+    <footer class="border-t px-4 py-6 mt-6 astro-H24362AN">
+      <p class="text-center text-sm astro-H24362AN">
+        &copy; 2023
+        gwalnut
+      </p>
+      <p class="text-center text-xs astro-H24362AN">
+        Built with <a class="text-cyan-600 hover:text-black dark:hover:text-white astro-H24362AN" href="https://astro.build" target="_blank" rel="noreferrer noopener">Astro v1.1.1
+        </a>
+      </p>
+    </footer>
+  </body>
+</html>
+
+
+

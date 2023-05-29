@@ -1,0 +1,954 @@
+<!DOCTYPE html><html lang="en" class="astro-H24362AN">
+  <head>
+    <title>Python_Unittest</title>
+<meta charset="UTF-8">
+
+<meta name="author" content="gwalnut">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Blog,Astro">
+<meta name="description" content="Python_Unittest 解读">
+<meta name="category" content="Blog">
+<link rel="canonical" href="https://jonascaptain.github.io/blog/articles/python_Unittest/">
+<meta name="generator" content="Astro v1.1.1">
+
+<!-- Robot.txt -->
+<meta name="robots" content="index,follow">
+<meta name="Googlebot" content="index,follow">
+<meta name="AdsBot-Google" content="index,follow">
+
+<!-- FaceBook Meta data -->
+<meta property="og:site_name" content="https://jonascaptain.github.io/blog/articles/python_Unittest/">
+<meta property="og:title" content="Python_Unittest">
+<meta property="og:description" content="Python_Unittest 解读">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonascaptain.github.io/blog/articles/python_Unittest/">
+
+<!-- Twitter Meta data -->
+<meta name="twitter:card" content="My personal blog">
+<meta name="twitter:url" content="https://jonascaptain.github.io/blog/articles/python_Unittest/">
+<meta name="twitter:title" content="Python_Unittest">
+<meta name="twitter:site" content="https://jonascaptain.github.io/blog/articles/python_Unittest/">
+<meta name="application-name" content="Python_Unittest">
+<meta name="twitter:description" content="Python_Unittest 解读">
+
+<meta name="apple-mobile-web-app-title" content="Python_Unittest">
+<meta name="apple-touch-icon" content="/favicon.ico">
+<meta name="summary" content="My personal blog">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+<script>
+  if (localStorage.theme === 'night' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.querySelector('html').setAttribute('data-theme', 'night');
+  } else {
+    document.querySelector('html').setAttribute('data-theme', 'cmyk');
+  }
+</script>
+  <link rel="stylesheet" href="/assets/50c6c343.ed30341b.css" />
+<link rel="stylesheet" href="/assets/d5e0e75b.7bb9d23f.css" />
+<link rel="stylesheet" href="/assets/5b4135e6.e480e920.css" /><script type="module" src="/hoisted.b525123c.js"></script></head>
+
+  <body class="astro-H24362AN">
+    <a href="#main" class="absolute bg-info text-info-content px-6 py-2 rounded-br-md translate-x-[-100%] focus-within:translate-x-0 transition-all astro-H24362AN">Skip navigation</a>
+    <header class="container mx-auto flex items-center justify-between mb-16 astro-H24362AN">
+      <div class="p-4 astro-H24362AN">
+        <!-- Logo -->
+        <svg width="84" height="37" viewBox="0 0 84 37" fill="none" xmlns="http://www.w3.org/2000/svg" class="astro-H24362AN">
+          <path d="M26.5625 23.2266C26.5625 25.1953 26.2266 26.9922 25.5547 28.6172C24.8828 30.2422 23.9688 31.6406 22.8125 32.8125C21.6562 33.9688 20.2969 34.8672 18.7344 35.5078C17.1875 36.1484 15.5234 36.4688 13.7422 36.4688C11.9766 36.4688 10.3125 36.1406 8.75 35.4844C7.20312 34.8281 5.84375 33.9141 4.67188 32.7422C3.51562 31.5703 2.60156 30.1797 1.92969 28.5703C1.25781 26.9453 0.921875 25.1641 0.921875 23.2266V0.914062H7.34375V12.6328C7.6875 12.1953 8.10156 11.8047 8.58594 11.4609C9.08594 11.1172 9.61719 10.8359 10.1797 10.6172C10.7578 10.3984 11.3516 10.2344 11.9609 10.125C12.5703 10 13.1641 9.9375 13.7422 9.9375C15.5234 9.9375 17.1875 10.2734 18.7344 10.9453C20.2969 11.6016 21.6562 12.5234 22.8125 13.7109C23.9688 14.8984 24.8828 16.3047 25.5547 17.9297C26.2266 19.5391 26.5625 21.3047 26.5625 23.2266ZM20.1172 23.2266C20.1172 22.2578 19.9453 21.3594 19.6016 20.5312C19.2734 19.6875 18.8203 18.9609 18.2422 18.3516C17.6641 17.7422 16.9844 17.2656 16.2031 16.9219C15.4375 16.5781 14.6172 16.4062 13.7422 16.4062C12.8672 16.4062 12.0391 16.6016 11.2578 16.9922C10.4922 17.3672 9.82031 17.875 9.24219 18.5156C8.66406 19.1406 8.21094 19.8672 7.88281 20.6953C7.55469 21.5078 7.39062 22.3516 7.39062 23.2266C7.39062 24.1953 7.55469 25.0938 7.88281 25.9219C8.21094 26.75 8.66406 27.4688 9.24219 28.0781C9.82031 28.6875 10.4922 29.1719 11.2578 29.5312C12.0391 29.875 12.8672 30.0469 13.7422 30.0469C14.6172 30.0469 15.4375 29.875 16.2031 29.5312C16.9844 29.1719 17.6641 28.6875 18.2422 28.0781C18.8203 27.4688 19.2734 26.75 19.6016 25.9219C19.9453 25.0938 20.1172 24.1953 20.1172 23.2266ZM54.3828 23.2266C54.3828 25.1016 54.0469 26.8516 53.375 28.4766C52.7031 30.0859 51.7891 31.4844 50.6328 32.6719C49.4766 33.8438 48.1172 34.7734 46.5547 35.4609C45.0078 36.1328 43.3438 36.4688 41.5625 36.4688C39.7969 36.4688 38.1328 36.1328 36.5703 35.4609C35.0234 34.7734 33.6641 33.8438 32.4922 32.6719C31.3359 31.4844 30.4219 30.0859 29.75 28.4766C29.0781 26.8516 28.7422 25.1016 28.7422 23.2266C28.7422 21.3203 29.0781 19.5547 29.75 17.9297C30.4219 16.3047 31.3359 14.9062 32.4922 13.7344C33.6641 12.5469 35.0234 11.6172 36.5703 10.9453C38.1328 10.2734 39.7969 9.9375 41.5625 9.9375C43.3438 9.9375 45.0078 10.2578 46.5547 10.8984C48.1172 11.5234 49.4766 12.4219 50.6328 13.5938C51.7891 14.75 52.7031 16.1484 53.375 17.7891C54.0469 19.4141 54.3828 21.2266 54.3828 23.2266ZM47.9375 23.2266C47.9375 22.1953 47.7656 21.2656 47.4219 20.4375C47.0938 19.5938 46.6406 18.875 46.0625 18.2812C45.4844 17.6719 44.8047 17.2109 44.0234 16.8984C43.2578 16.5703 42.4375 16.4062 41.5625 16.4062C40.6875 16.4062 39.8594 16.5703 39.0781 16.8984C38.3125 17.2109 37.6406 17.6719 37.0625 18.2812C36.5 18.875 36.0547 19.5938 35.7266 20.4375C35.3984 21.2656 35.2344 22.1953 35.2344 23.2266C35.2344 24.1953 35.3984 25.0938 35.7266 25.9219C36.0547 26.75 36.5 27.4688 37.0625 28.0781C37.6406 28.6875 38.3125 29.1719 39.0781 29.5312C39.8594 29.875 40.6875 30.0469 41.5625 30.0469C42.4375 30.0469 43.2578 29.8828 44.0234 29.5547C44.8047 29.2266 45.4844 28.7656 46.0625 28.1719C46.6406 27.5781 47.0938 26.8594 47.4219 26.0156C47.7656 25.1719 47.9375 24.2422 47.9375 23.2266ZM83.0469 23.2266C83.0469 25.1953 82.7109 26.9922 82.0391 28.6172C81.3672 30.2422 80.4531 31.6406 79.2969 32.8125C78.1406 33.9688 76.7812 34.8672 75.2188 35.5078C73.6719 36.1484 72.0078 36.4688 70.2266 36.4688C68.4609 36.4688 66.7969 36.1406 65.2344 35.4844C63.6875 34.8281 62.3281 33.9141 61.1562 32.7422C60 31.5703 59.0859 30.1797 58.4141 28.5703C57.7422 26.9453 57.4062 25.1641 57.4062 23.2266V0.914062H63.8281V12.6328C64.1719 12.1953 64.5859 11.8047 65.0703 11.4609C65.5703 11.1172 66.1016 10.8359 66.6641 10.6172C67.2422 10.3984 67.8359 10.2344 68.4453 10.125C69.0547 10 69.6484 9.9375 70.2266 9.9375C72.0078 9.9375 73.6719 10.2734 75.2188 10.9453C76.7812 11.6016 78.1406 12.5234 79.2969 13.7109C80.4531 14.8984 81.3672 16.3047 82.0391 17.9297C82.7109 19.5391 83.0469 21.3047 83.0469 23.2266ZM76.6016 23.2266C76.6016 22.2578 76.4297 21.3594 76.0859 20.5312C75.7578 19.6875 75.3047 18.9609 74.7266 18.3516C74.1484 17.7422 73.4688 17.2656 72.6875 16.9219C71.9219 16.5781 71.1016 16.4062 70.2266 16.4062C69.3516 16.4062 68.5234 16.6016 67.7422 16.9922C66.9766 17.3672 66.3047 17.875 65.7266 18.5156C65.1484 19.1406 64.6953 19.8672 64.3672 20.6953C64.0391 21.5078 63.875 22.3516 63.875 23.2266C63.875 24.1953 64.0391 25.0938 64.3672 25.9219C64.6953 26.75 65.1484 27.4688 65.7266 28.0781C66.3047 28.6875 66.9766 29.1719 67.7422 29.5312C68.5234 29.875 69.3516 30.0469 70.2266 30.0469C71.1016 30.0469 71.9219 29.875 72.6875 29.5312C73.4688 29.1719 74.1484 28.6875 74.7266 28.0781C75.3047 27.4688 75.7578 26.75 76.0859 25.9219C76.4297 25.0938 76.6016 24.1953 76.6016 23.2266Z" fill="#FF0000" class="astro-H24362AN"></path>
+        </svg>
+      </div>
+
+      <label aria-label="Hamburger Menu" id="nav-toggle" class="btn btn-circle swap swap-rotate fixed z-[999] top-4 right-4 hidden astro-H24362AN" aria-controls="primary-nav" aria-expanded="false">
+        <input type="checkbox" class="astro-H24362AN">
+        <!-- hamburger icon -->
+        <svg class="swap-off fill-current astro-H24362AN" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" class="astro-H24362AN"></path>
+        </svg>
+        <!-- close icon -->
+        <svg class="swap-on fill-current astro-H24362AN" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" class="astro-H24362AN"></polygon>
+        </svg>
+      </label>
+
+      <nav class="mr-6 astro-H24362AN">
+        <ul id="primary-nav" class="flex grow gap-8 items-center justify-center z-[100] astro-H24362AN" data-visible="false">
+          <li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Home</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/blog/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Blog</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/search/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Search</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/tags/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Tags</span>
+  </a>
+</li>
+          <li class="astro-H24362AN">
+            <!-- Theme, Light/Dark mode -->
+            <label id="themeSetting" class="swap swap-rotate astro-H24362AN">
+              <!-- this hidden checkbox controls the state -->
+              <input type="checkbox" class="astro-H24362AN">
+              <!-- sun icon -->
+              <svg data-set-theme="cmyk" data-act-class="ACTIVECLASS" class="swap-on fill-current w-6 h-6 astro-H24362AN" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" class="astro-H24362AN"></path>
+              </svg>
+              <!-- moon icon -->
+              <svg data-set-theme="night" data-act-class="ACTIVECLASS" class="swap-off fill-current w-6 h-6 astro-H24362AN" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" class="astro-H24362AN"></path>
+              </svg>
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main" class="container mx-auto astro-H24362AN">
+      <h1 class="text-3xl md:text-5xl 2xl:text-6xl mb-[0.8em] font-extrabold mx-auto w-fit">Python_Unittest</h1><div class="flex flex-wrap justify-evenly mb-9 mt-2">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <time datetime="2023-02-21T00:00:00.000Z">21 February 2023</time>
+    </div>
+
+    <div class="flex flex-wrap gap-2">
+      <a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/Python/">Python</a><a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/UnitTest/">UnitTest</a>
+    </div>
+  </div><div class="prose md:prose-lg 2xl:prose-xl px-4 mx-auto prose-pre:font-mono">
+    <h2 id="简介">简介</h2>
+<blockquote>
+<p>从python官网中关于Unittest介绍中摘抄</p>
+</blockquote>
+<p><strong>test fixture</strong>: 表示执行一个或多个测试所需的准备，以及任何关联的清理操作。这可能涉及，例如，创建临时或代理数据库、目录或启动服务器进程。(这只是一个概念，在Unittest代码中并不存在具体的实现函数或者实现类，而是以一系列代码的组合来完成的)</p>
+<p><strong>test case</strong>: 最小的测试单元。它检查对特定输入集的特定响应。unittest提供了一个基类TestCase，它可以用来创建新的测试用例。</p>
+<p><strong>test suite</strong>：test suite 是test case、test suite或两者的集合。它用于聚合应该一起执行的测试。</p>
+<p><strong>test runner</strong>：runner是组织测试执行并向用户提供结果的组件。运行程序可以使用图形界面、文本界面或返回一个特殊值来指示执行测试的结果。</p>
+<hr>
+<h2 id="目录结构">目录结构</h2>
+<ul>
+<li>_<em>init_</em>.py：通过 __all__ 控制了导包的时候能导入哪些类</li>
+<li>_<em>mian_</em>.py：这个与Unittest框架关系不大，可以作为了解，有了此文件，可以将unittest目录当做一个Package使用，python -m unittest。详情可以查询一下，_<em>main_</em>.py文件的作用</li>
+<li>case.py：通过继承的方式，将子类中的test_打头的方法组合上setUp和tearDown形成 testFixture，以testFixture方式执行测试</li>
+<li>loader.py：负责加载各种标准方式的测试类，并将它们封装成TestSuite</li>
+<li>main.py：单元测试的执行入口</li>
+<li>result.py：管理测试过程中输出的信息(Error，Exception，Success，Skip)</li>
+<li>runner.py：测试执行器</li>
+<li>singals.py：处理执行过程中遇到的中断信号量</li>
+<li>suite.py：由Case组合起来的一个整体，可以批量执行Case</li>
+<li>util.py：工具函数，一些处理细节</li>
+</ul>
+<hr>
+<h2 id="具体文件分析">具体文件分析</h2>
+<blockquote>
+<p>仅分析文件中重要的函数、类以及其中的方法</p>
+</blockquote>
+<h3 id="casepy">case.py</h3>
+<p>异常：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">Skip</span><span style="color: #ABB2BF">(Exception):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">     抛出异常被捕获，用于判断是否跳过该用例</span></span>
+<span class="line"><span style="color: #98C379">     使用方法：</span></span>
+<span class="line"><span style="color: #98C379">      通过装饰器，配置需要跳过的用例来达到目的</span></span>
+<span class="line"><span style="color: #98C379">     装饰器函数(全局)：</span></span>
+<span class="line"><span style="color: #98C379">      skip(reason)，表示无条件通过，reason用于说明跳过原因</span></span>
+<span class="line"><span style="color: #98C379">      skipIf(condition, reason)，表示条件为真即跳过</span></span>
+<span class="line"><span style="color: #98C379">      skipUnless(condition, reason)，表示条件不为真即跳过</span></span>
+<span class="line"><span style="color: #98C379">    '''</span></span>
+<span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">_ExpectedFailure</span><span style="color: #ABB2BF">(Exception):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">     抛出异常被捕获，用于判断用例中是否出现了期望的&#x3C;异常></span></span>
+<span class="line"><span style="color: #98C379">     使用方法:</span></span>
+<span class="line"><span style="color: #98C379">      通过装饰器配置</span></span>
+<span class="line"><span style="color: #98C379">     装饰器函数(全局):</span></span>
+<span class="line"><span style="color: #98C379">      expectedFailure(func)</span></span>
+<span class="line"><span style="color: #98C379">    '''</span></span>
+<span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">_UnexpectedSuccess</span><span style="color: #ABB2BF">(Exception):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">     抛出异常被捕获，用于判断结果期望失败，实际成功</span></span>
+<span class="line"><span style="color: #98C379">     使用方法：</span></span>
+<span class="line"><span style="color: #98C379">      与_ExpectedFailure一样</span></span>
+<span class="line"><span style="color: #98C379">    '''</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">expectedFailure</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">func</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #61AFEF">    @functools</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">wraps</span><span style="color: #ABB2BF">(</span><span style="color: #61AFEF">func</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">wrapper</span><span style="color: #ABB2BF">(*</span><span style="color: #D19A66; font-style: italic">args</span><span style="color: #ABB2BF">, **</span><span style="color: #D19A66; font-style: italic">kwargs</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">try</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #61AFEF">func</span><span style="color: #ABB2BF">(*args, **kwargs)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">except</span><span style="color: #ABB2BF"> Exception:</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">raise</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_ExpectedFailure</span><span style="color: #ABB2BF">(sys.</span><span style="color: #61AFEF">exc_info</span><span style="color: #ABB2BF">())</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">raise</span><span style="color: #ABB2BF"> _UnexpectedSuccess</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD; font-style: italic">return</span><span style="color: #ABB2BF"> wrapper</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span></span></code></pre>
+<p>类：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">_AssertRaiseContext</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">object</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">     断言上下文管理器(源码中使用频率很低)</span></span>
+<span class="line"><span style="color: #98C379">    '''</span></span>
+<span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">TestCase</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">object</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">__init__</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">methodName</span><span style="color: #ABB2BF">=</span><span style="color: #98C379">'runTest'</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">         methodName：就是需要执行的单元测试函数名，即def test_xxx(self)中的test_xxx</span></span>
+<span class="line"><span style="color: #98C379">         如果TestCase类中没有methodName属性就会报错，通过继承的方式一般不会出现这个问题，除非是额外     的扩展unittest</span></span>
+<span class="line"><span style="color: #98C379">         self._cleanups = []：这个属性是用来清理环境的，与teardownhi还不一样</span></span>
+<span class="line"><span style="color: #98C379">         集成了常用的assert方法，目的是方便输出错误信息</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">addCleanup</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">function</span><span style="color: #ABB2BF">, *</span><span style="color: #D19A66; font-style: italic">arg</span><span style="color: #ABB2BF">, **</span><span style="color: #D19A66; font-style: italic">kwargs</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">         添加一个function到self._cleanups</span></span>
+<span class="line"><span style="color: #98C379">         添加到cleanups中的函数，会在teardown后执行，即使setup失败也会执行</span></span>
+<span class="line"><span style="color: #98C379">         cleanups中的函数，采取的是后进先出的栈模型，实现原理就是对列表进行倒序排序</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">setUp</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">         在每个测试方法之前执行</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">teardown</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">         在每个测试方法之后执行</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">setUpClass</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">cls</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">         在每个测试类执行前执行</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">tearDownClass</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">cls</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">         在每个测试类执行之后执行</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">run</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">result</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">         result：unittest中默认的一个类，用于收集测试过程中记录的结果，成功、失败、异常报错等信息</span></span>
+<span class="line"><span style="color: #98C379">         result如果为None，则会使用unittest.result.TestResult()。TestResult中有一个空方法</span></span>
+<span class="line"><span style="color: #98C379">         startTestRun()，如果方法被重写(继承)，将会被执行；默认情况下，这个方法就会在所有的测试执</span></span>
+<span class="line"><span style="color: #98C379">         行前执行</span></span>
+<span class="line"><span style="color: #98C379">         self._resultForDoCleanups：result的后续处理</span></span>
+<span class="line"><span style="color: #98C379">         result.startTest(self)，执行统计testcase等一系列result的前置操作，这个方法在</span></span>
+<span class="line"><span style="color: #98C379">         startTestRun执行后执行</span></span>
+<span class="line"><span style="color: #98C379">         逻辑处理：</span></span>
+<span class="line"><span style="color: #98C379">          1、判断class有没有被标记@unittest.skip</span></span>
+<span class="line"><span style="color: #98C379">          2、判断method有没有被标记@unittest.skip</span></span>
+<span class="line"><span style="color: #98C379">          3、确定需要跳过时，将结果记录在result中，退出测试</span></span>
+<span class="line"><span style="color: #98C379">         Case执行流程：</span></span>
+<span class="line"><span style="color: #98C379">          1、执行setUp()并处理异常：</span></span>
+<span class="line"><span style="color: #98C379">           1、处理跳过逻辑</span></span>
+<span class="line"><span style="color: #98C379">           2、处理键盘Ctrl+C退出</span></span>
+<span class="line"><span style="color: #98C379">           3、处理其他Exception</span></span>
+<span class="line"><span style="color: #98C379">          2、执行以test_打头的方法并处理异常：</span></span>
+<span class="line"><span style="color: #98C379">           1、处理Ctrl+C</span></span>
+<span class="line"><span style="color: #98C379">           2、处理断言异常</span></span>
+<span class="line"><span style="color: #98C379">           3、处理预期抛出的异常</span></span>
+<span class="line"><span style="color: #98C379">           4、处理预期的失败，但是成功的异常</span></span>
+<span class="line"><span style="color: #98C379">           5、处理跳过</span></span>
+<span class="line"><span style="color: #98C379">           6、处理其他Exception</span></span>
+<span class="line"><span style="color: #98C379">          3、执行tearDown()</span></span>
+<span class="line"><span style="color: #98C379">          4、self.doCleanups()，执行之前定义的清理函数</span></span>
+<span class="line"><span style="color: #98C379">         result.stopTest(self)，result统计收尾工作</span></span>
+<span class="line"><span style="color: #98C379">         result.stopTestRun()，如果这个方法在result中被重写(继承)，将在所有的测试执行完成后执行</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">debug</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">         整个过程不收集信息</span></span>
+<span class="line"><span style="color: #98C379">         执行流程：</span></span>
+<span class="line"><span style="color: #98C379">          1、self.setUp()</span></span>
+<span class="line"><span style="color: #98C379">          2、test_xxx()</span></span>
+<span class="line"><span style="color: #98C379">          3、self.tearDown()</span></span>
+<span class="line"><span style="color: #98C379">          4、while self._cleanups:</span></span>
+<span class="line"><span style="color: #98C379">           doCleanups()</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 省略若干断言方法</span></span></code></pre>
+<h3 id="loaderpy">loader.py</h3>
+<blockquote>
+<p>负责加载各种标准方式的测试类，并将它们封装成TestSuite</p>
+</blockquote>
+<p>全局函数：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #7F848E; font-style: italic">## 这3个函数，都是用于查找测试类or测试方法时，导入失败处理的函数</span></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_make_failed_import_test</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">name</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">suiteClass</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_make_failed_load_tests</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">name</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">exception</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">suiteClass</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_make_failed_test</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">classname</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">methodname</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">exception</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">suiteClass</span><span style="color: #ABB2BF">)</span></span></code></pre>
+<p>类：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">TestLoader</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">object</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">    类属性:</span></span>
+<span class="line"><span style="color: #98C379">     testMethodPrefix: 测试方法名前缀，默认是test，所以修改这个，可以执行自定义开头的方法</span></span>
+<span class="line"><span style="color: #98C379">     sortTestMehtodsUsing：测试方法排序使用的规则，默认是cmp</span></span>
+<span class="line"><span style="color: #98C379">     suiteClass：指向suite.TestSuite类的引用</span></span>
+<span class="line"><span style="color: #98C379">     _top_level_dir：None，在加载的过程中采用的是递归遍历，所以top_level用来判断当前目录</span></span>
+<span class="line"><span style="color: #98C379">     是不是顶层</span></span>
+<span class="line"><span style="color: #98C379">    '''</span><span style="color: #ABB2BF"> </span></span>
+<span class="line"><span style="color: #ABB2BF">    </span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">loadTestsFromTestCase</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">testCaseClass</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 加载测试类中所有的单元测试，并将它们封装在TestSuite中返回</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">loadTestsFromModule</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">module</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">use_load_tests</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">True</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 加载模块中所有的单元测试，最终返回一个列表，列表中就是一个个独立的TestSuite</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">loadTestsFromName</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">name</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">module</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 加载指定路径下所有的单元测试</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">loadTestsFromNames</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">names</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">module</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 加载指定路径下所有的单元测试，这里是Names，调用上面的方法完成的</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">getTestCaseNames</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">testCaseClass</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 获取测试类中的单元测试方法名</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">discover</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">start_dir</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">pattern</span><span style="color: #ABB2BF">=</span><span style="color: #98C379">'test*.py'</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">top_level_dir</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 探索指定路径下，所有的py文件中的单元测试</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## ……(省略若干查找细节)</span></span></code></pre>
+<h3 id="mainpy">main.py</h3>
+<p>全局变量：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #D19A66">FAILFAST</span><span style="color: #ABB2BF">     </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">"  -f, --failfast   Stop on first failure</span><span style="color: #E5C07B">\n</span><span style="color: #98C379">"</span></span>
+<span class="line"><span style="color: #D19A66">CATCHBREAK</span><span style="color: #ABB2BF">   </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">"  -c, --catch      Catch control-C and display results</span><span style="color: #E5C07B">\n</span><span style="color: #98C379">"</span></span>
+<span class="line"><span style="color: #D19A66">BUFFEROUTPUT</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">"  -b, --buffer     Buffer stdout and stderr during test runs</span><span style="color: #E5C07B">\n</span><span style="color: #98C379">"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D19A66">USAGE_AS_MAIN</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">"""</span><span style="color: #D19A66">\</span></span>
+<span class="line"><span style="color: #98C379">Usage: </span><span style="color: #D19A66">%(progName)s</span><span style="color: #98C379"> [options] [tests]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #98C379">Options:</span></span>
+<span class="line"><span style="color: #98C379">  -h, --help       Show this message</span></span>
+<span class="line"><span style="color: #98C379">  -v, --verbose    Verbose output</span></span>
+<span class="line"><span style="color: #98C379">  -q, --quiet      Minimal output</span></span>
+<span class="line"><span style="color: #D19A66">%(failfast)s%(catchbreak)s%(buffer)s</span></span>
+<span class="line"><span style="color: #98C379">Examples:</span></span>
+<span class="line"><span style="color: #98C379">  </span><span style="color: #D19A66">%(progName)s</span><span style="color: #98C379"> test_module               - run tests from test_module</span></span>
+<span class="line"><span style="color: #98C379">  </span><span style="color: #D19A66">%(progName)s</span><span style="color: #98C379"> module.TestClass          - run tests from module.TestClass</span></span>
+<span class="line"><span style="color: #98C379">  </span><span style="color: #D19A66">%(progName)s</span><span style="color: #98C379"> module.Class.test_method  - run specified test method</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #98C379">[tests] can be a list of any number of test modules, classes and test</span></span>
+<span class="line"><span style="color: #98C379">methods.</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #98C379">Alternative Usage: </span><span style="color: #D19A66">%(progName)s</span><span style="color: #98C379"> discover [options]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #98C379">Options:</span></span>
+<span class="line"><span style="color: #98C379">  -v, --verbose    Verbose output</span></span>
+<span class="line"><span style="color: #D19A66">%(failfast)s%(catchbreak)s%(buffer)s</span><span style="color: #98C379">  -s directory     Directory to start discovery ('.' default)</span></span>
+<span class="line"><span style="color: #98C379">  -p pattern       Pattern to match test files ('test*.py' default)</span></span>
+<span class="line"><span style="color: #98C379">  -t directory     Top level directory of project (default to</span></span>
+<span class="line"><span style="color: #98C379">                   start directory)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #98C379">For test discovery all test modules must be importable from the top</span></span>
+<span class="line"><span style="color: #98C379">level directory of the project.</span></span>
+<span class="line"><span style="color: #98C379">"""</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #D19A66">USAGE_FROM_MODULE</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">"""</span><span style="color: #D19A66">\</span></span>
+<span class="line"><span style="color: #98C379">Usage: </span><span style="color: #D19A66">%(progName)s</span><span style="color: #98C379"> [options] [test] [...]</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #98C379">Options:</span></span>
+<span class="line"><span style="color: #98C379">  -h, --help       Show this message</span></span>
+<span class="line"><span style="color: #98C379">  -v, --verbose    Verbose output</span></span>
+<span class="line"><span style="color: #98C379">  -q, --quiet      Minimal output</span></span>
+<span class="line"><span style="color: #D19A66">%(failfast)s%(catchbreak)s%(buffer)s</span></span>
+<span class="line"><span style="color: #98C379">Examples:</span></span>
+<span class="line"><span style="color: #98C379">  </span><span style="color: #D19A66">%(progName)s</span><span style="color: #98C379">                               - run default set of tests</span></span>
+<span class="line"><span style="color: #98C379">  </span><span style="color: #D19A66">%(progName)s</span><span style="color: #98C379"> MyTestSuite                   - run suite 'MyTestSuite'</span></span>
+<span class="line"><span style="color: #98C379">  </span><span style="color: #D19A66">%(progName)s</span><span style="color: #98C379"> MyTestCase.testSomething      - run MyTestCase.testSomething</span></span>
+<span class="line"><span style="color: #98C379">  </span><span style="color: #D19A66">%(progName)s</span><span style="color: #98C379"> MyTestCase                    - run all 'test*' test methods</span></span>
+<span class="line"><span style="color: #98C379">                                               in MyTestCase</span></span>
+<span class="line"><span style="color: #98C379">"""</span></span></code></pre>
+<p>类：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">TestProgram</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">object</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">__init__</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">module</span><span style="color: #ABB2BF">=</span><span style="color: #98C379">'__main__'</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">defaultTest</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">argv</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">,</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #D19A66; font-style: italic">testRunner</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">testLoader</span><span style="color: #ABB2BF">=loader.defaultTestLoader,</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #D19A66; font-style: italic">exit</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">True</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">verbosity</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">failfast</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">catchbreak</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">,</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #D19A66; font-style: italic">buffer</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">     </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">     ……(一系列属性赋值)</span></span>
+<span class="line"><span style="color: #98C379">        使用默认的Runner和Loader</span></span>
+<span class="line"><span style="color: #98C379">        重点执行顺序</span></span>
+<span class="line"><span style="color: #98C379">            self.parseArgs()，解析命令行参数</span></span>
+<span class="line"><span style="color: #98C379">            self.runTests()，执行测试</span></span>
+<span class="line"><span style="color: #98C379">     '''</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.exit </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">exit</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.failfast </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> failfast</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.catchbreak </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> catchbreak</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.verbosity </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> verbosity</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.buffer </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> buffer</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.defaultTest </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> defaultTest</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.testRunner </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> testRunner</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.testLoader </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> testLoader</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.progName </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">basename</span><span style="color: #ABB2BF">(argv[</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">])</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">parseArgs</span><span style="color: #ABB2BF">(argv)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">runTests</span><span style="color: #ABB2BF">()</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">usageExit</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">msg</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 输出使用提示，并退出</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">parseArgs</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">argv</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">        解析参数</span></span>
+<span class="line"><span style="color: #98C379">        调用self._do_discovery()</span></span>
+<span class="line"><span style="color: #98C379">        调用usageExit()</span></span>
+<span class="line"><span style="color: #98C379">        调用createTests()</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">createTests</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">        创建测试</span></span>
+<span class="line"><span style="color: #98C379">        根据parseArgs解析出来的testNames，选择执行Loader下的loadTestsFromModule</span></span>
+<span class="line"><span style="color: #98C379">        还是loadTestsFromNames</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_do_discovery</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">argv</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">Loader</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">        命令行参数中，有discover时触发，主要用于探索目录下的TestCase</span></span>
+<span class="line"><span style="color: #98C379">  ……（细节不展开）</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">runTests</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">        执行测试</span></span>
+<span class="line"><span style="color: #98C379">        实例化一个runner对象，执行runner.run(self.test)</span></span>
+<span class="line"><span style="color: #98C379">        self.test是createTests()生成出来的一个个独立的TestSuite</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span></span>
+<span class="line"></span></code></pre>
+<p>main.py文件中，还有重要的一句代码</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">main </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> TestProgram </span><span style="color: #7F848E; font-style: italic">## 这里只是将类的引用传递给了main，不是实例化对象，注意</span></span></code></pre>
+<h3 id="resultpy">result.py</h3>
+<p>全局函数：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">failfast</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">method</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">    本质是一个装饰器，根据名字，可以判断是用来发现测试过程中只要出现了Error就立即停止后续测试</span></span>
+<span class="line"><span style="color: #98C379">    源码中使用频率低</span></span>
+<span class="line"><span style="color: #98C379">    '''</span></span></code></pre>
+<p>类：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">TestResult</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">object</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">    类属性:</span></span>
+<span class="line"><span style="color: #98C379">        _previousTestClass=None，记录上一个执行过的testCase的类，意义：在执行下一条</span></span>
+<span class="line"><span style="color: #98C379">        testCase之前，执行上一条testCase的tearDown()函数</span></span>
+<span class="line"><span style="color: #98C379">        _testRunEntered=False，记录当前testSuite是否在嵌套循环中，意义：执行时，都是以testSuite</span></span>
+<span class="line"><span style="color: #98C379">        进行的，然后循环testSuite，将Suite中Case剥出来执行，如果Suite嵌套Suite，就会进入递归</span></span>
+<span class="line"><span style="color: #98C379">        执行，所以此变量用于记录当前是否在嵌套中</span></span>
+<span class="line"><span style="color: #98C379">        _moduleSetUpFailed=False，用于记录module级别的setUp是否执行失败，失败后module级别</span></span>
+<span class="line"><span style="color: #98C379">        的tearDown并不会执行</span></span>
+<span class="line"><span style="color: #98C379">    '''</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">__init__</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">stream</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">descriptions</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">verbosity</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.failfast</span><span style="color: #56B6C2">=</span><span style="color: #D19A66">False</span><span style="color: #ABB2BF">     </span><span style="color: #7F848E; font-style: italic">## 默认关闭失败立即停止</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.failures</span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF">[]     </span><span style="color: #7F848E; font-style: italic">## 统计失败个数</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.errors</span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF">[]      </span><span style="color: #7F848E; font-style: italic">## 统计错误个数</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.testRun</span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF">[]      </span><span style="color: #7F848E; font-style: italic">## 统计运行次数</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.skipped</span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF">[]      </span><span style="color: #7F848E; font-style: italic">## 统计跳过次数</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.expectedFailures</span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF">[]   </span><span style="color: #7F848E; font-style: italic">## 统计预期失败次数</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.unexpectedSuccesses</span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF">[]   </span><span style="color: #7F848E; font-style: italic">## 统计非预期成功次数</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.shouldStop</span><span style="color: #56B6C2">=</span><span style="color: #D19A66">False</span><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 默认不停止</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.buffer</span><span style="color: #56B6C2">=</span><span style="color: #D19A66">False</span><span style="color: #ABB2BF">     </span><span style="color: #7F848E; font-style: italic">## 默认没有buffer</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">._stdout_buffer</span><span style="color: #56B6C2">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">   </span><span style="color: #7F848E; font-style: italic">## 默认没有buffer</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">._stderr_buffer</span><span style="color: #56B6C2">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">   </span><span style="color: #7F848E; font-style: italic">## 默认没有buffer</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">._original_stdout</span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF">sys.stdout </span><span style="color: #7F848E; font-style: italic">## 默认输出为系统标准输出</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">._original_stderr</span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF">sys.stderr </span><span style="color: #7F848E; font-style: italic">## 默认错误输出为系统标准错误输出</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">._mirrorOutput</span><span style="color: #56B6C2">=</span><span style="color: #D19A66">False</span><span style="color: #ABB2BF">   </span><span style="color: #7F848E; font-style: italic">## 默认不开启镜像输出</span></span>
+<span class="line"><span style="color: #ABB2BF">     </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">printErrors</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 空方法，应该由继承类来实现</span></span>
+<span class="line"><span style="color: #ABB2BF">     </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">startTest</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">test</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 执行Case前，统计次数，接管系统标准输出和标准错误输出</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">startTestRun</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 空方法，应该由继承类实现，在startTest()之前执行</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">stopTest</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">test</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 停止执行，接管系统标准输出和标准错误输出</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">stopTestRun</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 空方法，应该由继承类实现，在stopTest()之后执行</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## ……(省略若干addXX函数)</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## addError/addFailure/addSuccess/addSkip/addExpectedFailure</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## addUnexpectedSuccess</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">stop</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">): </span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.shouldStop </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">True</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 表示测试应该立即停止，这个方法不建议直接使用</span></span></code></pre>
+<h3 id="runnerpy">runner.py</h3>
+<p>类：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">_WriteDecorator</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">object</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 用于格式化信息</span></span>
+<span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">TestTextResult</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">result</span><span style="color: #ABB2BF">.</span><span style="color: #E5C07B">TestResult</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 继承result.TestResult，用于保存测试记录</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## 其中重写了父类里面的多个方法，startTest也被重写了(关注一下)</span></span>
+<span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">TextTestRunner</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">object</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 以文本形式显示结果的测试运行器类.当测试运行时，它打印出测试的名称和错误，并在测试运行结束时总结结果</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">__init__</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">stream</span><span style="color: #ABB2BF">=sys.stderr, </span><span style="color: #D19A66; font-style: italic">descriptions</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">True</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">verbosity</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">,</span></span>
+<span class="line"><span style="color: #ABB2BF">                 </span><span style="color: #D19A66; font-style: italic">failfast</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">False</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">buffer</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">False</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">resultclass</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">    stream：接收标准错误输出</span></span>
+<span class="line"><span style="color: #98C379"> description</span></span>
+<span class="line"><span style="color: #98C379">  result中用于描述TestCase</span></span>
+<span class="line"><span style="color: #98C379"> verbosity</span></span>
+<span class="line"><span style="color: #98C379">  详细输出。由级别控制</span></span>
+<span class="line"><span style="color: #98C379"> failfast</span></span>
+<span class="line"><span style="color: #98C379">  出现错误时，立即停止测试</span></span>
+<span class="line"><span style="color: #98C379"> buffer</span></span>
+<span class="line"><span style="color: #98C379">  执行期间，缓存标准输出和标准错误</span></span>
+<span class="line"><span style="color: #98C379"> resultclass</span></span>
+<span class="line"><span style="color: #98C379">  指明结果用什么result类管理</span></span>
+<span class="line"><span style="color: #98C379">    '''</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_makeResult</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 内部方法，用于创建一个result对象</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">run</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">test</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">        Run the given test case or test suite.（运行给定的Case或者Suite）</span></span>
+<span class="line"><span style="color: #98C379">        注册Result、赋值failfast和buffer、设置开始时间</span></span>
+<span class="line"><span style="color: #98C379">        判断result里面有没有startTestRun()，有没有都启动，没有就是一个空函数</span></span>
+<span class="line"><span style="color: #98C379">        test(result):</span></span>
+<span class="line"><span style="color: #98C379">            test，即传入的case或者suite对象，这时候调用的是case的__call__或者suite.__call__；</span></span>
+<span class="line"><span style="color: #98C379">            suite的__call__方法是循环执行case.__call__；case.__call__执行的是对象中的run()；</span></span>
+<span class="line"><span style="color: #98C379">            run(接收1个result参数)</span></span>
+<span class="line"><span style="color: #98C379">        判断result里面有没有stopTestRun()，有没有都启动，没有就是一个空函数</span></span>
+<span class="line"><span style="color: #98C379">        记录结束时间，计算执行时间，打印执行当中的error信息</span></span>
+<span class="line"><span style="color: #98C379">        统计执行中预期的失败个数，不应该成功的个数，跳过个数</span></span>
+<span class="line"><span style="color: #98C379">        整理成功信息、失败信息、错误信息、跳过信息写入result</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span></code></pre>
+<h3 id="signalspy">signals.py</h3>
+<p>类：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">_InterruptHandler</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">object</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## 此类用于处理捕捉到Ctrl+C产生的异常</span></span></code></pre>
+<p>全局函数：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">registerResult</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">result</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## 将result注册到一个弱引用的字典当中(可以学习一下什么是弱引用,import weakref)</span></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">removeResult</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">result</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## 将result从弱引用字典中移出</span></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">installHandler</span><span style="color: #ABB2BF">():</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## 插桩，当系统捕获到指定信号量，用自定义的处理程序接管</span></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">removeHandler</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">method</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## 将自定义的处理程序移出系统信号量的处理流程</span></span></code></pre>
+<h3 id="suitepy">suite.py</h3>
+<p>全局函数：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_call_if_exists</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">parent</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">attr</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## 判断parent中是否有attr属性，有则执行，没有就赋值None</span></span></code></pre>
+<p>类：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">BaseTestSuite</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">object</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">def</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">__init__</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">, </span><span style="color: #E06C75; font-style: italic">tests</span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF">())</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #E5C07B">_tests</span><span style="color: #ABB2BF">=[]    ## </span><span style="color: #E5C07B">统计suite中有多少个case</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #E5C07B">addTests</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">tests</span><span style="color: #ABB2BF">)  ## </span><span style="color: #E5C07B">将tests添加到self</span><span style="color: #ABB2BF">.</span><span style="color: #E5C07B">_tests中去</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">def</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">__iter__</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">): </span><span style="color: #C678DD; font-style: italic">return</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">iter</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">._tests)</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 实现了这个方法，表示实例化出来的对象。具有可迭代性</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">countTestCases</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 统计suite中有多少个case</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">addTest</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">sefl</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">test</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 判断test，是否有__call__属性，是否是TestCase的子类，是否是TestSuite的子类，</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 满足条件才会加入到self._tests列表中</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">addTests</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">tests</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 循环调用self.addTest(self, test)</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">run</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">result</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 循环suite中的case，并执行case自己的run方法</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">__call__</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, *</span><span style="color: #D19A66; font-style: italic">args</span><span style="color: #ABB2BF">, **</span><span style="color: #D19A66; font-style: italic">kwargs</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 调用suite自己的run方法</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">debug</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 没有result对象，不会收集errors等信息</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">TestSuite</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">BaseTestSuite</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">def</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">run</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">, </span><span style="color: #E5C07B">result</span><span style="color: #ABB2BF">, </span><span style="color: #E06C75; font-style: italic">debug</span><span style="color: #56B6C2">=</span><span style="color: #D19A66">False</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">        1、根据result的类属性(_testRunEntered)，判断测试是否正“running”和</span></span>
+<span class="line"><span style="color: #98C379">        是否为topLevel</span></span>
+<span class="line"><span style="color: #98C379">        topLevel表示TestSuite对象第一次执行run()时的层级</span></span>
+<span class="line"><span style="color: #98C379">  因为Suite里面可以套Suite和Case，所以有必要知道topLevel，而且topLevel存在的意思就是</span></span>
+<span class="line"><span style="color: #98C379">  为了清理环境，这个层级的概念是建立在module级别的</span></span>
+<span class="line"><span style="color: #98C379">  2、循环Suite，判断是Case还是Suite</span></span>
+<span class="line"><span style="color: #98C379">  3、是Case，就先执行前一个Case的tearDownClass，再执行_handleModuleFixture</span></span>
+<span class="line"><span style="color: #98C379">  (只需要执行一次，后续执行将会跳过)，执行当前Case的_handleClassSetUp()</span></span>
+<span class="line"><span style="color: #98C379">  4、是Suite，就继续循环，然后执行run方法，有点递归的意思</span></span>
+<span class="line"><span style="color: #98C379">  5、递归结束回到顶层时，执行前一个Case的tearDownClass和_handleModuleTearDown，</span></span>
+<span class="line"><span style="color: #98C379">  同时将_testRunEntered置为False</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">debug</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 不收集Error信息，执行Case</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_handleClassSetUp</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">test</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">result</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## testFixture中执行class级别的setUp</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_get_previous_module</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">result</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## testFixture中执行module级别的setUp和tearDown，被_handleModuleFixture调用</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_handleModuleFixture</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">test</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">result</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## testFixture中处理module级别的setUp</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_addClassOrModuleLevelException</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">result</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">exception</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">errorName</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 当claas或者module在处理过程中出现了Exception，由此函数收集错误信息，用于输出</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_handleModuleTearDown</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">result</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## testFixture中处理module级别的tearDown</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_tearDownPreviousClass</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">test</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">result</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## 执行上一条testCase中class级别的tearDown()</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 如果有Failed将会执行返回</span></span>
+<span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">_ErrorHolder</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">object</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## 用于在result给Error信息占位使用</span></span></code></pre>
+<h3 id="utilpy">util.py</h3>
+<p>全局函数：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">safe_repr</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">obj</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">short</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">False</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## 以安全的__repr__方式输出obj</span></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">strclass</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">cls</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## 以字符串的形式输出类所在的模块和类的名字</span></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">sorted_list_difference</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">expected</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">actual</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## 从expected和actual中，找出不同</span></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">unorderable_list_difference</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">expected</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">actual</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">ignore_duplicate</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">False</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #7F848E; font-style: italic">## 行为与sorted_list_difference类似</span></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_count_diff_all_purpose</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">actual</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">expected</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_ordered_count</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">iterable</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_count_diff_hashable</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">actual</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">expected</span><span style="color: #ABB2BF">):</span></span></code></pre>
+<h2 id="程序入口">程序入口</h2>
+<p>根据官网文档，unittest执行入口有以下几种方式：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD; font-style: italic">import</span><span style="color: #ABB2BF"> unittest</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## 方式一</span></span>
+<span class="line"><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> </span><span style="color: #E06C75">__name__</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">==</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">'__main__'</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">    unittest.</span><span style="color: #61AFEF">main</span><span style="color: #ABB2BF">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## 方式二</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## unittest 模块可以通过命令行运行模块、类和独立测试方法的测试:</span></span>
+<span class="line"><span style="color: #ABB2BF">python </span><span style="color: #56B6C2">-</span><span style="color: #ABB2BF">m unittest test_module1 test_module2</span></span>
+<span class="line"><span style="color: #ABB2BF">python </span><span style="color: #56B6C2">-</span><span style="color: #ABB2BF">m unittest test_module.TestClass</span></span>
+<span class="line"><span style="color: #ABB2BF">python </span><span style="color: #56B6C2">-</span><span style="color: #ABB2BF">m unittest test_module.TestClass.test_method</span></span></code></pre>
+<h2 id="命令行选项">命令行选项</h2>
+<ul>
+<li>
+<p><code>-b</code>, —buffer</p>
+<p>在测试运行时，标准输出流与标准错误流会被放入缓冲区。成功的测试的运行时输出会被丢弃；测试不通过时，测试运行中的输出会正常显示，错误会被加入到测试失败信息。</p>
+</li>
+<li>
+<p><code>-c</code>, —catch</p>
+<p>当测试正在运行时， Control-C 会等待当前测试完成，并在完成后报告已执行的测试的结果。当再次按下 Control-C 时，引发平常的 <a href="https://docs.python.org/zh-cn/2.7/library/exceptions.html#exceptions.KeyboardInterrupt"><code>KeyboardInterrupt</code></a> 异常。See <a href="https://docs.python.org/zh-cn/2.7/library/unittest.html#signal-handling">Signal Handling</a> for the functions that provide this functionality.</p>
+</li>
+<li>
+<p><code>-f</code>, —failfast</p>
+<p>当出现第一个错误或者失败时，停止运行测试。</p>
+</li>
+</ul>
+<h2 id="test-discovery">Test Discovery</h2>
+<p>探索性测试在 <a href="https://docs.python.org/zh-cn/2.7/library/unittest.html#unittest.TestLoader.discover"><code>TestLoader.discover()</code></a> 中实现，但也可以通过命令行使用。它在命令行中的基本用法如下：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #56B6C2">cd</span><span style="color: #ABB2BF"> project_directory</span></span>
+<span class="line"><span style="color: #ABB2BF">python -m unittest discover</span></span></code></pre>
+<p><code>discover</code> 有以下选项：</p>
+<ul>
+<li>
+<p><code>-v</code>, —verbose</p>
+<p>更详细地输出结果。</p>
+</li>
+<li>
+<p><code>-s</code>, —start-directory directory</p>
+<p>开始进行搜索的目录(默认值为当前目录 <code>.</code> )。</p>
+</li>
+<li>
+<p><code>-p</code>, —pattern pattern</p>
+<p>用于匹配测试文件的模式（默认为 <code>test*.py</code> ）。</p>
+</li>
+<li>
+<p><code>-t</code>, —top-level-directory directory</p>
+<p>指定项目的最上层目录（通常为开始时所在目录）。</p>
+</li>
+</ul>
+<p><code>-s</code>，<code>-p</code> 和 <code>-t</code> 选项可以按顺序作为位置参数传入。以下两条命令是等价的：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">python -m unittest discover -s project_directory -p </span><span style="color: #98C379">"*_test.py"</span></span>
+<span class="line"><span style="color: #ABB2BF">python -m unittest discover project_directory </span><span style="color: #98C379">"*_test.py"</span></span></code></pre>
+<p>正如可以传入路径那样，传入一个包名作为起始目录也是可行的，如 <code>myproject.subpackage.test</code> 。你提供的包名会被导入，它在文件系统中的位置会被作为起始目录。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #7F848E; font-style: italic">## python -m unittest discover</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## 执行上面命令，也会主动的去执行单元测试，背后的逻辑如下</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## 首先由于unittest目录下有__init__.py，表明这是一个包，然后还定义了__main__.py文件</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## __main__.py文件的作用就是，可以将unittest这个包，当做一个文件去执行</span></span>
+<span class="line"><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">D:\学习总结</span><span style="color: #E5C07B">\a</span><span style="color: #98C379">bcd>python -m unittest</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #98C379">----------------------------------------------------------------------</span></span>
+<span class="line"><span style="color: #98C379">Ran 0 tests in 0.000s</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #98C379">OK</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #98C379">D:\学习总结</span><span style="color: #E5C07B">\a</span><span style="color: #98C379">bcd></span></span>
+<span class="line"><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## 因此在命令中执行python -m unittest discover时，程序的入口在__main__.py文件中</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## __main__.py</span></span>
+<span class="line"><span style="color: #98C379">"""Main entry point"""</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD; font-style: italic">import</span><span style="color: #ABB2BF"> sys</span></span>
+<span class="line"><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> sys.argv[</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">].</span><span style="color: #61AFEF">endswith</span><span style="color: #ABB2BF">(</span><span style="color: #98C379">"__main__.py"</span><span style="color: #ABB2BF">):  </span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## sys.argv =['E:\\Software\\Python27\\lib\\unittest\\__main__.py', 'discover']</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 改造命令行参数的顺序，为了更好的识别sys.argv[1]是discover，以及sys.argv[2:]后的参数</span></span>
+<span class="line"><span style="color: #ABB2BF">    sys.argv[</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">] </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">"python -m unittest"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">__unittest </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">True</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD; font-style: italic">from</span><span style="color: #ABB2BF"> .main </span><span style="color: #C678DD; font-style: italic">import</span><span style="color: #ABB2BF"> main, TestProgram, </span><span style="color: #D19A66">USAGE_AS_MAIN</span></span>
+<span class="line"><span style="color: #ABB2BF">TestProgram.</span><span style="color: #D19A66">USAGE</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">USAGE_AS_MAIN</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #61AFEF">main</span><span style="color: #ABB2BF">(</span><span style="color: #E06C75; font-style: italic">module</span><span style="color: #56B6C2">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## Note:这里虽然修改了sys.argv的顺序，但是main(module=None)并没有将sys.argv传进去</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## 这是因为sys.argv已经被添加了python解释器的执行环境中的环境变量，类似一个全局变量</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## main(module=None) ==> TestProgram(module=None)</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## 进入到TestProgram.__init__方法中</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## 进入到解析命令行参数时</span></span>
+<span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">TestProgram</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">object</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">__init__</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, ...):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## ...(省略中间代码)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.progName </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">basename</span><span style="color: #ABB2BF">(argv[</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">])</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">parseArgs</span><span style="color: #ABB2BF">(argv)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 执行已加载出来的testCase</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">runTests</span><span style="color: #ABB2BF">()</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">parseArgs</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">argv</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">len</span><span style="color: #ABB2BF">(argv) </span><span style="color: #56B6C2">></span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">and</span><span style="color: #ABB2BF"> argv[</span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">].</span><span style="color: #61AFEF">lower</span><span style="color: #ABB2BF">() </span><span style="color: #56B6C2">==</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">'discover'</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## 根据前面得知，len(argv) == 2,且argv[1] == 'discover'</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">_do_discovery</span><span style="color: #ABB2BF">(argv[</span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">:])</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## 此时加载出来的testCase(即Suite对象)已经赋值给了self.test</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">return</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## ...(省略中间代码)</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_do_discovery</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">argv</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">Loader</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> Loader </span><span style="color: #C678DD; font-style: italic">is</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">            Loader </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">lambda</span><span style="color: #ABB2BF">: </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.testLoader</span></span>
+<span class="line"><span style="color: #ABB2BF">        parser </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> optparse.</span><span style="color: #61AFEF">OptionParser</span><span style="color: #ABB2BF">()</span></span>
+<span class="line"><span style="color: #ABB2BF">        ..</span><span style="color: #7F848E; font-style: italic">## (创建一个命令行参数解析器，解析argv)</span></span>
+<span class="line"><span style="color: #ABB2BF">        options, args </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> parser.</span><span style="color: #61AFEF">parse_args</span><span style="color: #ABB2BF">(argv)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">        options：{'verbose': False, 'buffer': False,</span></span>
+<span class="line"><span style="color: #98C379">                'pattern': 'test*.py', 'top': None,</span></span>
+<span class="line"><span style="color: #98C379">                  'start': '.', 'catchbreak': False, 'failfast': False}</span></span>
+<span class="line"><span style="color: #98C379">        args：[]</span></span>
+<span class="line"><span style="color: #98C379">        '''</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 由于args是空列表，所以下面的for循环不会执行</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">for</span><span style="color: #ABB2BF"> name, value </span><span style="color: #C678DD; font-style: italic">in</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">zip</span><span style="color: #ABB2BF">((</span><span style="color: #98C379">'start'</span><span style="color: #ABB2BF">, </span><span style="color: #98C379">'pattern'</span><span style="color: #ABB2BF">, </span><span style="color: #98C379">'top'</span><span style="color: #ABB2BF">), args):</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #56B6C2">setattr</span><span style="color: #ABB2BF">(options, name, value)</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## ...(省略中间代码)</span></span>
+<span class="line"><span style="color: #ABB2BF">        start_dir </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> options.start</span></span>
+<span class="line"><span style="color: #ABB2BF">        pattern </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> options.pattern</span></span>
+<span class="line"><span style="color: #ABB2BF">        top_level_dir </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> options.top</span></span>
+<span class="line"><span style="color: #ABB2BF">        loader </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">Loader</span><span style="color: #ABB2BF">()</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 参考下面的代码，self.test就是加载出来的suite对象</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.test </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> loader.</span><span style="color: #61AFEF">discover</span><span style="color: #ABB2BF">(start_dir, pattern, top_level_dir)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">## loader.py</span></span>
+<span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">TestLoader</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">object</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">discover</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">start_dir</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">pattern</span><span style="color: #ABB2BF">=</span><span style="color: #98C379">'test*.py'</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">top_level_dir</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        set_implicit_top </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">False</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> top_level_dir </span><span style="color: #C678DD; font-style: italic">is</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">None</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">and</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">._top_level_dir </span><span style="color: #C678DD; font-style: italic">is</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">not</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## make top_level_dir optional if called from load_tests in a package</span></span>
+<span class="line"><span style="color: #ABB2BF">            top_level_dir </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">._top_level_dir</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 进入下面这个elif分支，因为top_level_dir==None(默认值)，</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## self._top_level_dir初始值就是None</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">elif</span><span style="color: #ABB2BF"> top_level_dir </span><span style="color: #C678DD; font-style: italic">is</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">            set_implicit_top </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">True</span></span>
+<span class="line"><span style="color: #ABB2BF">            top_level_dir </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> start_dir</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## ...(省略中间代码)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 标志位，标记目录是否可以import</span></span>
+<span class="line"><span style="color: #ABB2BF">        is_not_importable </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">False</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">isdir</span><span style="color: #ABB2BF">(os.path.</span><span style="color: #61AFEF">abspath</span><span style="color: #ABB2BF">(start_dir)):</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## 判断是否是目录</span></span>
+<span class="line"><span style="color: #ABB2BF">            start_dir </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">abspath</span><span style="color: #ABB2BF">(start_dir)</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## 目录是否是顶层目录</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## 这里start_dir == top_level_dir</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> start_dir </span><span style="color: #56B6C2">!=</span><span style="color: #ABB2BF"> top_level_dir:</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #7F848E; font-style: italic">## 如果start_dir中没有__init__.py文件，可以佐证start_dir不是一个包</span></span>
+<span class="line"><span style="color: #ABB2BF">                is_not_importable </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">not</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">isfile</span><span style="color: #ABB2BF">(</span></span>
+<span class="line"><span style="color: #ABB2BF">                    os.path.</span><span style="color: #61AFEF">join</span><span style="color: #ABB2BF">(start_dir, </span><span style="color: #98C379">'__init__.py'</span><span style="color: #ABB2BF">))</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">else</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## support for discovery from dotted module names</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">try</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #56B6C2">__import__</span><span style="color: #ABB2BF">(start_dir)</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">except</span><span style="color: #ABB2BF"> ImportError:</span></span>
+<span class="line"><span style="color: #ABB2BF">                is_not_importable </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">True</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">else</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">                the_module </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> sys.modules[start_dir]</span></span>
+<span class="line"><span style="color: #ABB2BF">                top_part </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> start_dir.</span><span style="color: #61AFEF">split</span><span style="color: #ABB2BF">(</span><span style="color: #98C379">'.'</span><span style="color: #ABB2BF">)[</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">]</span></span>
+<span class="line"><span style="color: #ABB2BF">                start_dir </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">abspath</span><span style="color: #ABB2BF">(os.path.</span><span style="color: #61AFEF">dirname</span><span style="color: #ABB2BF">((the_module.</span><span style="color: #E06C75">__file__</span><span style="color: #ABB2BF">)))</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> set_implicit_top:</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">._top_level_dir </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">_get_directory_containing_module</span><span style="color: #ABB2BF">(top_part)</span></span>
+<span class="line"><span style="color: #ABB2BF">                    sys.path.</span><span style="color: #61AFEF">remove</span><span style="color: #ABB2BF">(top_level_dir)</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## is_not_importable == False</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> is_not_importable:</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">raise</span><span style="color: #ABB2BF"> ImportError(</span><span style="color: #98C379">'Start directory is not importable: </span><span style="color: #D19A66">%r</span><span style="color: #98C379">'</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">%</span><span style="color: #ABB2BF"> start_dir)</span></span>
+<span class="line"><span style="color: #ABB2BF">        tests </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">list</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">_find_tests</span><span style="color: #ABB2BF">(start_dir, pattern))</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## self.suiteClass是suite.TestSuite的引用，加上()，相当于实例化了suite对象</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">return</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">suiteClass</span><span style="color: #ABB2BF">(tests)</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_find_tests</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">start_dir</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">pattern</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">"""Used by discovery. Yields test suites it loads."""</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 罗列出start_dir下所有的文件，目的就是为了找出单元所在的py文件</span></span>
+<span class="line"><span style="color: #ABB2BF">        paths </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> os.</span><span style="color: #61AFEF">listdir</span><span style="color: #ABB2BF">(start_dir)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 大循环遍历</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">for</span><span style="color: #ABB2BF"> path </span><span style="color: #C678DD; font-style: italic">in</span><span style="color: #ABB2BF"> paths:</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## 获取绝对路径</span></span>
+<span class="line"><span style="color: #ABB2BF">            full_path </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">join</span><span style="color: #ABB2BF">(start_dir, path)</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">isfile</span><span style="color: #ABB2BF">(full_path):</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">                VALID_MODULE_NAME = re.compile(r'[_a-z]\w*\.py$', re.IGNORECASE)</span></span>
+<span class="line"><span style="color: #98C379">                '''</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">not</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">VALID_MODULE_NAME</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">match</span><span style="color: #ABB2BF">(path):  </span><span style="color: #7F848E; font-style: italic">## 匹配.py结尾的文件</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #7F848E; font-style: italic">## valid Python identifiers only</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #C678DD; font-style: italic">continue</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">                self._match_path(self, path, full_path, pattern):</span></span>
+<span class="line"><span style="color: #98C379">                 ## override this method to use alternative matching strategy</span></span>
+<span class="line"><span style="color: #98C379">                 ## fnmatch用于匹配path中是否包含了pattern</span></span>
+<span class="line"><span style="color: #98C379">                 return fnmatch(path, pattern)</span></span>
+<span class="line"><span style="color: #98C379">                '''</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">not</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">_match_path</span><span style="color: #ABB2BF">(path, full_path, pattern): </span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #7F848E; font-style: italic">## 经过前面的过滤，此处判断py文件名是否包含了pattern</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #C678DD; font-style: italic">continue</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #7F848E; font-style: italic">## if the test file matches, load it</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #7F848E; font-style: italic">## 获取full_path中的文件名，即xxx.py中的xxx</span></span>
+<span class="line"><span style="color: #ABB2BF">                name </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">_get_name_from_path</span><span style="color: #ABB2BF">(full_path)</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD; font-style: italic">try</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">                    self._get_module_from_name(self, name):</span></span>
+<span class="line"><span style="color: #98C379">                     __import__(name)</span></span>
+<span class="line"><span style="color: #98C379">                     return sys.modules[name]</span></span>
+<span class="line"><span style="color: #98C379">                    '''</span></span>
+<span class="line"><span style="color: #ABB2BF">                    module </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">_get_module_from_name</span><span style="color: #ABB2BF">(name)</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD; font-style: italic">except</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #C678DD; font-style: italic">yield</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_make_failed_import_test</span><span style="color: #ABB2BF">(name, </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.suiteClass)</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD; font-style: italic">else</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #7F848E; font-style: italic">## 下面的代码重点在于比较module.__file__名与绝对路径不带扩展名是否相等</span></span>
+<span class="line"><span style="color: #ABB2BF">                    mod_file </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">abspath</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">getattr</span><span style="color: #ABB2BF">(module, </span><span style="color: #98C379">'__file__'</span><span style="color: #ABB2BF">, full_path))</span></span>
+<span class="line"><span style="color: #ABB2BF">                    realpath </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">splitext</span><span style="color: #ABB2BF">(os.path.</span><span style="color: #61AFEF">realpath</span><span style="color: #ABB2BF">(mod_file))[</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">]</span></span>
+<span class="line"><span style="color: #ABB2BF">                    fullpath_noext </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">splitext</span><span style="color: #ABB2BF">(os.path.</span><span style="color: #61AFEF">realpath</span><span style="color: #ABB2BF">(full_path))[</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">]</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> realpath.</span><span style="color: #61AFEF">lower</span><span style="color: #ABB2BF">() </span><span style="color: #56B6C2">!=</span><span style="color: #ABB2BF"> fullpath_noext.</span><span style="color: #61AFEF">lower</span><span style="color: #ABB2BF">():</span></span>
+<span class="line"><span style="color: #ABB2BF">                        module_dir </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">dirname</span><span style="color: #ABB2BF">(realpath)</span></span>
+<span class="line"><span style="color: #ABB2BF">                        mod_name </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">splitext</span><span style="color: #ABB2BF">(os.path.</span><span style="color: #61AFEF">basename</span><span style="color: #ABB2BF">(full_path))[</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">]</span></span>
+<span class="line"><span style="color: #ABB2BF">                        expected_dir </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">dirname</span><span style="color: #ABB2BF">(full_path)</span></span>
+<span class="line"><span style="color: #ABB2BF">                        msg </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> (</span><span style="color: #98C379">"</span><span style="color: #D19A66">%r</span><span style="color: #98C379"> module incorrectly imported from </span><span style="color: #D19A66">%r</span><span style="color: #98C379">. Expected </span><span style="color: #D19A66">%r</span><span style="color: #98C379">. "</span></span>
+<span class="line"><span style="color: #ABB2BF">                               </span><span style="color: #98C379">"Is this module globally installed?"</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">                        </span><span style="color: #C678DD; font-style: italic">raise</span><span style="color: #ABB2BF"> ImportError(msg </span><span style="color: #56B6C2">%</span><span style="color: #ABB2BF"> (mod_name, module_dir, expected_dir))</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #7F848E; font-style: italic">## 见下面的代码</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #7F848E; font-style: italic">## yield将加载出来的suite对象返给调用者</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #C678DD; font-style: italic">yield</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">loadTestsFromModule</span><span style="color: #ABB2BF">(module)</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">elif</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">isdir</span><span style="color: #ABB2BF">(full_path):</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">not</span><span style="color: #ABB2BF"> os.path.</span><span style="color: #61AFEF">isfile</span><span style="color: #ABB2BF">(os.path.</span><span style="color: #61AFEF">join</span><span style="color: #ABB2BF">(full_path, </span><span style="color: #98C379">'__init__.py'</span><span style="color: #ABB2BF">)):</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #C678DD; font-style: italic">continue</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">                load_tests </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">None</span></span>
+<span class="line"><span style="color: #ABB2BF">                tests </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">None</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">fnmatch</span><span style="color: #ABB2BF">(path, pattern):</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #7F848E; font-style: italic">## only check load_tests if the package directory itself matches the filter</span></span>
+<span class="line"><span style="color: #ABB2BF">                    name </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">_get_name_from_path</span><span style="color: #ABB2BF">(full_path)</span></span>
+<span class="line"><span style="color: #ABB2BF">                    package </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">_get_module_from_name</span><span style="color: #ABB2BF">(name)</span></span>
+<span class="line"><span style="color: #ABB2BF">                    load_tests </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">getattr</span><span style="color: #ABB2BF">(package, </span><span style="color: #98C379">'load_tests'</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">                    tests </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">loadTestsFromModule</span><span style="color: #ABB2BF">(package, </span><span style="color: #E06C75; font-style: italic">use_load_tests</span><span style="color: #56B6C2">=</span><span style="color: #D19A66">False</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> load_tests </span><span style="color: #C678DD; font-style: italic">is</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> tests </span><span style="color: #C678DD; font-style: italic">is</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">not</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">                        </span><span style="color: #7F848E; font-style: italic">## tests loaded from package file</span></span>
+<span class="line"><span style="color: #ABB2BF">                        </span><span style="color: #C678DD; font-style: italic">yield</span><span style="color: #ABB2BF"> tests</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #7F848E; font-style: italic">## recurse into the package</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #C678DD; font-style: italic">for</span><span style="color: #ABB2BF"> test </span><span style="color: #C678DD; font-style: italic">in</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">_find_tests</span><span style="color: #ABB2BF">(full_path, pattern):</span></span>
+<span class="line"><span style="color: #ABB2BF">                        </span><span style="color: #C678DD; font-style: italic">yield</span><span style="color: #ABB2BF"> test</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD; font-style: italic">else</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #C678DD; font-style: italic">try</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">                        </span><span style="color: #C678DD; font-style: italic">yield</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">load_tests</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">, tests, pattern)</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #C678DD; font-style: italic">except</span><span style="color: #ABB2BF"> Exception, e:</span></span>
+<span class="line"><span style="color: #ABB2BF">                        </span><span style="color: #C678DD; font-style: italic">yield</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_make_failed_load_tests</span><span style="color: #ABB2BF">(package.</span><span style="color: #E06C75">__name__</span><span style="color: #ABB2BF">, e,</span></span>
+<span class="line"><span style="color: #ABB2BF">                                                      </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.suiteClass)</span></span>
+<span class="line"><span style="color: #ABB2BF"> </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">loadTestsFromModule</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">module</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">use_load_tests</span><span style="color: #ABB2BF">=</span><span style="color: #D19A66">True</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">"""Return a suite of all test cases contained in the given module"""</span></span>
+<span class="line"><span style="color: #ABB2BF">        tests </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> []</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">for</span><span style="color: #ABB2BF"> name </span><span style="color: #C678DD; font-style: italic">in</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">dir</span><span style="color: #ABB2BF">(module):</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## dir(module)遍历module中所有的属性、类、函数，并用getattr读出来，</span></span>
+<span class="line"><span style="color: #ABB2BF">            obj </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">getattr</span><span style="color: #ABB2BF">(module, name)</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #98C379">'''</span></span>
+<span class="line"><span style="color: #98C379">            Python 2.7.14 </span></span>
+<span class="line"><span style="color: #98C379">            Type "help", "copyright", "credits" or "license" for more information.</span></span>
+<span class="line"><span style="color: #98C379">            </span><span style="color: #C678DD; font-style: italic">>>> </span><span style="color: #98C379">type(object)</span></span>
+<span class="line"><span style="color: #98C379">            &#x3C;type 'type'></span></span>
+<span class="line"><span style="color: #98C379">            >>></span></span>
+<span class="line"><span style="color: #98C379">            判断obj是不是一个对象，和obj是不是TestCase的子类</span></span>
+<span class="line"><span style="color: #98C379">            '''</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">isinstance</span><span style="color: #ABB2BF">(obj, </span><span style="color: #56B6C2">type</span><span style="color: #ABB2BF">) </span><span style="color: #C678DD; font-style: italic">and</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">issubclass</span><span style="color: #ABB2BF">(obj, case.TestCase):</span></span>
+<span class="line"><span style="color: #ABB2BF">                tests.</span><span style="color: #61AFEF">append</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">loadTestsFromTestCase</span><span style="color: #ABB2BF">(obj))</span></span>
+<span class="line"><span style="color: #ABB2BF">  </span><span style="color: #7F848E; font-style: italic">## module没有’load_tests‘属性</span></span>
+<span class="line"><span style="color: #ABB2BF">        load_tests </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">getattr</span><span style="color: #ABB2BF">(module, </span><span style="color: #98C379">'load_tests'</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 将读出来的tests实例化成为一个suite对象</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## tests列表中实际上是一个个suite对象，类似于</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## tests = [suite1, suite2, suite3, ...]</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## suite对象允许嵌套suite对象</span></span>
+<span class="line"><span style="color: #ABB2BF">        tests </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">suiteClass</span><span style="color: #ABB2BF">(tests)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 不会进入下面分支</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> use_load_tests </span><span style="color: #C678DD; font-style: italic">and</span><span style="color: #ABB2BF"> load_tests </span><span style="color: #C678DD; font-style: italic">is</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">not</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">try</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD; font-style: italic">return</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">load_tests</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">, tests, </span><span style="color: #D19A66">None</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">except</span><span style="color: #ABB2BF"> Exception, e:</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD; font-style: italic">return</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">_make_failed_load_tests</span><span style="color: #ABB2BF">(module.</span><span style="color: #E06C75">__name__</span><span style="color: #ABB2BF">, e,</span></span>
+<span class="line"><span style="color: #ABB2BF">                                               </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.suiteClass)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 此处返回的是suite对象，包含了module下所有的case</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">return</span><span style="color: #ABB2BF"> tests</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">loadTestsFromTestCase</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">testCaseClass</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">"""Return a suite of all test cases contained in testCaseClass"""</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## testCaseClass是编写的单元测试中，测试类的引用</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 判断是不是suite和case的子类</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">issubclass</span><span style="color: #ABB2BF">(testCaseClass, suite.TestSuite):</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">raise</span><span style="color: #ABB2BF"> TypeError(</span><span style="color: #98C379">"Test cases should not be derived from TestSuite."</span><span style="color: #ABB2BF"> \</span></span>
+<span class="line"><span style="color: #ABB2BF">                                </span><span style="color: #98C379">" Maybe you meant to derive from TestCase?"</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 获取case的名字(列表)</span></span>
+<span class="line"><span style="color: #ABB2BF">        testCaseNames </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">getTestCaseNames</span><span style="color: #ABB2BF">(testCaseClass)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD; font-style: italic">not</span><span style="color: #ABB2BF"> testCaseNames </span><span style="color: #C678DD; font-style: italic">and</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">hasattr</span><span style="color: #ABB2BF">(testCaseClass, </span><span style="color: #98C379">'runTest'</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">            testCaseNames </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> [</span><span style="color: #98C379">'runTest'</span><span style="color: #ABB2BF">]</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 利用map函数，将testCaseClass与testCaseNames进行实例化</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## map函数将testCaseNames实例化为TestCase对象</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## self.suiteClass([TestCase对象1, TestCase对象2, ...])实例化为一个suite对象</span></span>
+<span class="line"><span style="color: #ABB2BF">        loaded_suite </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.</span><span style="color: #61AFEF">suiteClass</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">map</span><span style="color: #ABB2BF">(testCaseClass, testCaseNames))</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">return</span><span style="color: #ABB2BF"> loaded_suite</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">getTestCaseNames</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">testCaseClass</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #98C379">"""Return a sorted sequence of method names found within testCaseClass</span></span>
+<span class="line"><span style="color: #98C379">        """</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">isTestMethod</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66; font-style: italic">attrname</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66; font-style: italic">testCaseClass</span><span style="color: #ABB2BF">=testCaseClass,</span></span>
+<span class="line"><span style="color: #ABB2BF">                         </span><span style="color: #D19A66; font-style: italic">prefix</span><span style="color: #ABB2BF">=</span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.testMethodPrefix):</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## attrname是testCaseClass中的属性(即编写的单元测试类中属性，如：__call__/__class__等)</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## self.testMethodPrefix实际上是 "test"</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## 这里的判断，就是要取出test开头,且这个属性还具有__call__属性</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #7F848E; font-style: italic">## 方法和函数都是具有__call__属性的，不然不能被调用</span></span>
+<span class="line"><span style="color: #ABB2BF">            </span><span style="color: #C678DD; font-style: italic">return</span><span style="color: #ABB2BF"> attrname.</span><span style="color: #61AFEF">startswith</span><span style="color: #ABB2BF">(prefix) </span><span style="color: #C678DD; font-style: italic">and</span><span style="color: #ABB2BF"> \</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #56B6C2">hasattr</span><span style="color: #ABB2BF">(</span><span style="color: #56B6C2">getattr</span><span style="color: #ABB2BF">(testCaseClass, attrname), </span><span style="color: #98C379">'__call__'</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 利用filter过滤出testCaseClass中，需要的方法</span></span>
+<span class="line"><span style="color: #ABB2BF">        testFnNames </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">filter</span><span style="color: #ABB2BF">(isTestMethod, </span><span style="color: #56B6C2">dir</span><span style="color: #ABB2BF">(testCaseClass))</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 这里是将testFnNames进行排序</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.sortTestMethodsUsing:</span></span>
+<span class="line"><span style="color: #ABB2BF">            testFnNames.</span><span style="color: #61AFEF">sort</span><span style="color: #ABB2BF">(</span><span style="color: #E06C75; font-style: italic">key</span><span style="color: #56B6C2">=</span><span style="color: #61AFEF">_CmpToKey</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">self</span><span style="color: #ABB2BF">.sortTestMethodsUsing))</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">## 返回的是一个列表，包含了所有以test开头的方法名，注意是方法名，不是方法的引用</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD; font-style: italic">return</span><span style="color: #ABB2BF"> testFnNames</span></span></code></pre>
+<h2 id="执行方式">执行方式</h2>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD; font-style: italic">import</span><span style="color: #ABB2BF"> unittest </span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">class</span><span style="color: #ABB2BF"> </span><span style="color: #E5C07B">UCTestCase</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B">unittest</span><span style="color: #ABB2BF">.</span><span style="color: #E5C07B">TestCase</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">setUp</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">#测试前需执行的操作  </span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">tearDown</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">#测试用例执行完后所需执行的操作</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 测试用例1</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">testCreateFolder</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">#具体的测试脚本</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 测试用例2</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">def</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">testDeleteFolder</span><span style="color: #ABB2BF">(</span><span style="color: #E5C07B; font-style: italic">self</span><span style="color: #ABB2BF">):</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">#具体的测试脚本</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD; font-style: italic">if</span><span style="color: #ABB2BF"> </span><span style="color: #E06C75">__name__</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">==</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">"__main__"</span><span style="color: #ABB2BF">:</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 方式1，直接通过main()执行</span></span>
+<span class="line"><span style="color: #ABB2BF">    unittest.</span><span style="color: #61AFEF">main</span><span style="color: #ABB2BF">()</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 方式2</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 构造测试集，只有单个suite</span></span>
+<span class="line"><span style="color: #ABB2BF">    suite </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> unittest.</span><span style="color: #61AFEF">TestSuite</span><span style="color: #ABB2BF">()</span></span>
+<span class="line"><span style="color: #ABB2BF">    suite.</span><span style="color: #61AFEF">addTest</span><span style="color: #ABB2BF">(</span><span style="color: #61AFEF">UC7TestCase</span><span style="color: #ABB2BF">(</span><span style="color: #98C379">"testCreateFolder"</span><span style="color: #ABB2BF">))</span></span>
+<span class="line"><span style="color: #ABB2BF">    suite.</span><span style="color: #61AFEF">addTest</span><span style="color: #ABB2BF">(</span><span style="color: #61AFEF">UC7TestCase</span><span style="color: #ABB2BF">(</span><span style="color: #98C379">"testDeleteFolder"</span><span style="color: #ABB2BF">)) </span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 执行测试</span></span>
+<span class="line"><span style="color: #ABB2BF">    runner </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> unittest.</span><span style="color: #61AFEF">TextTestRunner</span><span style="color: #ABB2BF">()</span></span>
+<span class="line"><span style="color: #ABB2BF">    runner.</span><span style="color: #61AFEF">run</span><span style="color: #ABB2BF">(suite)</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 方式3</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">#此用法可以同时测试多个类，用多个suite构造</span></span>
+<span class="line"><span style="color: #ABB2BF">    suite1 </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> unittest.</span><span style="color: #61AFEF">TestLoader</span><span style="color: #ABB2BF">().</span><span style="color: #61AFEF">loadTestsFromTestCase</span><span style="color: #ABB2BF">(TestCase1) </span></span>
+<span class="line"><span style="color: #ABB2BF">    suite2 </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> unittest.</span><span style="color: #61AFEF">TestLoader</span><span style="color: #ABB2BF">().</span><span style="color: #61AFEF">loadTestsFromTestCase</span><span style="color: #ABB2BF">(TestCase2) </span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 实质上还是suite嵌套suite</span></span>
+<span class="line"><span style="color: #ABB2BF">    suite </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> unittest.</span><span style="color: #61AFEF">TestSuite</span><span style="color: #ABB2BF">([suite1, suite2]) </span></span>
+<span class="line"><span style="color: #ABB2BF">    unittest.</span><span style="color: #61AFEF">TextTestRunner</span><span style="color: #ABB2BF">(</span><span style="color: #E06C75; font-style: italic">verbosity</span><span style="color: #56B6C2">=</span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">).</span><span style="color: #61AFEF">run</span><span style="color: #ABB2BF">(suite)</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">## 实际上都是利用的runner来执行</span></span></code></pre>
+  </div>
+    </main>
+
+    <svg xmlns="http://www.w3.org/2000/svg" id="scrollButton" viewBox="0 0 512 512" class="w-10 h-10 fill-primary fixed bottom-5 right-5 animate-[jump_1500ms_infinite] cursor-pointer bg-base-100 rounded-full astro-H24362AN" style="display: none">
+      <path d="M256 0C114.6 0 0 114.6 0 256c0 141.4 114.6 256 256 256s256-114.6 256-256C512 114.6 397.4 0 256 0zM382.6 254.6c-12.5 12.5-32.75 12.5-45.25 0L288 205.3V384c0 17.69-14.33 32-32 32s-32-14.31-32-32V205.3L174.6 254.6c-12.5 12.5-32.75 12.5-45.25 0s-12.5-32.75 0-45.25l103.1-103.1C241.3 97.4 251.1 96 256 96c4.881 0 14.65 1.391 22.65 9.398l103.1 103.1C395.1 221.9 395.1 242.1 382.6 254.6z" class="astro-H24362AN"></path>
+    </svg>
+
+    <footer class="border-t px-4 py-6 mt-6 astro-H24362AN">
+      <p class="text-center text-sm astro-H24362AN">
+        &copy; 2023
+        gwalnut
+      </p>
+      <p class="text-center text-xs astro-H24362AN">
+        Built with <a class="text-cyan-600 hover:text-black dark:hover:text-white astro-H24362AN" href="https://astro.build" target="_blank" rel="noreferrer noopener">Astro v1.1.1
+        </a>
+      </p>
+    </footer>
+  </body>
+</html>
+
+
+

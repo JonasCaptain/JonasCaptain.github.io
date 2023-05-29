@@ -1,0 +1,337 @@
+<!DOCTYPE html><html lang="en" class="astro-H24362AN">
+  <head>
+    <title>MySQL 表</title>
+<meta charset="UTF-8">
+
+<meta name="author" content="gwalnut">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Blog,Astro">
+<meta name="description" content="主要摘抄至出版书籍">
+<meta name="category" content="Blog">
+<link rel="canonical" href="https://jonascaptain.github.io/blog/articles/InnoDBTables/">
+<meta name="generator" content="Astro v1.1.1">
+
+<!-- Robot.txt -->
+<meta name="robots" content="index,follow">
+<meta name="Googlebot" content="index,follow">
+<meta name="AdsBot-Google" content="index,follow">
+
+<!-- FaceBook Meta data -->
+<meta property="og:site_name" content="https://jonascaptain.github.io/blog/articles/InnoDBTables/">
+<meta property="og:title" content="MySQL 表">
+<meta property="og:description" content="主要摘抄至出版书籍">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonascaptain.github.io/blog/articles/InnoDBTables/">
+
+<!-- Twitter Meta data -->
+<meta name="twitter:card" content="My personal blog">
+<meta name="twitter:url" content="https://jonascaptain.github.io/blog/articles/InnoDBTables/">
+<meta name="twitter:title" content="MySQL 表">
+<meta name="twitter:site" content="https://jonascaptain.github.io/blog/articles/InnoDBTables/">
+<meta name="application-name" content="MySQL 表">
+<meta name="twitter:description" content="主要摘抄至出版书籍">
+
+<meta name="apple-mobile-web-app-title" content="MySQL 表">
+<meta name="apple-touch-icon" content="/favicon.ico">
+<meta name="summary" content="My personal blog">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+<script>
+  if (localStorage.theme === 'night' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.querySelector('html').setAttribute('data-theme', 'night');
+  } else {
+    document.querySelector('html').setAttribute('data-theme', 'cmyk');
+  }
+</script>
+  <link rel="stylesheet" href="/assets/50c6c343.ed30341b.css" />
+<link rel="stylesheet" href="/assets/d5e0e75b.7bb9d23f.css" />
+<link rel="stylesheet" href="/assets/5b4135e6.e480e920.css" /><script type="module" src="/hoisted.b525123c.js"></script></head>
+
+  <body class="astro-H24362AN">
+    <a href="#main" class="absolute bg-info text-info-content px-6 py-2 rounded-br-md translate-x-[-100%] focus-within:translate-x-0 transition-all astro-H24362AN">Skip navigation</a>
+    <header class="container mx-auto flex items-center justify-between mb-16 astro-H24362AN">
+      <div class="p-4 astro-H24362AN">
+        <!-- Logo -->
+        <svg width="84" height="37" viewBox="0 0 84 37" fill="none" xmlns="http://www.w3.org/2000/svg" class="astro-H24362AN">
+          <path d="M26.5625 23.2266C26.5625 25.1953 26.2266 26.9922 25.5547 28.6172C24.8828 30.2422 23.9688 31.6406 22.8125 32.8125C21.6562 33.9688 20.2969 34.8672 18.7344 35.5078C17.1875 36.1484 15.5234 36.4688 13.7422 36.4688C11.9766 36.4688 10.3125 36.1406 8.75 35.4844C7.20312 34.8281 5.84375 33.9141 4.67188 32.7422C3.51562 31.5703 2.60156 30.1797 1.92969 28.5703C1.25781 26.9453 0.921875 25.1641 0.921875 23.2266V0.914062H7.34375V12.6328C7.6875 12.1953 8.10156 11.8047 8.58594 11.4609C9.08594 11.1172 9.61719 10.8359 10.1797 10.6172C10.7578 10.3984 11.3516 10.2344 11.9609 10.125C12.5703 10 13.1641 9.9375 13.7422 9.9375C15.5234 9.9375 17.1875 10.2734 18.7344 10.9453C20.2969 11.6016 21.6562 12.5234 22.8125 13.7109C23.9688 14.8984 24.8828 16.3047 25.5547 17.9297C26.2266 19.5391 26.5625 21.3047 26.5625 23.2266ZM20.1172 23.2266C20.1172 22.2578 19.9453 21.3594 19.6016 20.5312C19.2734 19.6875 18.8203 18.9609 18.2422 18.3516C17.6641 17.7422 16.9844 17.2656 16.2031 16.9219C15.4375 16.5781 14.6172 16.4062 13.7422 16.4062C12.8672 16.4062 12.0391 16.6016 11.2578 16.9922C10.4922 17.3672 9.82031 17.875 9.24219 18.5156C8.66406 19.1406 8.21094 19.8672 7.88281 20.6953C7.55469 21.5078 7.39062 22.3516 7.39062 23.2266C7.39062 24.1953 7.55469 25.0938 7.88281 25.9219C8.21094 26.75 8.66406 27.4688 9.24219 28.0781C9.82031 28.6875 10.4922 29.1719 11.2578 29.5312C12.0391 29.875 12.8672 30.0469 13.7422 30.0469C14.6172 30.0469 15.4375 29.875 16.2031 29.5312C16.9844 29.1719 17.6641 28.6875 18.2422 28.0781C18.8203 27.4688 19.2734 26.75 19.6016 25.9219C19.9453 25.0938 20.1172 24.1953 20.1172 23.2266ZM54.3828 23.2266C54.3828 25.1016 54.0469 26.8516 53.375 28.4766C52.7031 30.0859 51.7891 31.4844 50.6328 32.6719C49.4766 33.8438 48.1172 34.7734 46.5547 35.4609C45.0078 36.1328 43.3438 36.4688 41.5625 36.4688C39.7969 36.4688 38.1328 36.1328 36.5703 35.4609C35.0234 34.7734 33.6641 33.8438 32.4922 32.6719C31.3359 31.4844 30.4219 30.0859 29.75 28.4766C29.0781 26.8516 28.7422 25.1016 28.7422 23.2266C28.7422 21.3203 29.0781 19.5547 29.75 17.9297C30.4219 16.3047 31.3359 14.9062 32.4922 13.7344C33.6641 12.5469 35.0234 11.6172 36.5703 10.9453C38.1328 10.2734 39.7969 9.9375 41.5625 9.9375C43.3438 9.9375 45.0078 10.2578 46.5547 10.8984C48.1172 11.5234 49.4766 12.4219 50.6328 13.5938C51.7891 14.75 52.7031 16.1484 53.375 17.7891C54.0469 19.4141 54.3828 21.2266 54.3828 23.2266ZM47.9375 23.2266C47.9375 22.1953 47.7656 21.2656 47.4219 20.4375C47.0938 19.5938 46.6406 18.875 46.0625 18.2812C45.4844 17.6719 44.8047 17.2109 44.0234 16.8984C43.2578 16.5703 42.4375 16.4062 41.5625 16.4062C40.6875 16.4062 39.8594 16.5703 39.0781 16.8984C38.3125 17.2109 37.6406 17.6719 37.0625 18.2812C36.5 18.875 36.0547 19.5938 35.7266 20.4375C35.3984 21.2656 35.2344 22.1953 35.2344 23.2266C35.2344 24.1953 35.3984 25.0938 35.7266 25.9219C36.0547 26.75 36.5 27.4688 37.0625 28.0781C37.6406 28.6875 38.3125 29.1719 39.0781 29.5312C39.8594 29.875 40.6875 30.0469 41.5625 30.0469C42.4375 30.0469 43.2578 29.8828 44.0234 29.5547C44.8047 29.2266 45.4844 28.7656 46.0625 28.1719C46.6406 27.5781 47.0938 26.8594 47.4219 26.0156C47.7656 25.1719 47.9375 24.2422 47.9375 23.2266ZM83.0469 23.2266C83.0469 25.1953 82.7109 26.9922 82.0391 28.6172C81.3672 30.2422 80.4531 31.6406 79.2969 32.8125C78.1406 33.9688 76.7812 34.8672 75.2188 35.5078C73.6719 36.1484 72.0078 36.4688 70.2266 36.4688C68.4609 36.4688 66.7969 36.1406 65.2344 35.4844C63.6875 34.8281 62.3281 33.9141 61.1562 32.7422C60 31.5703 59.0859 30.1797 58.4141 28.5703C57.7422 26.9453 57.4062 25.1641 57.4062 23.2266V0.914062H63.8281V12.6328C64.1719 12.1953 64.5859 11.8047 65.0703 11.4609C65.5703 11.1172 66.1016 10.8359 66.6641 10.6172C67.2422 10.3984 67.8359 10.2344 68.4453 10.125C69.0547 10 69.6484 9.9375 70.2266 9.9375C72.0078 9.9375 73.6719 10.2734 75.2188 10.9453C76.7812 11.6016 78.1406 12.5234 79.2969 13.7109C80.4531 14.8984 81.3672 16.3047 82.0391 17.9297C82.7109 19.5391 83.0469 21.3047 83.0469 23.2266ZM76.6016 23.2266C76.6016 22.2578 76.4297 21.3594 76.0859 20.5312C75.7578 19.6875 75.3047 18.9609 74.7266 18.3516C74.1484 17.7422 73.4688 17.2656 72.6875 16.9219C71.9219 16.5781 71.1016 16.4062 70.2266 16.4062C69.3516 16.4062 68.5234 16.6016 67.7422 16.9922C66.9766 17.3672 66.3047 17.875 65.7266 18.5156C65.1484 19.1406 64.6953 19.8672 64.3672 20.6953C64.0391 21.5078 63.875 22.3516 63.875 23.2266C63.875 24.1953 64.0391 25.0938 64.3672 25.9219C64.6953 26.75 65.1484 27.4688 65.7266 28.0781C66.3047 28.6875 66.9766 29.1719 67.7422 29.5312C68.5234 29.875 69.3516 30.0469 70.2266 30.0469C71.1016 30.0469 71.9219 29.875 72.6875 29.5312C73.4688 29.1719 74.1484 28.6875 74.7266 28.0781C75.3047 27.4688 75.7578 26.75 76.0859 25.9219C76.4297 25.0938 76.6016 24.1953 76.6016 23.2266Z" fill="#FF0000" class="astro-H24362AN"></path>
+        </svg>
+      </div>
+
+      <label aria-label="Hamburger Menu" id="nav-toggle" class="btn btn-circle swap swap-rotate fixed z-[999] top-4 right-4 hidden astro-H24362AN" aria-controls="primary-nav" aria-expanded="false">
+        <input type="checkbox" class="astro-H24362AN">
+        <!-- hamburger icon -->
+        <svg class="swap-off fill-current astro-H24362AN" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" class="astro-H24362AN"></path>
+        </svg>
+        <!-- close icon -->
+        <svg class="swap-on fill-current astro-H24362AN" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" class="astro-H24362AN"></polygon>
+        </svg>
+      </label>
+
+      <nav class="mr-6 astro-H24362AN">
+        <ul id="primary-nav" class="flex grow gap-8 items-center justify-center z-[100] astro-H24362AN" data-visible="false">
+          <li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Home</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/blog/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Blog</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/search/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Search</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/tags/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Tags</span>
+  </a>
+</li>
+          <li class="astro-H24362AN">
+            <!-- Theme, Light/Dark mode -->
+            <label id="themeSetting" class="swap swap-rotate astro-H24362AN">
+              <!-- this hidden checkbox controls the state -->
+              <input type="checkbox" class="astro-H24362AN">
+              <!-- sun icon -->
+              <svg data-set-theme="cmyk" data-act-class="ACTIVECLASS" class="swap-on fill-current w-6 h-6 astro-H24362AN" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" class="astro-H24362AN"></path>
+              </svg>
+              <!-- moon icon -->
+              <svg data-set-theme="night" data-act-class="ACTIVECLASS" class="swap-off fill-current w-6 h-6 astro-H24362AN" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" class="astro-H24362AN"></path>
+              </svg>
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main" class="container mx-auto astro-H24362AN">
+      <h1 class="text-3xl md:text-5xl 2xl:text-6xl mb-[0.8em] font-extrabold mx-auto w-fit">MySQL 表</h1><div class="flex flex-wrap justify-evenly mb-9 mt-2">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <time datetime="2023-02-20T00:00:00.000Z">20 February 2023</time>
+    </div>
+
+    <div class="flex flex-wrap gap-2">
+      <a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/MySQL/">MySQL</a><a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/Table/">Table</a><a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/Index/">Index</a>
+    </div>
+  </div><div class="prose md:prose-lg 2xl:prose-xl px-4 mx-auto prose-pre:font-mono">
+    <h2 id="第4章-表">第4章 表</h2>
+<h3 id="1-索引组织表">1. 索引组织表</h3>
+<p>在InnoDB存储引擎中，表都是根据主键顺序组织存放的，这种存储方式的表称为索引组织表(index organized table)。在InnoDB存储引擎表中，每张表都有个主键(primary key)，如果在创建表时没有显式地定义主键，则InnoDB存储引擎会按如下方式选择或创建主键：</p>
+<ul>
+<li>首先判断表汇总是否有非空的唯一索引(Unique Not Null)，如果有，则改了即为主键。</li>
+<li>如果不符合上述条件，InnoDB存储引擎自动创建一个6字节大小的指针。</li>
+</ul>
+<p>当表中有多个非空唯一索引时，InnoDB存储引擎将选择建表时第一个定义的非空唯一索引为主键。需要注意的是，主键的选择根据的是定义索引的顺序，而不是建表时列的顺序。</p>
+<h3 id="2-innodb逻辑存储结构">2. InnoDB逻辑存储结构</h3>
+<p>从InnoDB存储引擎的逻辑存储结构看，所有数据都被逻辑地存放在一个空间中，称为表空间(tablespace)。表空间又由段(segmetn)、区(extent)、页(page)组成。页在一些文档中有时也称为块(block)，InnoDB存储引擎的逻辑存储结构大致如图。</p>
+<p><img src="/mysql/InnoDB%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E9%80%BB%E8%BE%91%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84.png" alt=""></p>
+<h4 id="21-表空间tablespace">2.1 表空间（Tablespace）</h4>
+<p>表空间可以看做是InnoDB存储引擎逻辑结构的最高层，所有的数据都放在表空间中。默认情况下，有一个共享表空间ibdata1，即所有数据都存放在这个表空间内。如果用户启用了参数innodb_file_per_table，则每张表内的数据可以单独放到一个表空间。</p>
+<p>如果启用了innodb_file_per_table的参数，需要注意的是每张表的表空间内存放的只是数据、索引和插入缓冲bitmap页，其他类的数据，如回滚(undo)信息、插入缓冲索引页、系统事务信息、二次写缓冲(Double write buffer)等还是存放在原来的共享表空间内。即使启用了参数innodb_file_per_table之后，共享表空间还是会不断地增加其大小。</p>
+<h4 id="22-段segment">2.2 段（Segment）</h4>
+<p>表空间是由段组成的，常见的段有数据段、索引段、回滚段等。因为InnoDB存储引擎表是索引组织的，因此数据即索引，索引即数据。那么数据段即为B+树的叶子节点（Leaf node segment），索引段即为B+树的非索引节点（Non-Leaf node segment）。</p>
+<h4 id="23-区extent">2.3 区（extent）</h4>
+<p>区是由连续页组成的空间，在任何情况下每个区的大小都为1MB。为了保证区中页的连续性，InnoDB存储引擎一次从磁盘申请4~5个区。在默认情况下，InnoDB存储引擎页的大小为16KB，即一个区中一共有64个连续的页。InnoDB 1.0.X开始引入压缩页，每个页的大小可以通过参数key_block_size设置为2K、4K、8K，因此每个区对应页的数量应该为512、256、128。</p>
+<p>InnoDB 1.2.X版本新增了参数innodb_page_size，通过该参数可以将默认页的大小设置为4K、8K，但是页中的数据库不是压缩。 这是区中页的数量同样也为256、128。总之，无论页的大小如何变化，区的大小总是1MB。</p>
+<h4 id="24-页page">2.4 页（page）</h4>
+<p>同大多数数据库一样，InnoDB有页的概念，页是InnoDB磁盘管理的最小单位。默认每个页大小为16KB，通过参数也可以设置为4K、8K、16K。</p>
+<p>在InnoDB存储引擎中，常见的页类型：</p>
+<ul>
+<li>数据页（B-tree Node）</li>
+<li>undo页（undo Log Page）</li>
+<li>系统页（System Page）</li>
+<li>事务数据页（Transaction system Page）</li>
+<li>插入缓冲位图页（Insert Buffer Bitmap）</li>
+<li>插入缓冲空闲列表页（Insert Buffer Free List）</li>
+<li>未压缩的二进制大对象页（Uncompressed BLOB Page）</li>
+<li>压缩的二进制大对象页（Compressed BLOB Page）</li>
+</ul>
+<h4 id="25-行row">2.5 行（row）</h4>
+<p>InnoDB存储引擎是面向列的(row-oriented)，也就是数据是按行进行存放的。每个页存放的行记录也是有硬性定义的，最多允许存放16KB/2-200行的记录，即7992行记录。既然有row-oriented，也就有column-oriented数据库。MySQL infobright存储引擎就是按列来存放数据的。</p>
+<h3 id="3-innodb行记录格式略过">3. InnoDB行记录格式（略过）</h3>
+<h3 id="4-innodb数据页结构略过">4. InnoDB数据页结构（略过）</h3>
+<h3 id="5-约束">5. 约束</h3>
+<h4 id="51-数据完整性">5.1 数据完整性</h4>
+<p>一般来说，数据完整性有以下三种形式：</p>
+<ul>
+<li>
+<p>实体完整性保证表中有一个主键。</p>
+<p>在InnoDB存储引擎表中，用户可以通过定义Primary Key或Unique Key约束来保证实体的完整性。用户还可以通过编写一个触发器来保证数据的完整性。</p>
+</li>
+<li>
+<p>域完整性保证数据每列的值满足特定的条件。</p>
+<p>在InnoDB存储引擎表中，域完整性可以通过以下几种途径来保证：</p>
+<ul>
+<li>选择合适的数据类型确保一个数据值满足特定的条件。</li>
+<li>外键约束（Foreign Key）。</li>
+<li>还可以考虑用default约束作为强制域完整性的一个方面。</li>
+</ul>
+</li>
+<li>
+<p>参照完整性保证两张表之间的关系。</p>
+<p>InnoDB存储引擎支持外键，因此允许用户定义外键以强制参照完整性，也可以通过编写触发以强制执行。</p>
+</li>
+</ul>
+<p>对于InnoDB存储引擎本身而言，提供了以下几种约束：</p>
+<ul>
+<li>Primary Key</li>
+<li>Unique Key</li>
+<li>Foreign Key</li>
+<li>Default</li>
+<li>NOT NULL</li>
+</ul>
+<p>######## 5.2 约束的创建和查找</p>
+<p>约束创建可以采用以下两种方式：</p>
+<ul>
+<li>表建立时就进行约束定义</li>
+<li>利用ALTER TABLE命令来进行创建约束</li>
+</ul>
+<h4 id="53-约束和索引的区别">5.3 约束和索引的区别</h4>
+<p>约束是一个逻辑的概念，用来保证数据的完整性，而索引是一个数据结构，既有逻辑上的概念，在数据库中还代表着物理存储的方式。</p>
+<h4 id="54-对错误数据的约束">5.4 对错误数据的约束</h4>
+<p>在某些默认设置下，MySQL数据库允许非法的或不正确的数据的插入或更新，又或者可以在数据库内部将其转化为一个合法的值，如向NOT NULL的字段插入一个NULL值，MySQL数据库会将其更改为0再进行插入，因此数据库本身没有对数据的正确性进行约束。比如往date列插入了一个非法的日期’2009-02-30’。MySQL并没有报错，而是显示了警告(Waring)。如果用户想通过约束对数据库非法数据的插入或更更新，那么用户必须设置参数sql_mode，用来严格审核输入的参数。</p>
+<h4 id="55-enum和set约束">5.5 ENUM和SET约束</h4>
+<h4 id="56-触发器与约束">5.6 触发器与约束</h4>
+<h4 id="57-外键约束">5.7 外键约束</h4>
+<p>外键用来保证参照完整性，MySQL下的MyISAM存储引擎本身不支持外键，对于外键的定义只是起到一个注释作用。外键的定义如下：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">[CONSTRAINT] [symbol] FOREIGN KEY</span></span>
+<span class="line"><span style="color: #abb2bf">[index_name] (index_col_name, ...)</span></span>
+<span class="line"><span style="color: #abb2bf">REFERENCES tbl_name (index_col_name, ...)</span></span>
+<span class="line"><span style="color: #abb2bf">[ON DELETE reference_option]</span></span>
+<span class="line"><span style="color: #abb2bf">[ON UPDATE reference_option]</span></span>
+<span class="line"><span style="color: #abb2bf">reference_option:</span></span>
+<span class="line"><span style="color: #abb2bf">RESTRICT | CASCADE | SET NULL | NO ACTION</span></span></code></pre>
+<p>可以在CREATE TABLE时就添加外键，也可以在表创建后通过ALTER TABLE命令来添加。一般来说，被引用的表为父表，引用的表称为子表。外键定义时的ON DELETE和ON UPDATE表示在对父表进行DELETE和UPDATE操作时，对子表所做的操作，可以定义的子表操作有：</p>
+<ul>
+<li>CASCADE</li>
+<li>SET NULL</li>
+<li>NO ACTION</li>
+<li>RESTRICT</li>
+</ul>
+<p>CASCADE表示当父表发生DELETE或UPDATE操作时，对相应的子表中的数据页进行DELETE或UPDATE操作。</p>
+<p>SET NULL表示父表发生DELETE或UPDATE操作时，相应子表中的数据被更新为NULL值，但是子表中的列必须允许为NULL值。</p>
+<p>NO ACTION表示父表发生DELETE或UPDATE操作时，抛出错误，不允许这类操作发生。</p>
+<p>RESTRICT表示父表发生DELETE或UPDATE操作时，抛出错误，不允许这类操作发生。如果定义外键没有指定ON DELETE或ON UPDATE，RESTRICT就是默认的外键设置。</p>
+<h4 id="6-视图">6. 视图</h4>
+<p>在MySQL数据库中，视图（View）是一个命名的虚表，它由一个SQL查询来定义，可以当做表使用。与持久表（permanent table）不同的是，视图中的数据没有实际的物理存储。</p>
+<h5 id="61-视图的作用">6.1 视图的作用</h5>
+<p>视图的主要用途之一是被用做一个抽象装置，特别是对于一些应用程序，程序本身不需要关心基表（base table）的结构，只需要按照视图定义来取数据或更新数据，因此视图同时在一定程度上起到一个安全层的作用。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">CREATE [OR REPLACE]</span></span>
+<span class="line"><span style="color: #abb2bf">[ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]</span></span>
+<span class="line"><span style="color: #abb2bf">[DEFINER = {user | CURRENT_USER}]</span></span>
+<span class="line"><span style="color: #abb2bf">[SQL SECURITY {DEFINER | INVOKER}]</span></span>
+<span class="line"><span style="color: #abb2bf">VIEW view_name [(column_list)]</span></span>
+<span class="line"><span style="color: #abb2bf">AS select_statement</span></span>
+<span class="line"><span style="color: #abb2bf">[WITH [CASCADE | LOCAL] CHECK OPTION]</span></span></code></pre>
+<p>虽然视图是基于基表的一个虚拟表，但是用户可以对某些视图进行更新操作，其本质就是通过视图的定义来更新基本表。一般称可以进行更新操作的视图为可更新视图（updateable view）。视图定义中的 with check option就是针对于可更新的视图的，即更新的值是否需要检查。</p>
+<h5 id="62-物化视图">6.2 物化视图</h5>
+<p>Oracle支持物化视图——该视图不是基于基表的虚表，而是根据基表实际存在的实表，即物化视图的数据存储在非易失的存储设备上。物化视图可以用于预先计算并保存多表的链接（JOIN）或聚集（GROUP BY）等耗时较多的SQL操作结果。这样，在执行复杂查询时，就可以避免进行这些耗时的操作，从而快速得到结果。物化视图的好处是对于一些复杂的统计类查询能直接查出结果。</p>
+<p>在Oracle中，物化是的创建方式包括以下两种：</p>
+<ul>
+<li>BUILD IMMEDIATE</li>
+<li>BUILD DEFERRED</li>
+</ul>
+<p>BUILD IMMEDIDATE是默认的创建方式，在创建物化视图的时候就生成数据，而BUILD DEFERRED则在创建物化视图时不生成数据，以后根据需要再生成数据。查询重写是指当对物化视图的基表进行查询时，数据库会自动判断能否通过查询物化视图来直接得到最终的结果，如果可以，则避免了聚集或连接等这类较为复杂的SQL操作，直接从已经计算好的物化视图中得到所需的数据。物化视图的刷新是指当基表发生了DML操作，物化视图何时采用哪种方式和基表进行同步。刷新的的模式有两种：</p>
+<ul>
+<li>ON DEMAND</li>
+<li>ON COMMIT</li>
+</ul>
+<p>ON DEMAND意味着物化视图在用户需要的时候进行刷新，ON COMMIT意味着物化视图在对基表的DML操作提交时的同事进行刷新。而刷新的方式有4种：</p>
+<ul>
+<li>FAST</li>
+<li>COMPLETE</li>
+<li>FORCE</li>
+<li>NEVER</li>
+</ul>
+<p>FAST采用增量刷新，只刷新自上次刷新以后进行的修改。COMPLETE是对整个物化视图进行完全的刷新。FORCE，数据库在刷新时会去判断是否可以进行快速刷新，如果可以，则用FAST，否则采用COMPLETE。NEVER是物化视图不进行任何刷新。</p>
+<p>MySQL本身并不支持物化视图，换句话说，MySQL数据库中的视图总是虚拟的。但是用户可以通过一些机制来实现物化视图的功能。例如要创建一个 ON DEMAND的物化视图还是比较简单的，用户只需定时把数据导入到另一张表。</p>
+<h3 id="7-分区表">7. 分区表</h3>
+<h4 id="71-分区概述">7.1 分区概述</h4>
+<p>分区功能并不是在存储引擎层完成的，因此不是只有InnoDb才支持分区，常见的存储引擎MyISAM、NDB都支持。CSV、FEDORATED、MERGE等就不支持。</p>
+<p>分区的过程是将一个表或索引分解为多个更小、更可管理的部分。就访问数据库的应用而言，从逻辑上讲，只要一个表或一个索引，但是在物理上这个表或索引可能由数十个物理分区组成。每个分区都是独立的对象，可以独自处理，也可以作为一个更大的对象的一部分进行处理。</p>
+<p>MySQL数据库支持的分区类型为水平分区(将同一表中不同<strong>行的记录</strong>分配到不同的物理文件中)，并不支持垂直分区(将同一表中不同<strong>列的记录</strong>分配到不同物理文件中)。此外，MySQL数据库的分区是局部分区索引，一个分区中既存放了数据又存放了索引。而全局分区是指，数据存放在各个分区中，但是所有数据的索引放在一个对象中。可以通过以下命令查看当前数据库是否启用了分区功能：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> show variables like '%partition%';</span></span>
+<span class="line"><span style="color: #abb2bf">Variable_name: have_partitioning</span></span>
+<span class="line"><span style="color: #abb2bf">        Value: YES</span></span></code></pre>
+<p>当前MySQL数据库支持以下几种类型的分区：</p>
+<ul>
+<li>RANGE分区：行数基于属于一个给定连续区间的列值被放入分区</li>
+<li>LIST分区：和RANGE分区，只是LIST分区面向的是离散的值</li>
+<li>HASH分区：根据用户自定义的表达式的返回值来进行分区，返回值不能为负数</li>
+<li>KEY分区：根据MySQL数据库提供的哈希函数来进行分区</li>
+</ul>
+<p>无论创建何种类型的分区，如果表中存在主键或唯一索引时，分区列必须是唯一索引的一个组成部分。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">create table t1(</span></span>
+<span class="line"><span style="color: #abb2bf">    col1 int not null,</span></span>
+<span class="line"><span style="color: #abb2bf">    col2 date not null,</span></span>
+<span class="line"><span style="color: #abb2bf">    col3 int not null,</span></span>
+<span class="line"><span style="color: #abb2bf">    col4 int not null,</span></span>
+<span class="line"><span style="color: #abb2bf">    unique key(col1,col2)</span></span>
+<span class="line"><span style="color: #abb2bf">)</span></span>
+<span class="line"><span style="color: #abb2bf">partition by hash(col3)</span></span>
+<span class="line"><span style="color: #abb2bf">partitions 4;</span></span>
+<span class="line"><span style="color: #abb2bf">ERROR 1503: A PRIMARY KEY must include all columns in the table's partitioning function</span></span></code></pre>
+<p>唯一索引可以是允许NULL值的，并且分区列只要是唯一索引的一个组成部分，不需要整个唯一索引都是分区列。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">create table t1(</span></span>
+<span class="line"><span style="color: #abb2bf">    col1 int null,</span></span>
+<span class="line"><span style="color: #abb2bf">    col2 date null,</span></span>
+<span class="line"><span style="color: #abb2bf">    col3 int null,</span></span>
+<span class="line"><span style="color: #abb2bf">    col4 int null,</span></span>
+<span class="line"><span style="color: #abb2bf">    unique key (col1, col2, col3, col4)</span></span>
+<span class="line"><span style="color: #abb2bf">)</span></span>
+<span class="line"><span style="color: #abb2bf">partition by hash(col3)</span></span>
+<span class="line"><span style="color: #abb2bf">partitions 4;</span></span>
+<span class="line"><span style="color: #abb2bf">Query OK, 0 rows affected</span></span></code></pre>
+<p>如果建表时没有指定主键，唯一索引，可以指定任何一个列作为分区列，因此下面两句SQL都是正确的。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">create table t1 (</span></span>
+<span class="line"><span style="color: #abb2bf">    col1 int null,</span></span>
+<span class="line"><span style="color: #abb2bf">    col2 date null,</span></span>
+<span class="line"><span style="color: #abb2bf">    col3 int null,</span></span>
+<span class="line"><span style="color: #abb2bf">    col4 int null</span></span>
+<span class="line"><span style="color: #abb2bf">) engine=innodb</span></span>
+<span class="line"><span style="color: #abb2bf">partition by hash(col3)</span></span>
+<span class="line"><span style="color: #abb2bf">partitions 4;</span></span>
+<span class="line"><span style="color: #abb2bf"></span></span>
+<span class="line"><span style="color: #abb2bf">create table t1 (</span></span>
+<span class="line"><span style="color: #abb2bf">    col1 int null,</span></span>
+<span class="line"><span style="color: #abb2bf">    col2 date null,</span></span>
+<span class="line"><span style="color: #abb2bf">    col3 int null,</span></span>
+<span class="line"><span style="color: #abb2bf">    col4 int null,</span></span>
+<span class="line"><span style="color: #abb2bf">    key (col4)</span></span>
+<span class="line"><span style="color: #abb2bf">) engine=innodb</span></span>
+<span class="line"><span style="color: #abb2bf">partition by hash(col3)</span></span>
+<span class="line"><span style="color: #abb2bf">partitions 4;</span></span></code></pre>
+<h4 id="72-分区类型略">7.2 分区类型(略)</h4>
+<hr>
+  </div>
+    </main>
+
+    <svg xmlns="http://www.w3.org/2000/svg" id="scrollButton" viewBox="0 0 512 512" class="w-10 h-10 fill-primary fixed bottom-5 right-5 animate-[jump_1500ms_infinite] cursor-pointer bg-base-100 rounded-full astro-H24362AN" style="display: none">
+      <path d="M256 0C114.6 0 0 114.6 0 256c0 141.4 114.6 256 256 256s256-114.6 256-256C512 114.6 397.4 0 256 0zM382.6 254.6c-12.5 12.5-32.75 12.5-45.25 0L288 205.3V384c0 17.69-14.33 32-32 32s-32-14.31-32-32V205.3L174.6 254.6c-12.5 12.5-32.75 12.5-45.25 0s-12.5-32.75 0-45.25l103.1-103.1C241.3 97.4 251.1 96 256 96c4.881 0 14.65 1.391 22.65 9.398l103.1 103.1C395.1 221.9 395.1 242.1 382.6 254.6z" class="astro-H24362AN"></path>
+    </svg>
+
+    <footer class="border-t px-4 py-6 mt-6 astro-H24362AN">
+      <p class="text-center text-sm astro-H24362AN">
+        &copy; 2023
+        gwalnut
+      </p>
+      <p class="text-center text-xs astro-H24362AN">
+        Built with <a class="text-cyan-600 hover:text-black dark:hover:text-white astro-H24362AN" href="https://astro.build" target="_blank" rel="noreferrer noopener">Astro v1.1.1
+        </a>
+      </p>
+    </footer>
+  </body>
+</html>
+
+
+

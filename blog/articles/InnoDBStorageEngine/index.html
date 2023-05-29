@@ -1,0 +1,638 @@
+<!DOCTYPE html><html lang="en" class="astro-H24362AN">
+  <head>
+    <title>MySQL InnoDB存储引擎</title>
+<meta charset="UTF-8">
+
+<meta name="author" content="gwalnut">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Blog,Astro">
+<meta name="description" content="主要摘抄至出版书籍">
+<meta name="category" content="Blog">
+<link rel="canonical" href="https://jonascaptain.github.io/blog/articles/InnoDBStorageEngine/">
+<meta name="generator" content="Astro v1.1.1">
+
+<!-- Robot.txt -->
+<meta name="robots" content="index,follow">
+<meta name="Googlebot" content="index,follow">
+<meta name="AdsBot-Google" content="index,follow">
+
+<!-- FaceBook Meta data -->
+<meta property="og:site_name" content="https://jonascaptain.github.io/blog/articles/InnoDBStorageEngine/">
+<meta property="og:title" content="MySQL InnoDB存储引擎">
+<meta property="og:description" content="主要摘抄至出版书籍">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonascaptain.github.io/blog/articles/InnoDBStorageEngine/">
+
+<!-- Twitter Meta data -->
+<meta name="twitter:card" content="My personal blog">
+<meta name="twitter:url" content="https://jonascaptain.github.io/blog/articles/InnoDBStorageEngine/">
+<meta name="twitter:title" content="MySQL InnoDB存储引擎">
+<meta name="twitter:site" content="https://jonascaptain.github.io/blog/articles/InnoDBStorageEngine/">
+<meta name="application-name" content="MySQL InnoDB存储引擎">
+<meta name="twitter:description" content="主要摘抄至出版书籍">
+
+<meta name="apple-mobile-web-app-title" content="MySQL InnoDB存储引擎">
+<meta name="apple-touch-icon" content="/favicon.ico">
+<meta name="summary" content="My personal blog">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+<script>
+  if (localStorage.theme === 'night' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.querySelector('html').setAttribute('data-theme', 'night');
+  } else {
+    document.querySelector('html').setAttribute('data-theme', 'cmyk');
+  }
+</script>
+  <link rel="stylesheet" href="/assets/50c6c343.ed30341b.css" />
+<link rel="stylesheet" href="/assets/d5e0e75b.7bb9d23f.css" />
+<link rel="stylesheet" href="/assets/5b4135e6.e480e920.css" /><script type="module" src="/hoisted.b525123c.js"></script></head>
+
+  <body class="astro-H24362AN">
+    <a href="#main" class="absolute bg-info text-info-content px-6 py-2 rounded-br-md translate-x-[-100%] focus-within:translate-x-0 transition-all astro-H24362AN">Skip navigation</a>
+    <header class="container mx-auto flex items-center justify-between mb-16 astro-H24362AN">
+      <div class="p-4 astro-H24362AN">
+        <!-- Logo -->
+        <svg width="84" height="37" viewBox="0 0 84 37" fill="none" xmlns="http://www.w3.org/2000/svg" class="astro-H24362AN">
+          <path d="M26.5625 23.2266C26.5625 25.1953 26.2266 26.9922 25.5547 28.6172C24.8828 30.2422 23.9688 31.6406 22.8125 32.8125C21.6562 33.9688 20.2969 34.8672 18.7344 35.5078C17.1875 36.1484 15.5234 36.4688 13.7422 36.4688C11.9766 36.4688 10.3125 36.1406 8.75 35.4844C7.20312 34.8281 5.84375 33.9141 4.67188 32.7422C3.51562 31.5703 2.60156 30.1797 1.92969 28.5703C1.25781 26.9453 0.921875 25.1641 0.921875 23.2266V0.914062H7.34375V12.6328C7.6875 12.1953 8.10156 11.8047 8.58594 11.4609C9.08594 11.1172 9.61719 10.8359 10.1797 10.6172C10.7578 10.3984 11.3516 10.2344 11.9609 10.125C12.5703 10 13.1641 9.9375 13.7422 9.9375C15.5234 9.9375 17.1875 10.2734 18.7344 10.9453C20.2969 11.6016 21.6562 12.5234 22.8125 13.7109C23.9688 14.8984 24.8828 16.3047 25.5547 17.9297C26.2266 19.5391 26.5625 21.3047 26.5625 23.2266ZM20.1172 23.2266C20.1172 22.2578 19.9453 21.3594 19.6016 20.5312C19.2734 19.6875 18.8203 18.9609 18.2422 18.3516C17.6641 17.7422 16.9844 17.2656 16.2031 16.9219C15.4375 16.5781 14.6172 16.4062 13.7422 16.4062C12.8672 16.4062 12.0391 16.6016 11.2578 16.9922C10.4922 17.3672 9.82031 17.875 9.24219 18.5156C8.66406 19.1406 8.21094 19.8672 7.88281 20.6953C7.55469 21.5078 7.39062 22.3516 7.39062 23.2266C7.39062 24.1953 7.55469 25.0938 7.88281 25.9219C8.21094 26.75 8.66406 27.4688 9.24219 28.0781C9.82031 28.6875 10.4922 29.1719 11.2578 29.5312C12.0391 29.875 12.8672 30.0469 13.7422 30.0469C14.6172 30.0469 15.4375 29.875 16.2031 29.5312C16.9844 29.1719 17.6641 28.6875 18.2422 28.0781C18.8203 27.4688 19.2734 26.75 19.6016 25.9219C19.9453 25.0938 20.1172 24.1953 20.1172 23.2266ZM54.3828 23.2266C54.3828 25.1016 54.0469 26.8516 53.375 28.4766C52.7031 30.0859 51.7891 31.4844 50.6328 32.6719C49.4766 33.8438 48.1172 34.7734 46.5547 35.4609C45.0078 36.1328 43.3438 36.4688 41.5625 36.4688C39.7969 36.4688 38.1328 36.1328 36.5703 35.4609C35.0234 34.7734 33.6641 33.8438 32.4922 32.6719C31.3359 31.4844 30.4219 30.0859 29.75 28.4766C29.0781 26.8516 28.7422 25.1016 28.7422 23.2266C28.7422 21.3203 29.0781 19.5547 29.75 17.9297C30.4219 16.3047 31.3359 14.9062 32.4922 13.7344C33.6641 12.5469 35.0234 11.6172 36.5703 10.9453C38.1328 10.2734 39.7969 9.9375 41.5625 9.9375C43.3438 9.9375 45.0078 10.2578 46.5547 10.8984C48.1172 11.5234 49.4766 12.4219 50.6328 13.5938C51.7891 14.75 52.7031 16.1484 53.375 17.7891C54.0469 19.4141 54.3828 21.2266 54.3828 23.2266ZM47.9375 23.2266C47.9375 22.1953 47.7656 21.2656 47.4219 20.4375C47.0938 19.5938 46.6406 18.875 46.0625 18.2812C45.4844 17.6719 44.8047 17.2109 44.0234 16.8984C43.2578 16.5703 42.4375 16.4062 41.5625 16.4062C40.6875 16.4062 39.8594 16.5703 39.0781 16.8984C38.3125 17.2109 37.6406 17.6719 37.0625 18.2812C36.5 18.875 36.0547 19.5938 35.7266 20.4375C35.3984 21.2656 35.2344 22.1953 35.2344 23.2266C35.2344 24.1953 35.3984 25.0938 35.7266 25.9219C36.0547 26.75 36.5 27.4688 37.0625 28.0781C37.6406 28.6875 38.3125 29.1719 39.0781 29.5312C39.8594 29.875 40.6875 30.0469 41.5625 30.0469C42.4375 30.0469 43.2578 29.8828 44.0234 29.5547C44.8047 29.2266 45.4844 28.7656 46.0625 28.1719C46.6406 27.5781 47.0938 26.8594 47.4219 26.0156C47.7656 25.1719 47.9375 24.2422 47.9375 23.2266ZM83.0469 23.2266C83.0469 25.1953 82.7109 26.9922 82.0391 28.6172C81.3672 30.2422 80.4531 31.6406 79.2969 32.8125C78.1406 33.9688 76.7812 34.8672 75.2188 35.5078C73.6719 36.1484 72.0078 36.4688 70.2266 36.4688C68.4609 36.4688 66.7969 36.1406 65.2344 35.4844C63.6875 34.8281 62.3281 33.9141 61.1562 32.7422C60 31.5703 59.0859 30.1797 58.4141 28.5703C57.7422 26.9453 57.4062 25.1641 57.4062 23.2266V0.914062H63.8281V12.6328C64.1719 12.1953 64.5859 11.8047 65.0703 11.4609C65.5703 11.1172 66.1016 10.8359 66.6641 10.6172C67.2422 10.3984 67.8359 10.2344 68.4453 10.125C69.0547 10 69.6484 9.9375 70.2266 9.9375C72.0078 9.9375 73.6719 10.2734 75.2188 10.9453C76.7812 11.6016 78.1406 12.5234 79.2969 13.7109C80.4531 14.8984 81.3672 16.3047 82.0391 17.9297C82.7109 19.5391 83.0469 21.3047 83.0469 23.2266ZM76.6016 23.2266C76.6016 22.2578 76.4297 21.3594 76.0859 20.5312C75.7578 19.6875 75.3047 18.9609 74.7266 18.3516C74.1484 17.7422 73.4688 17.2656 72.6875 16.9219C71.9219 16.5781 71.1016 16.4062 70.2266 16.4062C69.3516 16.4062 68.5234 16.6016 67.7422 16.9922C66.9766 17.3672 66.3047 17.875 65.7266 18.5156C65.1484 19.1406 64.6953 19.8672 64.3672 20.6953C64.0391 21.5078 63.875 22.3516 63.875 23.2266C63.875 24.1953 64.0391 25.0938 64.3672 25.9219C64.6953 26.75 65.1484 27.4688 65.7266 28.0781C66.3047 28.6875 66.9766 29.1719 67.7422 29.5312C68.5234 29.875 69.3516 30.0469 70.2266 30.0469C71.1016 30.0469 71.9219 29.875 72.6875 29.5312C73.4688 29.1719 74.1484 28.6875 74.7266 28.0781C75.3047 27.4688 75.7578 26.75 76.0859 25.9219C76.4297 25.0938 76.6016 24.1953 76.6016 23.2266Z" fill="#FF0000" class="astro-H24362AN"></path>
+        </svg>
+      </div>
+
+      <label aria-label="Hamburger Menu" id="nav-toggle" class="btn btn-circle swap swap-rotate fixed z-[999] top-4 right-4 hidden astro-H24362AN" aria-controls="primary-nav" aria-expanded="false">
+        <input type="checkbox" class="astro-H24362AN">
+        <!-- hamburger icon -->
+        <svg class="swap-off fill-current astro-H24362AN" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" class="astro-H24362AN"></path>
+        </svg>
+        <!-- close icon -->
+        <svg class="swap-on fill-current astro-H24362AN" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" class="astro-H24362AN"></polygon>
+        </svg>
+      </label>
+
+      <nav class="mr-6 astro-H24362AN">
+        <ul id="primary-nav" class="flex grow gap-8 items-center justify-center z-[100] astro-H24362AN" data-visible="false">
+          <li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Home</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/blog/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Blog</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/search/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Search</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/tags/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Tags</span>
+  </a>
+</li>
+          <li class="astro-H24362AN">
+            <!-- Theme, Light/Dark mode -->
+            <label id="themeSetting" class="swap swap-rotate astro-H24362AN">
+              <!-- this hidden checkbox controls the state -->
+              <input type="checkbox" class="astro-H24362AN">
+              <!-- sun icon -->
+              <svg data-set-theme="cmyk" data-act-class="ACTIVECLASS" class="swap-on fill-current w-6 h-6 astro-H24362AN" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" class="astro-H24362AN"></path>
+              </svg>
+              <!-- moon icon -->
+              <svg data-set-theme="night" data-act-class="ACTIVECLASS" class="swap-off fill-current w-6 h-6 astro-H24362AN" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" class="astro-H24362AN"></path>
+              </svg>
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main" class="container mx-auto astro-H24362AN">
+      <h1 class="text-3xl md:text-5xl 2xl:text-6xl mb-[0.8em] font-extrabold mx-auto w-fit">MySQL InnoDB存储引擎</h1><div class="flex flex-wrap justify-evenly mb-9 mt-2">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <time datetime="2023-03-20T02:00:00.000Z">20 March 2023</time>
+    </div>
+
+    <div class="flex flex-wrap gap-2">
+      <a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/MySQL/">MySQL</a><a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/InnoDB/">InnoDB</a><a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/StorageEngine/">StorageEngine</a>
+    </div>
+  </div><div class="prose md:prose-lg 2xl:prose-xl px-4 mx-auto prose-pre:font-mono">
+    <h2 id="第2章">第2章</h2>
+<h3 id="1-innodb体系架构">1. InnoDB体系架构</h3>
+<p><img src="/mysql/Innodb%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84.png" alt="Innodb存储引擎体系架构"></p>
+<p>从图中可见，InnoDB存储引擎有多个内存块，可以认为这些内存块组成了一个大的内存池，负责如下工作：</p>
+<ul>
+<li>维护所有 进程 / 线程 需要访问的多个内部数据结构。</li>
+<li>缓存磁盘上的数据，方便快速地读取，同时在对磁盘文件的数据修改之前在这里缓存。</li>
+<li>重做日志(redo log)缓冲。</li>
+<li>……</li>
+</ul>
+<h4 id="后台线程"><em><strong>后台线程</strong></em></h4>
+<p>InnoDB存储引擎是多线程的模型，因此其后台有多个不同的后台线程，负责处理不同的任务。</p>
+<ol>
+<li>
+<p><strong>Master Thread</strong>
+Master Thread是一个非常核心的后台线程，主要负责将缓冲池中的数据异步刷新到磁盘，保证数据的一致性，包括脏页的刷新、合并插入缓冲(INSERT BUFFER)、UNDO页的回收等。</p>
+</li>
+<li>
+<p><strong>IO Thread</strong>
+在InnoDB存储引擎中大量使用了AIO(Async IO)来处理写IO请求，这样可以极大提高数据库的性能。而IO Thread的工作主要是负责这些IO请求的回调(call back)处理。通过innodb_read_io_threads和innodb_write_io_threads参数进行设置。通过命令show engine innodb status来观察InnoDB中的IO Thread。</p>
+</li>
+<li>
+<p><strong>Purge Thread</strong>
+事务被提交后，其所使用的undo log可能不再需要，因此需要Purge Thread来回收已经使用并分配的undo页。可以在MySQL数据库的配置文件中添加如下命令来启用独立的Purge Thread：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #61AFEF">[mysqld]</span></span>
+<span class="line"><span style="color: #C678DD">innodb_purge_threads</span><span style="color: #ABB2BF">=</span><span style="color: #98C379">1</span></span></code></pre>
+<p>在InnoDB 1.1版本中，即使将Innodb_purge_threads设为大于1，InnoDB存储引擎启动时也会将其设为1，并在错误文件中出现如下类似提示：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">120529 22:54:16 [Warning] option 'innodb-purge-threads': unsigned value 4 adjusted to 1</span></span></code></pre>
+<p>从InnoDB 1.2版本开始，InnoDB支持多个Purge Thread，这样做的目的是为了进一步加快undo 页的回收。同时由于Purge Thread需要离散地读取undo 页，这样也能更进一步利用磁盘的随机读取性能。</p>
+</li>
+<li>
+<p><strong>Page Cleaner Thread</strong></p>
+<p>Page Cleaner Thread是在InnoDB 1.2.X版本引入的。其作用是将之前版本中脏页的刷新操作都放入到单独的线程中来完成。而其目的是为了减轻原Master Thread的工作及对于用户查询线程的阻塞，进一步提高InnoDB存储引擎的性能。</p>
+</li>
+</ol>
+<h4 id="内存"><em><strong>内存</strong></em></h4>
+<ol>
+<li>
+<p><strong>缓冲池</strong></p>
+<p>InnoDB存储引擎是基于磁盘处处的，并将其中的记录按照页的方式进行管理。因此可将其视为基于磁盘的数据库系统(Disk-base Database)。在数据库系统中，由于CPU速度与磁盘速度之间的鸿沟，基于磁盘的数据库系统通常使用缓冲池技术来提高数据库的整体性能。</p>
+<p>大致原理如下：在数据库中进行读取页的操作，首先将从磁盘读到的页放在缓冲池中，这个过程称为将页“FIX”在缓冲池中。下一次读取相同页时，首先判断是否在缓冲池中。若在，称该页在缓冲池中被命中，直接读取该页。否则，读取磁盘上的页。对于数据库的修改操作，则首先修改在缓冲池中的页，然后再以一定的频率刷新到磁盘上。这里需要注意的是，页从缓冲池刷新回磁盘的操作并不是在每次页发生更新时触发，而是通过一种称为Checkpoint的机制刷新回磁盘。同样，这也是为了提高数据库的整体性能。</p>
+<p>对于InnoDB存储引擎而言，其缓冲池的配置通过参数innodb_buffer_pool_size来设置。</p>
+<p>具体来看，缓冲池中缓存的数据页类型有：索引页、数据页、undo 页、插入缓冲(insert buffer)、自适应哈希索引(adaptive hash index)、InnoDB存储的锁信息(lock info)、数据字典信息(data dictionary)等。不能简单的认为，缓冲池只是缓存索引页和数据页，它们只是占缓冲池很大的一部分而已。</p>
+<p><img src="/mysql/InnoDB%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1.png" alt="InnoDB内存数据对象"></p>
+<p>从InnoDB 1.0.X版本开始，允许有多个缓冲池实例。每个页根据哈希值平均分配到不同的缓冲池实例中。这样做的好处是减少数据库内部的资源竞争，增加数据库的并发处理能力。可以通过参数innodb_buffer_pool_instances来进行配置，该值默认为1。在配置文件中奖innodb_buffer_pool_instances设置为大于1的值就可以得到多个缓冲池实例。再通过命令 show engine innodb status 可以观察到变化。</p>
+<p>从MySQL5.6版本开始，还可以通过information_schema架构下的表innodb_buffer_pool_stats来观察缓冲池的状态。</p>
+</li>
+<li>
+<p><strong>LRU List、Free List 和 Flush List</strong></p>
+<p>通常来说，数据库中的缓冲池是通过LRU(Latest Recent Used，最近最少使用)算法来进行管理的。即最频繁使用的页在LRU列表的前端，而最少使用的页在LRU列表的尾端。当缓冲池不能存放新读取到的页时，将首先释放LRU列表中尾端的页。</p>
+<p>在InnoDB存储引擎中，缓冲池中页的大小默认为16KB，同样使用LRU算法对缓冲池进行管理。稍有不同的是InnoDB存储引擎对传统的LRU算法做了一些优化。在InnoDB存储引擎中，LRU列表中还加入了midpoint位置。新读取到的页，虽然是最新访问的页，但并不是直接放入到LRU列表的首部，而是放入LRU列表的midpoint位置。这个算法在InnoDB存储引擎下称为midpoint insertion strategy。在默认配置下，该位置在LRU列表长度的5/8处。midpoint位置可由参数innodb_old_blocks_pct控制。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql>show variables like 'innodb_old_blocks_pct'\G</span></span>
+<span class="line"><span style="color: #abb2bf">************************** 1. row **************************</span></span>
+<span class="line"><span style="color: #abb2bf">Variable_name: innodb_old_blocks_pct</span></span>
+<span class="line"><span style="color: #abb2bf">        Value: 37</span></span>
+<span class="line"><span style="color: #abb2bf">1 row in set (0.00 sec)</span></span></code></pre>
+<p>从上面的例子可以看到，参数innodb_old_blocks_pct默认值为37，表示新读取的页插入到LRU列表尾端的37%的位置(差不多3/8的位置)。在InnoDB存储引擎中，把midpoint之后的列表称为old列表，之前的列表称为new列表。可以简单的理解为new列表中的页都是最为活跃的热点数据。</p>
+<p>这样做的原因是，因为直接将读取到的页放入到LRU的首部，那么某些SQL操作可能会是缓冲池中的页被刷新出，从而影响缓冲池的效率。常见的这类操作为索引或数据的扫描操作。这类操作需要访问表中的许多页，甚至是全部的页，而这些页通常来说又仅在这次查询操作中需要，并不是活跃的热点数据。如果页被放入LRU列表的首部，那么非常可能将所需要的热点数据页从LRU列表中移除，而在下一次需要读取该页时，InnoDB存储引擎需要再次访问磁盘。为了解决这个问题，InnoDB存储引擎引入了另一个参数来以进一步管理LRU列表，这个参数是innodb_old_blocks_time，用于表示页读取到mid位置后需要等待多久才会被加入到LRU列表的热端。因此当需要执行上述所说的SQL操作时，可以通过下面的方法尽可能是LRU列表中的热点数据不被刷出。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> set global innodb_old_blocks_time=1000;</span></span>
+<span class="line"><span style="color: #abb2bf">Query OK, 0 rows affected (0.00 sec)</span></span>
+<span class="line"><span style="color: #abb2bf"></span></span>
+<span class="line"><span style="color: #abb2bf">## data or index scan operation</span></span>
+<span class="line"><span style="color: #abb2bf">## ...</span></span>
+<span class="line"><span style="color: #abb2bf">mysql> set global innodb_old_blocks_time=0;</span></span>
+<span class="line"><span style="color: #abb2bf">Query OK, 0 rows affected (0.00 sec)</span></span></code></pre>
+<p>如果用户预估自己活跃的热点数据不止63%，那么在执行SQL语句前，还可以通过下面的语句来减少热点页不可能被刷出的概率。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> set global innodb_old_blocks_pct=20;</span></span>
+<span class="line"><span style="color: #abb2bf">Query OK, 0 rows affected (0.00 sec)</span></span></code></pre>
+<p>LRU列表用来管理已经读取的页，但当数据库刚启动时，LRU列表是空的，即没有任何页。这时页都存放在Free列表中。当需要从缓冲池中分页时，首先从Free列表中查找是否有可用的空闲页，若有则将该页从Free列表中删除，放入到LRU列表中。否则，根据LRU算法，淘汰LRU列表末尾的页，将该内存空间分配给新的页。当页从LRU列表的old部分加入到new部分时，称此时发生的操作为 <strong>page made young</strong>，而因为innodb_old_blocks_time的设置而导致页没有从old部分移动到new部分的操作称为 <strong>page not made young</strong>。可以通过命令 show engine innodb status来观察LRU列表及Free列表的使用情况和运行状态。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> show engine innodb status \G</span></span>
+<span class="line"><span style="color: #abb2bf">=====================================</span></span>
+<span class="line"><span style="color: #abb2bf">2021-10-09 16:05:00 0x7feb9bb47700 INNODB MONITOR OUTPUT</span></span>
+<span class="line"><span style="color: #abb2bf">=====================================</span></span>
+<span class="line"><span style="color: #abb2bf">Per second averages calculated from the last 5 seconds</span></span>
+<span class="line"><span style="color: #abb2bf">-----------------</span></span>
+<span class="line"><span style="color: #abb2bf">BACKGROUND THREAD</span></span>
+<span class="line"><span style="color: #abb2bf">-----------------</span></span>
+<span class="line"><span style="color: #abb2bf">srv_master_thread loops: 1478477 srv_active, 0 srv_shutdown, 5524787 srv_idle</span></span>
+<span class="line"><span style="color: #abb2bf">srv_master_thread log flush and writes: 0</span></span>
+<span class="line"><span style="color: #abb2bf">----------</span></span>
+<span class="line"><span style="color: #abb2bf">SEMAPHORES</span></span>
+<span class="line"><span style="color: #abb2bf">----------</span></span>
+<span class="line"><span style="color: #abb2bf">OS WAIT ARRAY INFO: reservation count 4</span></span>
+<span class="line"><span style="color: #abb2bf">OS WAIT ARRAY INFO: signal count 4</span></span>
+<span class="line"><span style="color: #abb2bf">RW-shared spins 0, rounds 0, OS waits 0</span></span>
+<span class="line"><span style="color: #abb2bf">RW-excl spins 1, rounds 6, OS waits 0</span></span>
+<span class="line"><span style="color: #abb2bf">RW-sx spins 0, rounds 0, OS waits 0</span></span>
+<span class="line"><span style="color: #abb2bf">Spin rounds per wait: 0.00 RW-shared, 6.00 RW-excl, 0.00 RW-sx</span></span>
+<span class="line"><span style="color: #abb2bf">------------</span></span>
+<span class="line"><span style="color: #abb2bf">TRANSACTIONS</span></span>
+<span class="line"><span style="color: #abb2bf">------------</span></span>
+<span class="line"><span style="color: #abb2bf">Trx id counter 15483</span></span>
+<span class="line"><span style="color: #abb2bf">Purge done for trx's n:o &#x3C; 15483 undo n:o &#x3C; 0 state: running but idle</span></span>
+<span class="line"><span style="color: #abb2bf">History list length 0</span></span>
+<span class="line"><span style="color: #abb2bf">LIST OF TRANSACTIONS FOR EACH SESSION:</span></span>
+<span class="line"><span style="color: #abb2bf">---TRANSACTION 422126106451512, not started</span></span>
+<span class="line"><span style="color: #abb2bf">0 lock struct(s), heap size 1136, 0 row lock(s)</span></span>
+<span class="line"><span style="color: #abb2bf">---TRANSACTION 422126106450568, not started</span></span>
+<span class="line"><span style="color: #abb2bf">0 lock struct(s), heap size 1136, 0 row lock(s)</span></span>
+<span class="line"><span style="color: #abb2bf">---TRANSACTION 422126106449624, not started</span></span>
+<span class="line"><span style="color: #abb2bf">0 lock struct(s), heap size 1136, 0 row lock(s)</span></span>
+<span class="line"><span style="color: #abb2bf">---TRANSACTION 422126106447736, not started</span></span>
+<span class="line"><span style="color: #abb2bf">0 lock struct(s), heap size 1136, 0 row lock(s)</span></span>
+<span class="line"><span style="color: #abb2bf">---TRANSACTION 422126106448680, not started</span></span>
+<span class="line"><span style="color: #abb2bf">0 lock struct(s), heap size 1136, 0 row lock(s)</span></span>
+<span class="line"><span style="color: #abb2bf">---TRANSACTION 422126106446792, not started</span></span>
+<span class="line"><span style="color: #abb2bf">0 lock struct(s), heap size 1136, 0 row lock(s)</span></span>
+<span class="line"><span style="color: #abb2bf">--------</span></span>
+<span class="line"><span style="color: #abb2bf">FILE I/O</span></span>
+<span class="line"><span style="color: #abb2bf">--------</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 0 state: waiting for completed aio requests (insert buffer thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 1 state: waiting for completed aio requests (log thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 2 state: waiting for completed aio requests (read thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 3 state: waiting for completed aio requests (read thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 4 state: waiting for completed aio requests (read thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 5 state: waiting for completed aio requests (read thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 6 state: waiting for completed aio requests (read thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 7 state: waiting for completed aio requests (read thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 8 state: waiting for completed aio requests (read thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 9 state: waiting for completed aio requests (read thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 10 state: waiting for completed aio requests (read thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 11 state: waiting for completed aio requests (read thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 12 state: waiting for completed aio requests (read thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 13 state: waiting for completed aio requests (read thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 14 state: waiting for completed aio requests (write thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 15 state: waiting for completed aio requests (write thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 16 state: waiting for completed aio requests (write thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 17 state: waiting for completed aio requests (write thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 18 state: waiting for completed aio requests (write thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 19 state: waiting for completed aio requests (write thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 20 state: waiting for completed aio requests (write thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 21 state: waiting for completed aio requests (write thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 22 state: waiting for completed aio requests (write thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 23 state: waiting for completed aio requests (write thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 24 state: waiting for completed aio requests (write thread)</span></span>
+<span class="line"><span style="color: #abb2bf">I/O thread 25 state: waiting for completed aio requests (write thread)</span></span>
+<span class="line"><span style="color: #abb2bf">Pending normal aio reads: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] , aio writes: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] ,</span></span>
+<span class="line"><span style="color: #abb2bf"> ibuf aio reads:, log i/o's:, sync i/o's:</span></span>
+<span class="line"><span style="color: #abb2bf">Pending flushes (fsync) log: 0; buffer pool: 1</span></span>
+<span class="line"><span style="color: #abb2bf">874 OS file reads, 4458742 OS file writes, 100385 OS fsyncs</span></span>
+<span class="line"><span style="color: #abb2bf">0.00 reads/s, 0 avg bytes/read, 0.60 writes/s, 0.00 fsyncs/s</span></span>
+<span class="line"><span style="color: #abb2bf">-------------------------------------</span></span>
+<span class="line"><span style="color: #abb2bf">INSERT BUFFER AND ADAPTIVE HASH INDEX</span></span>
+<span class="line"><span style="color: #abb2bf">-------------------------------------</span></span>
+<span class="line"><span style="color: #abb2bf">Ibuf: size 1, free list len 0, seg size 2, 0 merges</span></span>
+<span class="line"><span style="color: #abb2bf">merged operations:</span></span>
+<span class="line"><span style="color: #abb2bf"> insert 0, delete mark 0, delete 0</span></span>
+<span class="line"><span style="color: #abb2bf">discarded operations:</span></span>
+<span class="line"><span style="color: #abb2bf"> insert 0, delete mark 0, delete 0</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 0 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 0 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 0 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 0 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 1 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 1 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 2 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 4 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">0.00 hash searches/s, 0.00 non-hash searches/s</span></span>
+<span class="line"><span style="color: #abb2bf">---</span></span>
+<span class="line"><span style="color: #abb2bf">LOG</span></span>
+<span class="line"><span style="color: #abb2bf">---</span></span>
+<span class="line"><span style="color: #abb2bf">Log sequence number          18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Log buffer assigned up to    18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Log buffer completed up to   18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Log written up to            18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Log flushed up to            18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Added dirty pages up to      18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Pages flushed up to          18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Last checkpoint at           18182045</span></span>
+<span class="line"><span style="color: #abb2bf">227 log i/o's done, 0.00 log i/o's/second</span></span>
+<span class="line"><span style="color: #abb2bf">----------------------</span></span>
+<span class="line"><span style="color: #abb2bf">BUFFER POOL AND MEMORY</span></span>
+<span class="line"><span style="color: #abb2bf">----------------------</span></span>
+<span class="line"><span style="color: #abb2bf">Total large memory allocated 549715968</span></span>
+<span class="line"><span style="color: #abb2bf">Dictionary memory allocated 463343</span></span>
+<span class="line"><span style="color: #abb2bf">Buffer pool size   32768 ## 有32768个页，即32768*16K，共512MB的缓冲池</span></span>
+<span class="line"><span style="color: #abb2bf">Free buffers       31720 ## 表示当前Free列表中页的数量</span></span>
+<span class="line"><span style="color: #abb2bf">Database pages     1040 ## 表示LRU列表中页的数量</span></span>
+<span class="line"><span style="color: #abb2bf">Old database pages 364</span></span>
+<span class="line"><span style="color: #abb2bf">Modified db pages  0</span></span>
+<span class="line"><span style="color: #abb2bf">Pending reads      0</span></span>
+<span class="line"><span style="color: #abb2bf">Pending writes: LRU 0, flush list 0, single page 0</span></span>
+<span class="line"><span style="color: #abb2bf">Pages made young 6049711, not young 12706</span></span>
+<span class="line"><span style="color: #abb2bf">0.00 youngs/s, 0.00 non-youngs/s</span></span>
+<span class="line"><span style="color: #abb2bf">Pages read 851, created 300576, written 4358280</span></span>
+<span class="line"><span style="color: #abb2bf">0.00 reads/s, 0.00 creates/s, 0.00 writes/s</span></span>
+<span class="line"><span style="color: #abb2bf">Buffer pool hit rate 1000 / 1000, young-making rate 71 / 1000 not 0 / 1000</span></span>
+<span class="line"><span style="color: #abb2bf">Pages read ahead 0.00/s, evicted without access 0.00/s, Random read ahead 0.00/s</span></span>
+<span class="line"><span style="color: #abb2bf">LRU len: 1040, unzip_LRU len: 0</span></span>
+<span class="line"><span style="color: #abb2bf">I/O sum[37]:cur[0], unzip sum[0]:cur[0]</span></span>
+<span class="line"><span style="color: #abb2bf">--------------</span></span>
+<span class="line"><span style="color: #abb2bf">ROW OPERATIONS</span></span>
+<span class="line"><span style="color: #abb2bf">--------------</span></span>
+<span class="line"><span style="color: #abb2bf">0 queries inside InnoDB, 0 queries in queue</span></span>
+<span class="line"><span style="color: #abb2bf">0 read views open inside InnoDB</span></span>
+<span class="line"><span style="color: #abb2bf">Process ID=543626, Main thread ID=140649955288832 , state=sleeping</span></span>
+<span class="line"><span style="color: #abb2bf">Number of rows inserted 67955720, updated 0, deleted 0, read 68608883</span></span>
+<span class="line"><span style="color: #abb2bf">9.60 inserts/s, 0.00 updates/s, 0.00 deletes/s, 9.60 reads/s</span></span>
+<span class="line"><span style="color: #abb2bf">Number of system rows inserted 47, updated 335, deleted 2, read 301015</span></span>
+<span class="line"><span style="color: #abb2bf">0.00 inserts/s, 0.00 updates/s, 0.00 deletes/s, 0.00 reads/s</span></span>
+<span class="line"><span style="color: #abb2bf">----------------------------</span></span>
+<span class="line"><span style="color: #abb2bf">END OF INNODB MONITOR OUTPUT</span></span>
+<span class="line"><span style="color: #abb2bf">============================</span></span></code></pre>
+<p>可能的情况是Free buffers与Database pages的数量之和不等于Buffer pool size。因为缓冲池中的页还可能会被分配给自适应哈希索引、Lock信息、Insert Buffer等页，而这部分页不需要LRU算法进行维护，因此不存在与LRU列表中。</p>
+<p><strong>pages made young</strong> 显示了LRU列表中页移动到前端的次数，因为设置了innodb_old_blocks_time的值，所以 <strong>not young</strong> 当前值为 12706。youngs/s、non-youngs/s表示每秒这两类操作的次数。这里还有一个重要的观察变量——Buffer pool hit rate，表示缓冲池的命中率。通常该值不应该小于95%，若发生Buffer pool hit rate小于95%这种情况，用户需要观察是否由于全表扫描引起的LRU列表被污染的问题。</p>
+<blockquote>
+<p>Note：执行命令show engine innodb status显示的不是当前的状态，而是过去某个时间范围内InnoDB存储引擎的状态。上面截取的信息可以看出，Per second averages calculated from the last 5 seconds，代表的信息为过去5秒内的数据库状态。</p>
+</blockquote>
+<p>从InnoDB 1.2版本开始，还可以通过表INNODB_BUFFER_POOL_STATS来观察缓冲池的运行状态</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> select POOL_ID, HIT_RATE,</span></span>
+<span class="line"><span style="color: #abb2bf">-> PAGES_MADE_YOUNG, PAGES_NOT_MADE_YOUNG</span></span>
+<span class="line"><span style="color: #abb2bf">-> FROM information_schema.INNODB_BUFFER_POOL_STATS\G</span></span>
+<span class="line"><span style="color: #abb2bf">**************************** 1. row ****************************</span></span>
+<span class="line"><span style="color: #abb2bf">             POOL_ID: 0</span></span>
+<span class="line"><span style="color: #abb2bf">               HIT_RATE: 980</span></span>
+<span class="line"><span style="color: #abb2bf">    PAGES_MADE_YOUNG: 450</span></span>
+<span class="line"><span style="color: #abb2bf">PAGES_NOT_MADE_YOUNG: 0</span></span></code></pre>
+<p>此外，还可以通过表INNODB_BUFFER_PAGE_LRU来观察每个LRU列表中每个页的具体信息，例如通过下面的语句可以看到缓冲池LRU列表中SPACE为1的表的页类型：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> select TABLE_NAME,SPACE,PAGE_NUMBER,PAGE_TYPE</span></span>
+<span class="line"><span style="color: #abb2bf">    -> FROM INNODB_BUFFER_PAGE_LRU where SPACE = 1;</span></span>
+<span class="line"><span style="color: #abb2bf">+-------------------+-------+-------------+--------------------------+</span></span>
+<span class="line"><span style="color: #abb2bf">| TABLE_NAME        | SPACE | PAGE_NUMBER | PAGE_TYPE                |</span></span>
+<span class="line"><span style="color: #abb2bf">+-------------------+-------+-------------+--------------------------+</span></span>
+<span class="line"><span style="color: #abb2bf">| NULL              |     1 |           0 | FILE_SPACE_HEADER        |</span></span>
+<span class="line"><span style="color: #abb2bf">| NULL              |     1 |           1 | IBUF_BITMAP              |</span></span>
+<span class="line"><span style="color: #abb2bf">| NULL              |     1 |           2 | INODE                    |</span></span>
+<span class="line"><span style="color: #abb2bf">| test/t            |     1 |           3 | INDEX                    |</span></span>
+<span class="line"><span style="color: #abb2bf">+-------------------+-------+-------------+--------------------------+</span></span></code></pre>
+<p>InnoDB存储引擎从1.0.X版本开始支持压缩页的功能，即将原本16KB的页压缩为1KB、2KB、4KB、8KB。由于页的大小发生了变化，LRU列表也有了些许改变。对于非16KB的页，是通过unzip_LRU列表进行管理的。通过命令show engine innodb status可以观察到如下内容：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">Buffer pool hit rate 1000 / 1000, young-making rate 71 / 1000 not 0 / 1000</span></span>
+<span class="line"><span style="color: #abb2bf">Pages read ahead 0.00/s, evicted without access 0.00/s, Random read ahead 0.00/s</span></span>
+<span class="line"><span style="color: #abb2bf">LRU len: 1539, unzip_LRU len: 156</span></span>
+<span class="line"><span style="color: #abb2bf">I/O sum[37]:cur[0], unzip sum[0]:cur[0]</span></span></code></pre>
+<p>可以看到LRU列表中一共有1539个页，而unzip_LRU列表中有156个页。这里需要注意的是，LRU中的页包含了unzip_LRU列表中的页。</p>
+<p>对于压缩页的表，每个表的压缩比率可能各不相同。可能存在有的表页大小为8KB，有的表页大小为2KB的情况。</p>
+<p><strong>unzip_LRU是怎样从缓冲池中分配内存的呢？</strong></p>
+<p>首先，在unzip_LRU列表中对不同压缩页大小页进行分别管理。其次，通过伙伴算法进行内存分配。例如对需要从缓冲池汇总申请页为4KB的大小，其过程如下：</p>
+<ol>
+<li>检查4KB的unzip_LRU列表，检查是否有可用的空闲页；</li>
+<li>若有，则直接使用；</li>
+<li>否则，检查8KB的unzip_LRU列表；</li>
+<li>若能够得到空闲页，将页分成2个4KB页，存放到4KB的unzip_LRU列表；</li>
+<li>若不能得到空闲页，从LRU列表中申请一个16KB的页，将页分为1个8KB的页，2个4KB的页，分别存放到对应的unzip_LRU列表中。</li>
+</ol>
+<p>同样可以通过information_schema.INNODB_BUFFER_PAGE_LRU来观察unzip_LRU列表中的页，如：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> select TABLE_NAME,SPACE,PAGE_NUMBER,COMPRESSED_SIZE</span></span>
+<span class="line"><span style="color: #abb2bf">    -> from INNODB_BUFFER_PAGE_LRU</span></span>
+<span class="line"><span style="color: #abb2bf">    -> where COMPRESSED_SIZE &#x3C;> 0;</span></span>
+<span class="line"><span style="color: #abb2bf">+-------------------+-------+-------------+----------------------+</span></span>
+<span class="line"><span style="color: #abb2bf">| TABLE_NAME        | SPACE | PAGE_NUMBER | COMPRESSED_SIZE      |</span></span>
+<span class="line"><span style="color: #abb2bf">+-------------------+-------+-------------+----------------------+</span></span>
+<span class="line"><span style="color: #abb2bf">| sbtest/t          |     9 |         134 |                 8192 |</span></span>
+<span class="line"><span style="color: #abb2bf">| sbtest/t          |     9 |         135 |                 8192 |</span></span>
+<span class="line"><span style="color: #abb2bf">| sbtest/t          |     9 |          96 |                 8192 |</span></span>
+<span class="line"><span style="color: #abb2bf">| sbtest/t          |     9 |         136 |                 8192 |</span></span>
+<span class="line"><span style="color: #abb2bf">....</span></span></code></pre>
+<p>在LRU列表中的页被修改后，称该页未脏页(dirty page)，即缓冲池中的页和磁盘上的页的数据产生了不一致。这时数据库会通过checkpoint机制将脏页刷新回磁盘，而Flush列表中的页即为脏页列表。需要注意的是，脏页既存在与LRU列表中，也存在与Flush列表中。LRU列表用来管理缓冲池中页的可用性，Flush列表用来管理将页刷新回磁盘，二者互不影响。</p>
+<p>同LRU列表一样，Flush列表也可以通过show engine innodb status来查看，后面的数字表示了脏页的数量。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">Modified db pages  0</span></span></code></pre>
+<p>information_schema库下并没有类似INNODB_BUFFER_PAGE_LRU表来显示脏页的数量及脏页的类型，但正如前面描述的那样，脏页同样存在与LRU列表中，故用户可以通过元数据表INNODB_BUFFER_PAGE_LRU来查看，唯一不同的是需要加入OLDEST_MODIFICATION大于0的SQL查询条件，如：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> select TABLE_NAME,SPACE,PAGE_NUMBER,PAGE_TYPE</span></span>
+<span class="line"><span style="color: #abb2bf">    -> from INNODB_BUFFER_PAGE_LRU</span></span>
+<span class="line"><span style="color: #abb2bf">    -> where OLDEST_MODIFICATION > 0;</span></span>
+<span class="line"><span style="color: #abb2bf">+-------------------+-------+-------------+-------------------+</span></span>
+<span class="line"><span style="color: #abb2bf">| TABLE_NAME        | SPACE | PAGE_NUMBER | PAGE_TYPE         |</span></span>
+<span class="line"><span style="color: #abb2bf">+-------------------+-------+-------------+-------------------+</span></span>
+<span class="line"><span style="color: #abb2bf">| NULL              |     0 |          56 | SYSTEM            |</span></span>
+<span class="line"><span style="color: #abb2bf">| NULL              |     0 |           0 | FILE_SPACE_HEADER |</span></span>
+<span class="line"><span style="color: #abb2bf">| test/t            |     1 |           3 | INDEX             |</span></span>
+<span class="line"><span style="color: #abb2bf">| NULL              |     0 |         320 | INODE             |</span></span>
+<span class="line"><span style="color: #abb2bf">| NULL              |     0 |         325 | UNDO_LOG          |</span></span>
+<span class="line"><span style="color: #abb2bf">+-------------------+-------+-------------+-------------------+</span></span></code></pre>
+<p>可以看到当前共有5个脏页及它们对应的表和类型。TABLE_NAME为NULL表示该页属于系统表空间。</p>
+</li>
+<li>
+<p><strong>重做日志缓冲</strong></p>
+<p>InnoDB存储引擎的内存区域除了有缓冲池外，还有重做日志缓冲(redo log buffer)。InnoDB存储引擎首先将重做日志信息先放入缓冲区，然后按一定频率将其刷新到重做日志文件。重做日志缓冲一般不需要设置的很大，因为一般情况下每一秒钟会将重做日志缓冲刷新到日志文件，因此用户只需要保证每秒产生的事务量在这个缓冲大小之内即可。该值可由配置参数innodb_log_buffer_size控制，默认为8MB。</p>
+<p>在通常情况下，8MB的重做日志缓冲池足以满足大部分的应用，因为重做日志在下列三种情况下会将重做日志缓冲中的内容刷新到外部磁盘的重做日志文件中。</p>
+<ul>
+<li>Master Thread每一秒将重做日志缓冲刷新到重做日志文件；</li>
+<li>每个事务提交时会将重做日志缓冲刷新到重做日志文件；</li>
+<li>当重做日志缓冲池剩余空间小于1/2时，重做日志缓冲刷新到重做日志文件。</li>
+</ul>
+</li>
+<li>
+<p><strong>额外的内存池</strong></p>
+<p>额外的内存池通常被DBA忽略，他们认为该值并不十分重要，事实恰恰相反，该值同样重要。在InnoDB存储引擎中，对内存的管理是通过一种称为内存堆(heap)的方式进行的。在对一些数据结构本身的内存进行分配时，需要从额外的内存池中进行申请，当该区域内存不够时，会从缓冲池中进行申请。例如，分配了缓冲池(innodb_buffer_pool)，但是每个缓冲池中的帧缓冲(frame buffer)还有对应的缓冲控制对象(buffer control block)，这些对象记录了一些诸如LRU、锁、等待等信息，而这个对象的内存需要从额外内存池中申请。因此，在申请了很大的InnoDB缓冲池时，也应考虑相应地增加这个值。</p>
+</li>
+</ol>
+<h2 id="2-checkpoint技术">2. Checkpoint技术</h2>
+<p><strong>背景</strong>：缓冲池解决了CPU与磁盘速度鸿沟的问题，但是每次更新都是先在缓冲池中完成，再刷新到磁盘，假如刷新过程突然宕机，数据就会丢失。</p>
+<p>为了避免发生数据丢失问题，当前事务数据库系统普遍采用了<strong>Write Ahead Log</strong>策略，即当事务提交时，先写重做日志(redo log)，在修改页(即缓冲池中对应的数据)。当发生宕机时，通过重做日志来完成数据的恢复。这也是事务ACID中D(Durability持久性)的要求。</p>
+<p><strong>思考</strong>：如果重做日志可以无限地增大，同时缓冲池也足够大，能够缓冲所有数据库的数据，那么是不需要将缓冲池中页的新版本刷新回磁盘。因为发生宕机时，完全可以通过重做日志来恢复，但是这需要2个条件：</p>
+<ul>
+<li>缓冲池可以缓存数据库中的所有数据；</li>
+<li>重做日志可以无限增大。</li>
+</ul>
+<p>对于第一个条件，刚建好的数据库还可以胜任，但是随着业务的扩展，用户的增加，缓冲池是不可能缓存下所有的数据，这是可以预见的。第二个条件，理论和实际都可以实现，但是成本要求太高，同时不便于运维。因为重做日志什么时候接近磁盘可使用空间的阈值是未知的，且还需要让存储设备支持动态扩展技术。</p>
+<p>假如，2个条件都具备，那么还有一个情况需要考虑：宕机后数据库的恢复时间。当数据库运行了几个月甚至几年时，重新应用重做日志的时间会非常久，此时恢复的代价也会非常大。</p>
+<p><strong>解决</strong>：Checkpoint(检查点)技术的目的就是解决以下几个问题。</p>
+<ul>
+<li>缩短数据库的恢复时间；</li>
+<li>缓冲池不够用时，将脏页刷新到磁盘；</li>
+<li>重做日志不可用时，刷新脏页。</li>
+</ul>
+<p>当数据库发生宕机时，数据库不需要重做所有的日志，因为Checkpoint之前的页都已经刷新回磁盘。故数据库只需对checkpoint后的重做日志进行恢复。此外，当缓冲池不够用时，根据LRU算法会移除最近最少使用的页，若此页为脏页，那么需要强制执行Checkpoint，将脏页也就是页的新版本刷新回磁盘。重做日志出现不可用的情况是因为当前事务数据库对重做日志的设计都是循环使用的，并不是让其无限增大。重做日志可以被重用的部分都是不再需要的部分，当发生宕机时这部分日志就可以被覆盖重用。若此时重做日志还需要使用，那么必须强制产生Checkpoint，将缓冲池中的页至少刷新到当前重做日志的位置。对于InnoDB存储引擎而言，其是通过LSN(Log Sequence Number)来标记版本的。而LSN是8字节的数字，其单位是字节。每个页有LSN，重做日志也有LSN，Checkpoint也有LSN。可以通过show engine innodb status来观察：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">---</span></span>
+<span class="line"><span style="color: #abb2bf">LOG</span></span>
+<span class="line"><span style="color: #abb2bf">---</span></span>
+<span class="line"><span style="color: #abb2bf">Log sequence number          18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Log buffer assigned up to    18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Log buffer completed up to   18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Log written up to            18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Log flushed up to            18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Added dirty pages up to      18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Pages flushed up to          18182045</span></span>
+<span class="line"><span style="color: #abb2bf">Last checkpoint at           18182045</span></span>
+<span class="line"><span style="color: #abb2bf">227 log i/o's done, 0.00 log i/o's/second</span></span></code></pre>
+<p>在InnoDB存储引擎中，Checkpoint发生的时间、条件及脏页的选择等都非常复杂。而Checkpoint所做的事情无外乎是将缓冲池中的脏页刷回到磁盘。不同之处在于每次刷新多少页、每次从哪里取脏页，以及什么时间触发Checkpoint。在InnoDB存储引擎内部，有两种Checkpoint，分别为：</p>
+<ul>
+<li>Sharp Checkpoint</li>
+<li>Fuzzy Checkpoint</li>
+</ul>
+<p>Sharp Checkpoint发生在数据库关闭时将所有的脏页都刷新回磁盘，这是默认的工作方式，即参数innodb_fast_shutdown=1。但是若数据库在运行时也使用Sharp Checkpoint，那么数据库的可用性就会受到很大影响。故在InnoDB存储引擎内部使用Fuzzy Checkpoint进行页的刷新，即只刷新一部分脏页，而不是刷新所有的脏页回磁盘。</p>
+<p>在InnoDB存储引擎中可能发生如下几种情况的Fuzzy Checkpoint：</p>
+<ul>
+<li>Master Thread Checkpoint</li>
+<li>FLUSH_LRU_LIST Checkpoint</li>
+<li>Async/Sync Flush Checkpoint</li>
+<li>Dirty Page too much Checkpoint</li>
+</ul>
+<p>Master Thread 发生的Checkpoint，差不多以每秒或每十秒的速度从缓冲池的脏页列表中的刷新一定比例的页回磁盘。这个过程是异步的，即此时InnoDB存储引擎可以进行其他的操作，用户查询线程不会阻塞。</p>
+<p>FLUSH_LRU_LIST Checkpoint是因为InnoDB存储引擎需要保证LRU列表中需要有差不多100个空闲页可以使用。在InnoDB 1.1.X 版本之前，需要检查LRU列表中是否有足够的可用空间操作发生在用户查询线程中，显然这会阻塞用户的查询操作。倘若没有100个可用空闲页，那么InnoDB存储引擎会将LRU列表尾端的页移除。如果这些页中有脏页，那么需要进行Checkpoint，而这些页是来自LRU列表的，因此成为FLUSH_LRU_LIST Checkpoint。从MySQL5.6版本，也就是InnoDB 1.2.X开始，这个检查放在了一个单独的Page Cleaner线程中进行，并且用户可以通过参数innodb_lru_scan_depth控制LRU列表中可用页的数量，该值默认为1024，如：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> show variables like 'innodb_lru_scan_depth'\G</span></span>
+<span class="line"><span style="color: #abb2bf">**************************** 1. row ****************************</span></span>
+<span class="line"><span style="color: #abb2bf">Variable_name: innodb_lru_scan_depth</span></span>
+<span class="line"><span style="color: #abb2bf">        Value: 1024</span></span></code></pre>
+<p>Async/Sync Flush Checkpoint指的是重做日志不可用的情况，这时需要强制将一些页刷新回磁盘，而此时脏页是从脏页列表中选择的。若将已经写入到重做日志的LSN记为 redo_lsn，将已经刷新回磁盘最新页的LSN记为checkpoint_lsn，则可定义：</p>
+<p>checkpint_age = redo_lsn - checkpoint_lsn</p>
+<p><code>定义checkpoint存在的时长,redo_lsn是最新一次写入redo log的lsn，checkpoint_lsn是最近一次刷新回磁盘的lsn，两者做差得到一个时间差值，即距离上一次刷新回磁盘经过了多长时间</code></p>
+<p>再定义以下变量：</p>
+<p>async_water_mark = 75% * total_redo_log_file_size</p>
+<p>sync_water_mark = 90% * total_redo_log_file_size</p>
+<p>若每个重做日志文件的大小为1GB，并且定义了两个重做日志文件，则重做日志文件的总大小为2GB。那么async_water_mark = 1.5GB，sync_water_mark = 1.8GB。则：</p>
+<ul>
+<li>当checkpoint_age &#x3C; async_water_mark时，不需要刷新任何脏页到磁盘；</li>
+<li>当async_water_mark&#x3C;checkpoint_age&#x3C;sync_water_mar时，触发Async Flush，从Flush列表中刷新足够的脏页回磁盘，使得刷新后满足checkpoint_age&#x3C;async_water_mark；</li>
+<li>checkpoint_age > sync_water_mark，这种情况一般很少发生，除非设置的重做日志文件太小，并且在进行类似Load Data的Bulk Insert操作。此时触发Sync Flush操作，从Flush列表中刷新足够的脏页回磁盘，使得刷新后满足checkpoint_age&#x3C;async_water_mark。</li>
+</ul>
+<p>在InnoDB 1.2.X 版本之前，Async Flush Checkpoint会阻塞发现问题的用户的查询线程，而Sync Flush Checkpoint会阻塞所有的用户查询线程，并且等待脏页刷新完成。从InnoDB 1.2.X版本开始，也就是MySQL5.6版本，这部分的操作同样放入到了单独的Page Cleaner Thread中，故不会阻塞用户查询线程。</p>
+<p>MySQL官方版本并不能查看刷新页是从Flush列表中还是从LRU列表中进行Checkpoint的，也不知道因为重做日志而产生的Async/Sync Flush次数。但是提供了方法，通过命令show engine innodb status来观察。（MySQL5.7版本没有找到相关数据）</p>
+<p>最后一种Checkpoint的情况是Dirty Page too much，脏页太多，导致InnoDB存储引擎强制进行Checkpoint。其目的总得来说还是为了保证缓冲池中有足够可用的页。其由参数innodb_max_dirty_pages_pct控制：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> show variables like 'innodb_max_dirty_pages_pct'\G</span></span>
+<span class="line"><span style="color: #abb2bf">**************************** 1. row ****************************</span></span>
+<span class="line"><span style="color: #abb2bf">Variable_name: innodb_max_dirty_pages_pct</span></span>
+<span class="line"><span style="color: #abb2bf">        Value: 75</span></span></code></pre>
+<p>innodb_max_dirty_pages_pct值为75表示，当缓冲池中脏页的数量占据75%时，强制进行Checkpoint，刷新一部分的脏页到磁盘。</p>
+<h3 id="3-innodb关键特性">3. InnoDB关键特性</h3>
+<p>InnoDB存储引擎的关键特性包括：</p>
+<ul>
+<li>插入缓冲（Insert Buffer）</li>
+<li>两次写（Double Write）</li>
+<li>自适应哈希索引（Adaptive Hash Index）</li>
+<li>异步IO（Async IO）</li>
+<li>刷新邻接页（Flush Neighbor Page）</li>
+</ul>
+<ol>
+<li>Insert Buffer(插入缓冲)</li>
+</ol>
+<p>在InnoDB存储引擎中，主键是行唯一的标识符。通常应用程序中行记录的插入顺序是按照主键递增的顺序进行插入的。因此，插入聚集索引（Primary Key）一般是顺序的，不许需要磁盘的随机读取。例如：表中字段设置了auto_increment属性，值就会自动增长，同时页中的行记录按该字段的值进行顺序存放。一般情况下，不许需要随机读取另一个页中的记录，因此对于这类情况下的插入操作，速度是非常快的。</p>
+<blockquote>
+<p>Note:</p>
+<p>并不是所有的主键插入都是顺序的。若主键类是UUID这样的类，那么插入和辅助索引一样，同样是随机的。即使主键是自增类型，但是插入的是指定的值，而不是NULL值，那么同样可能导致插入并非连续的情况。</p>
+</blockquote>
+<p>不过并不是每张表上只有一个聚集索引，更多情况下，一张表上有多个非聚集的辅助索引（Secondary index）。比如，用户需要按照b这个字段进行查找，并且b这个字段不是唯一的。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">create table t (</span></span>
+<span class="line"><span style="color: #abb2bf">    a int auto_increament,</span></span>
+<span class="line"><span style="color: #abb2bf">    b varcahr(30),</span></span>
+<span class="line"><span style="color: #abb2bf">    primary key(a),</span></span>
+<span class="line"><span style="color: #abb2bf">    key(b)</span></span>
+<span class="line"><span style="color: #abb2bf">)</span></span></code></pre>
+<p>在这样的情况下产生了一个非聚集索引且索引值不唯一。在进行插入操作时，数据页的存放还是按照主键a进行顺序存放，但是对于非聚集索引叶子节点的插入不再是顺序的了，这时就需要离散的访问非聚集索引页，由于随机读取的存在而导致了插入操作性能的下降。当然这并不是b字段上索引的错误，而是因为B+树的特性决定了非聚集索引插入的离散性。</p>
+<p>InnoDB存储引擎设计了Insert Buffer，对于非聚集索引的插入或更新操作，不是每一次直接插入到索引页中，而是先判断插入的非聚集索引页是否在缓冲池中，若在，则直接插入；若不在，则先放到一个Insert Buffer对象中。数据库这个非聚集的索引已经插到叶子节点，而实际并没有，只是存放在另一个位置。然后再以一定频率和情况进行Insert Buffer和辅助索引页子节点的merge（合并）操作，这时通常能将多个插入合并到一个操作中（因为在一个索引页中），这就大大提高了对于非聚集索引插入的性能。然而Insert Buffer的使用需要同时满足以下两个条件：</p>
+<ul>
+<li>索引是辅助索引（secondary index）；</li>
+<li>索引不是唯一（unique）的。</li>
+</ul>
+<ol start="2">
+<li>Change Buffer</li>
+</ol>
+<p>InnoDB从1.0.X开始引入了Change Buffer，可将其视为Insert Buffer升级。从这个版本开始，InnoDB存储引擎可以对DML操作——Insert、Delete、Update都进行缓冲，他们分别是：Insert Buffer、Delete Buffer、Update Buffer。</p>
+<p>和前面的Insert Buffer一样，Change Buffer使用的对象依然是非唯一的辅助索引。对一条记录进行update操作可能分为两个过程：</p>
+<ul>
+<li>将记录标记为已删除；</li>
+<li>真正将记录删除。</li>
+</ul>
+<p>因此Delete Buffer对应update操作的第一个过程，即将记录标记为删除。Purge Buffer对应update操作的第二个过程，即将记录真正的删除。同时，InnoDB存储引擎提供了参数 innodb_change_buffering，用来开启各种Buffer的选项。该参数的可选值为：inserts、deletes、purges、changes、all、none。changes表示启用inserts和deletes，all表示启用所有，none表示都不启用。该参数默认值为all。</p>
+<p>从1.2.X版本开始，可以通过参数 innodb_change_buffer_max_size 来控制Change Buffer最大使用内存的数量。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> show VARIABLES like 'innodb_change_buffer_max_size'</span></span>
+<span class="line"><span style="color: #abb2bf">**************************** 1. row ****************************</span></span>
+<span class="line"><span style="color: #abb2bf">Variable_name: innodb_max_dirty_pages_pct</span></span>
+<span class="line"><span style="color: #abb2bf">        Value: 25</span></span></code></pre>
+<p>innodb_change_buffer_max_size默认值为25，表示最多使用1/4的缓冲池内存空间。而需要注意的是，该参数的最大有效值为50。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">## show engine innodb status</span></span>
+<span class="line"><span style="color: #abb2bf">-------------------------------------</span></span>
+<span class="line"><span style="color: #abb2bf">INSERT BUFFER AND ADAPTIVE HASH INDEX</span></span>
+<span class="line"><span style="color: #abb2bf">-------------------------------------</span></span>
+<span class="line"><span style="color: #abb2bf">Ibuf: size 1, free list len 0, seg size 2, 0 merges</span></span>
+<span class="line"><span style="color: #abb2bf">merged operations:</span></span>
+<span class="line"><span style="color: #abb2bf"> insert 0, delete mark 0, delete 0</span></span>
+<span class="line"><span style="color: #abb2bf">discarded operations:</span></span>
+<span class="line"><span style="color: #abb2bf"> insert 0, delete mark 0, delete 0</span></span></code></pre>
+<p>insert表示Insert Buffer；delete mark 表示Delete Buffer ；delete 表示 Purge Buffer；discarded operations 表示当Change Buffer发生merge时，表示已经删除，此时就无需再将记录合并（merge）到辅助索引中了。</p>
+<h3 id="3-insert-buffer-的内部实现">3. Insert Buffer 的内部实现</h3>
+<p>Insert Buffer的数据结构是一颗B+树。在MySQL4.1之前的版本中每张表有一颗Insert Buffer B+ 树。而在现在的版本中，全局只有一颗Insert Buffer B+树，负责对所有的表的辅助索引进行Insert Buffer。而这颗B+树存放在共享表空间中，默认也就是ibdata1中。因此，试图通过独立表空间ibd文件恢复表中数据时，往往会导致CHECK TABLE 失败。这是因为表的辅助索引中的数据可能还在Insert Buffer中，也就是共享空间中，所以通过ibd文件进行恢复后，还需要进行REPAIR TABLE操作来重建表上所有的辅助索引。</p>
+<h3 id="4-merge-insert-buffer">4. Merge Insert Buffer</h3>
+<p>概括的说，Merge Insert Buffer 的操作可能发生在以下几种情况下：</p>
+<ul>
+<li>辅助索引页被读取到缓冲池时；</li>
+<li>Insert Buffer Bitmap 页追踪到该辅助索引页已无可用空间时；</li>
+<li>Master Thread。</li>
+</ul>
+<p>第一种情况为当辅助索引页被读取到缓冲池中时，例如这在执行正常的SELECT查询操作，这是需要检查Insert Buffer Bitmap页，然后确认该辅助索引页是否有记录存放于Insert Buffer B+ 树中。若有，则将Insert Buffer B+ 树中该页记录插入到该辅助索引页中。可以看到对该页多次的记录操作通过一次操作合并到了原有的辅助索引页中，因此性能会有大幅提高。</p>
+<p>Insert Buffer Bitmap 页用来追踪每个辅助索引页的可用空间，并至少有1/32页的空间。若插入辅助索引记录时检测到插入记录后可用空间会小于1/32页，则会强制进行一个合并操作，即强制读取辅助索引页，将Insert Buffer B+数中该页的记录及待插入的记录插入到辅助索引中。这就是第二种情况。</p>
+<p>在Master Thread线程中每秒或每10秒会进行一次 Merge Insert Buffer 操作，不同之处在于每次进行merge操作的页的数量不同。在Master Thread中，执行merge操作的不止是一个页，而是根据srv_innodb_io_capacity的百分比来决定真正要合并多少个辅助索引页。但InnoDB存储引擎又是根据怎样的算法来得知需要合并的辅助索引页呢？在Insert Buffer B+树中，辅助索引页根据（space，offset）都已排序好，故可以根据（space，offset）的排序进行页的选择。然而，对于Insert Buffer页的选择，InnoDB存储引擎并非采用这个方式，它随机地选择Insert Buffer B+树中的一个页，读取该页中的space及之后所需要数量的页。该算法在复杂情况下应有更好的公平性。同时，若进行merge时，要进行merge的表已经被删除，此时可以直接丢弃已经被Insert/Change Buffer的数据记录。</p>
+<p><strong>两次写</strong></p>
+<p><code>如果说Insert Buffer带给InnoDB存储引擎是性能上的提升，那么double write带给InnoDB存储引擎的是数据页的可靠性。</code></p>
+<p>当发生数据库宕机时，可能InnoDB存储引擎正在写入某个页到表中，而这个页只写了一部分，比如16KB的页，只写了前4KB，之后就发生了宕机，这种情况被称为<strong>部分写失效（partial page write）</strong>。</p>
+<p><img src="/mysql/InnoDB_DoubleWrite%E6%9E%B6%E6%9E%84.png" alt="InnoDB_DoubleWrite架构"></p>
+<p><strong>Double Write</strong>由两部分组成，一部分是内存中的doublewrite buffer，大小为2MB，另一部分是物理磁盘上共享表空间中连续的128个页，即2个区（extent），大小同样为2MB。在对缓冲池的脏页进行刷新时，并不直接写入磁盘，而是会通过memory函数将脏页先复制到内存中的doublewrite buffer，之后通过doublewrite buffer再分两次，每次1MB顺序地写入共享表空间的物理磁盘上，然后马上调用fsync函数，同步磁盘，避免缓冲写带来的问题。在这个过程中，因为doublewrite页是连续的，因此这个过程是顺序写的，开销并不是很大。在完成doublewrite页的写入后，再将doublewrite buffer中的页写入哥哥表空间文件中此时的写入则是离散的。可以通过命令show global status like ‘innodb_dblwr%‘来观察。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">mysql> show global status like 'innodb_dblwr%';</span></span>
+<span class="line"><span style="color: #abb2bf">**************************** 1. row ****************************</span></span>
+<span class="line"><span style="color: #abb2bf">Variable_name: innodb_dblwr_pages_written</span></span>
+<span class="line"><span style="color: #abb2bf">        Value: 6325194</span></span>
+<span class="line"><span style="color: #abb2bf">**************************** 2. row ****************************</span></span>
+<span class="line"><span style="color: #abb2bf">Variable_name: innodb_dblwr_writes</span></span>
+<span class="line"><span style="color: #abb2bf">        Value: 100399</span></span></code></pre>
+<p>doublewrite一共写了6325194个页，但实际写入次数为100399，基本上符合64:1。如果发现系统在高峰时的Innodb_dblwr_pages_written:Innodb_dblwr_writes远小于64:1，那么可以说明系统写入压力并不是很高。</p>
+<p>如果操作系统在将页写入磁盘的过程中发生了崩溃，在恢复过程中，InnoDB存储引擎可以从共享表空间中的doublewrite中找到该页的一个副本，将其复制到表空间文件，再应用重做日志。</p>
+<p>若查看MySQL官方手册，会发现在命令show global status中Innodb_buffer_pool_pages_flushed变量表示当前从缓冲池中刷新磁盘页的数量。根据之前的介绍，在默认情况下所有页的刷新首先都需要放入到doublewrite中，因此该变量应该和Innodb_dblwr_pages_written一致。</p>
+<p>参数skip_innodb_doublewrite可以禁止使用doublewrite功能，这时可能会发生前面提及的写失效问题。不过如果用户有多个从服务器(slave server)，需要提供较快的性能(如在slave server上做的是RAID 0)，也许启用这个参数是一个办法。不过对于需要提高数据高可靠性的主服务器(master server)，任何时候都应确保开启doublewrite功能。</p>
+<blockquote>
+<p>Note:</p>
+<p>有些文件系统本身就提供了部分写失效的防范机制，如ZFS文件系统。在这种情况下，用户就不要启用doublewrite了。</p>
+</blockquote>
+<h4 id="3-自适应哈希索引">3. 自适应哈希索引</h4>
+<p><code>哈希(hash)是一种非常快的查找方法，一般情况下的时间复杂度为O(1)。而B+树的查找次数，取决于B+树的高度，生产环境中，B+树的高度一般为3~4层，故需要3~4次的查询。</code></p>
+<p>InnoDB存储引擎会监控对表上各索引页的查询。如果观察到建立哈希索引可以带来速度提升，则建立哈希索引，称之为自适应哈希索引（Adaptive Hash Index，AHI）。AHI是通过缓冲池的B+树页构造而来，因此建立的速度很快，而且不需要对整张表构建哈希索引。InnoDB存储引擎会自动根据访问频率和模式来自动地为某些热点页建立哈希索引。</p>
+<p>AHI有一个要求，即对这个页的连续访问模式必须是一样的。例如对于（a，b）这样的联合索引页，其访问模式可以是以下情况：</p>
+<ul>
+<li>WHERE a=XXX</li>
+<li>WHERE a=XXX and b=XXX</li>
+</ul>
+<p>访问模式一样指的是查询条件一昂，若交替执行上述两种查询，那么InnoDB存储引擎不会对该页构造AHI。此外还有如下要求：</p>
+<ul>
+<li>以该模式访问了100次</li>
+<li>页通过该模式访问了N次，其中N=页中记录 * 1/16</li>
+</ul>
+<p>根据InnoDB存储引擎官方文档显示，启用AHI后，读取和写入速度可以提高2倍，辅助索引的连续操作性能可以提高5倍。AHI是非常好的优化模式，其设计思想是数据库自优化(self-tuning)，即无需DBA对数据库进行人为调整。通过命令show engine innodb status观察使用情况。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #abb2bf">-------------------------------------</span></span>
+<span class="line"><span style="color: #abb2bf">INSERT BUFFER AND ADAPTIVE HASH INDEX</span></span>
+<span class="line"><span style="color: #abb2bf">-------------------------------------</span></span>
+<span class="line"><span style="color: #abb2bf">Ibuf: size 1, free list len 0, seg size 2, 0 merges</span></span>
+<span class="line"><span style="color: #abb2bf">merged operations:</span></span>
+<span class="line"><span style="color: #abb2bf"> insert 0, delete mark 0, delete 0</span></span>
+<span class="line"><span style="color: #abb2bf">discarded operations:</span></span>
+<span class="line"><span style="color: #abb2bf"> insert 0, delete mark 0, delete 0</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 0 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 0 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 0 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 0 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 1 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 1 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 2 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">Hash table size 138401, node heap has 4 buffer(s)</span></span>
+<span class="line"><span style="color: #abb2bf">0.00 hash searches/s, 0.00 non-hash searches/s</span></span></code></pre>
+<p>哈希索引只能用来搜索等值的查询，如where inde_col = ‘xxx’。而对于其他类型的查找，如范围查找，是不能使用哈希索引的，因此这里出现了non-hash searchs/s的情况。通过 hash searchs:non-hash searchs可以大概了解使用哈希索引后的效率。</p>
+<p>由于AHI是有InnoDB存储引擎控制的，因此这里的信息仅供参考。不给过可以通过观察show engine innodb status的结果及参数 innodb_adaptive_hash_index来考虑是禁用或启用此特性，默认AHI为开启状态。</p>
+<h4 id="4-异步io">4. 异步IO</h4>
+<p>为了提高磁盘操作性能，当前的数据库系统都采用异步IO(Asynchronous IO，AIO)的方式来处理磁盘操作。AIO的一个优势是可以进行IO Merge操作，也就是将多个IO合并为1个IO，这样可以提高IOPS的性能。</p>
+<p>在InnoDB 1.1.X之前，AIO的实现通过InnoDB存储引擎中的代码来模拟实现。而从1.1.X开始，提供了内核级别的AIO支持，称为Native AIO。因此在编译或者运行该版本的MySQL时，需要libaio库的支持。如没有则会出现如下提示：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">/usr/local/mysql/bin/mysqld: error </span><span style="color: #C678DD">while</span><span style="color: #ABB2BF"> loading shared libraries: libaio.so.1: cannot open shared object file: No such file or directory</span></span></code></pre>
+<p>需要注意的是，Native AIO 需要操作系统提供支持。Windows和Linux都支持，而Mac OSX则未提供。参数innodb_use_native_aio用来控制是否启用Native AIO，在Linux操作系统下，默认值为ON。</p>
+<h4 id="5-刷新邻接页">5. 刷新邻接页</h4>
+<p>工作原理：当刷新一个脏页时，InnoDB存储引擎会检测该页所在去（extent）的所有页，如果是脏页，那么一起进行刷新。这样做的好处显而易见，通过AIO可以将多个IO写入操作合并为一个IO操作，故该工作机制在传统机械磁盘下有着显著的优势。但是需要考虑下面两个问题：</p>
+<ul>
+<li>是不是可能将不怎么脏的页进行了写入，而该页之后又会很快变成脏页？</li>
+<li>固态硬盘有着较高的IOPS，是否还需要这个特性？</li>
+</ul>
+<p>为此，InnoDB存储引擎从1.2.X开始提供了参数innodb_flush_neighbors，用来控制是否启用该特性。对于传统机械硬盘建议启用该特性，而对于固态硬盘有着超高IOPS性能的磁盘，则建议将该参数设置为0。</p>
+  </div>
+    </main>
+
+    <svg xmlns="http://www.w3.org/2000/svg" id="scrollButton" viewBox="0 0 512 512" class="w-10 h-10 fill-primary fixed bottom-5 right-5 animate-[jump_1500ms_infinite] cursor-pointer bg-base-100 rounded-full astro-H24362AN" style="display: none">
+      <path d="M256 0C114.6 0 0 114.6 0 256c0 141.4 114.6 256 256 256s256-114.6 256-256C512 114.6 397.4 0 256 0zM382.6 254.6c-12.5 12.5-32.75 12.5-45.25 0L288 205.3V384c0 17.69-14.33 32-32 32s-32-14.31-32-32V205.3L174.6 254.6c-12.5 12.5-32.75 12.5-45.25 0s-12.5-32.75 0-45.25l103.1-103.1C241.3 97.4 251.1 96 256 96c4.881 0 14.65 1.391 22.65 9.398l103.1 103.1C395.1 221.9 395.1 242.1 382.6 254.6z" class="astro-H24362AN"></path>
+    </svg>
+
+    <footer class="border-t px-4 py-6 mt-6 astro-H24362AN">
+      <p class="text-center text-sm astro-H24362AN">
+        &copy; 2023
+        gwalnut
+      </p>
+      <p class="text-center text-xs astro-H24362AN">
+        Built with <a class="text-cyan-600 hover:text-black dark:hover:text-white astro-H24362AN" href="https://astro.build" target="_blank" rel="noreferrer noopener">Astro v1.1.1
+        </a>
+      </p>
+    </footer>
+  </body>
+</html>
+
+
+

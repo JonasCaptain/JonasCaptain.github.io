@@ -1,0 +1,1175 @@
+<!DOCTYPE html><html lang="en" class="astro-H24362AN">
+  <head>
+    <title>MySQL必知必会</title>
+<meta charset="UTF-8">
+
+<meta name="author" content="gwalnut">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="Blog,Astro">
+<meta name="description" content="主要摘抄至出版书籍">
+<meta name="category" content="Blog">
+<link rel="canonical" href="https://jonascaptain.github.io/blog/articles/MySQLMustKnow/">
+<meta name="generator" content="Astro v1.1.1">
+
+<!-- Robot.txt -->
+<meta name="robots" content="index,follow">
+<meta name="Googlebot" content="index,follow">
+<meta name="AdsBot-Google" content="index,follow">
+
+<!-- FaceBook Meta data -->
+<meta property="og:site_name" content="https://jonascaptain.github.io/blog/articles/MySQLMustKnow/">
+<meta property="og:title" content="MySQL必知必会">
+<meta property="og:description" content="主要摘抄至出版书籍">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://jonascaptain.github.io/blog/articles/MySQLMustKnow/">
+
+<!-- Twitter Meta data -->
+<meta name="twitter:card" content="My personal blog">
+<meta name="twitter:url" content="https://jonascaptain.github.io/blog/articles/MySQLMustKnow/">
+<meta name="twitter:title" content="MySQL必知必会">
+<meta name="twitter:site" content="https://jonascaptain.github.io/blog/articles/MySQLMustKnow/">
+<meta name="application-name" content="MySQL必知必会">
+<meta name="twitter:description" content="主要摘抄至出版书籍">
+
+<meta name="apple-mobile-web-app-title" content="MySQL必知必会">
+<meta name="apple-touch-icon" content="/favicon.ico">
+<meta name="summary" content="My personal blog">
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+<script>
+  if (localStorage.theme === 'night' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.querySelector('html').setAttribute('data-theme', 'night');
+  } else {
+    document.querySelector('html').setAttribute('data-theme', 'cmyk');
+  }
+</script>
+  <link rel="stylesheet" href="/assets/50c6c343.ed30341b.css" />
+<link rel="stylesheet" href="/assets/d5e0e75b.7bb9d23f.css" />
+<link rel="stylesheet" href="/assets/5b4135e6.e480e920.css" /><script type="module" src="/hoisted.b525123c.js"></script></head>
+
+  <body class="astro-H24362AN">
+    <a href="#main" class="absolute bg-info text-info-content px-6 py-2 rounded-br-md translate-x-[-100%] focus-within:translate-x-0 transition-all astro-H24362AN">Skip navigation</a>
+    <header class="container mx-auto flex items-center justify-between mb-16 astro-H24362AN">
+      <div class="p-4 astro-H24362AN">
+        <!-- Logo -->
+        <svg width="84" height="37" viewBox="0 0 84 37" fill="none" xmlns="http://www.w3.org/2000/svg" class="astro-H24362AN">
+          <path d="M26.5625 23.2266C26.5625 25.1953 26.2266 26.9922 25.5547 28.6172C24.8828 30.2422 23.9688 31.6406 22.8125 32.8125C21.6562 33.9688 20.2969 34.8672 18.7344 35.5078C17.1875 36.1484 15.5234 36.4688 13.7422 36.4688C11.9766 36.4688 10.3125 36.1406 8.75 35.4844C7.20312 34.8281 5.84375 33.9141 4.67188 32.7422C3.51562 31.5703 2.60156 30.1797 1.92969 28.5703C1.25781 26.9453 0.921875 25.1641 0.921875 23.2266V0.914062H7.34375V12.6328C7.6875 12.1953 8.10156 11.8047 8.58594 11.4609C9.08594 11.1172 9.61719 10.8359 10.1797 10.6172C10.7578 10.3984 11.3516 10.2344 11.9609 10.125C12.5703 10 13.1641 9.9375 13.7422 9.9375C15.5234 9.9375 17.1875 10.2734 18.7344 10.9453C20.2969 11.6016 21.6562 12.5234 22.8125 13.7109C23.9688 14.8984 24.8828 16.3047 25.5547 17.9297C26.2266 19.5391 26.5625 21.3047 26.5625 23.2266ZM20.1172 23.2266C20.1172 22.2578 19.9453 21.3594 19.6016 20.5312C19.2734 19.6875 18.8203 18.9609 18.2422 18.3516C17.6641 17.7422 16.9844 17.2656 16.2031 16.9219C15.4375 16.5781 14.6172 16.4062 13.7422 16.4062C12.8672 16.4062 12.0391 16.6016 11.2578 16.9922C10.4922 17.3672 9.82031 17.875 9.24219 18.5156C8.66406 19.1406 8.21094 19.8672 7.88281 20.6953C7.55469 21.5078 7.39062 22.3516 7.39062 23.2266C7.39062 24.1953 7.55469 25.0938 7.88281 25.9219C8.21094 26.75 8.66406 27.4688 9.24219 28.0781C9.82031 28.6875 10.4922 29.1719 11.2578 29.5312C12.0391 29.875 12.8672 30.0469 13.7422 30.0469C14.6172 30.0469 15.4375 29.875 16.2031 29.5312C16.9844 29.1719 17.6641 28.6875 18.2422 28.0781C18.8203 27.4688 19.2734 26.75 19.6016 25.9219C19.9453 25.0938 20.1172 24.1953 20.1172 23.2266ZM54.3828 23.2266C54.3828 25.1016 54.0469 26.8516 53.375 28.4766C52.7031 30.0859 51.7891 31.4844 50.6328 32.6719C49.4766 33.8438 48.1172 34.7734 46.5547 35.4609C45.0078 36.1328 43.3438 36.4688 41.5625 36.4688C39.7969 36.4688 38.1328 36.1328 36.5703 35.4609C35.0234 34.7734 33.6641 33.8438 32.4922 32.6719C31.3359 31.4844 30.4219 30.0859 29.75 28.4766C29.0781 26.8516 28.7422 25.1016 28.7422 23.2266C28.7422 21.3203 29.0781 19.5547 29.75 17.9297C30.4219 16.3047 31.3359 14.9062 32.4922 13.7344C33.6641 12.5469 35.0234 11.6172 36.5703 10.9453C38.1328 10.2734 39.7969 9.9375 41.5625 9.9375C43.3438 9.9375 45.0078 10.2578 46.5547 10.8984C48.1172 11.5234 49.4766 12.4219 50.6328 13.5938C51.7891 14.75 52.7031 16.1484 53.375 17.7891C54.0469 19.4141 54.3828 21.2266 54.3828 23.2266ZM47.9375 23.2266C47.9375 22.1953 47.7656 21.2656 47.4219 20.4375C47.0938 19.5938 46.6406 18.875 46.0625 18.2812C45.4844 17.6719 44.8047 17.2109 44.0234 16.8984C43.2578 16.5703 42.4375 16.4062 41.5625 16.4062C40.6875 16.4062 39.8594 16.5703 39.0781 16.8984C38.3125 17.2109 37.6406 17.6719 37.0625 18.2812C36.5 18.875 36.0547 19.5938 35.7266 20.4375C35.3984 21.2656 35.2344 22.1953 35.2344 23.2266C35.2344 24.1953 35.3984 25.0938 35.7266 25.9219C36.0547 26.75 36.5 27.4688 37.0625 28.0781C37.6406 28.6875 38.3125 29.1719 39.0781 29.5312C39.8594 29.875 40.6875 30.0469 41.5625 30.0469C42.4375 30.0469 43.2578 29.8828 44.0234 29.5547C44.8047 29.2266 45.4844 28.7656 46.0625 28.1719C46.6406 27.5781 47.0938 26.8594 47.4219 26.0156C47.7656 25.1719 47.9375 24.2422 47.9375 23.2266ZM83.0469 23.2266C83.0469 25.1953 82.7109 26.9922 82.0391 28.6172C81.3672 30.2422 80.4531 31.6406 79.2969 32.8125C78.1406 33.9688 76.7812 34.8672 75.2188 35.5078C73.6719 36.1484 72.0078 36.4688 70.2266 36.4688C68.4609 36.4688 66.7969 36.1406 65.2344 35.4844C63.6875 34.8281 62.3281 33.9141 61.1562 32.7422C60 31.5703 59.0859 30.1797 58.4141 28.5703C57.7422 26.9453 57.4062 25.1641 57.4062 23.2266V0.914062H63.8281V12.6328C64.1719 12.1953 64.5859 11.8047 65.0703 11.4609C65.5703 11.1172 66.1016 10.8359 66.6641 10.6172C67.2422 10.3984 67.8359 10.2344 68.4453 10.125C69.0547 10 69.6484 9.9375 70.2266 9.9375C72.0078 9.9375 73.6719 10.2734 75.2188 10.9453C76.7812 11.6016 78.1406 12.5234 79.2969 13.7109C80.4531 14.8984 81.3672 16.3047 82.0391 17.9297C82.7109 19.5391 83.0469 21.3047 83.0469 23.2266ZM76.6016 23.2266C76.6016 22.2578 76.4297 21.3594 76.0859 20.5312C75.7578 19.6875 75.3047 18.9609 74.7266 18.3516C74.1484 17.7422 73.4688 17.2656 72.6875 16.9219C71.9219 16.5781 71.1016 16.4062 70.2266 16.4062C69.3516 16.4062 68.5234 16.6016 67.7422 16.9922C66.9766 17.3672 66.3047 17.875 65.7266 18.5156C65.1484 19.1406 64.6953 19.8672 64.3672 20.6953C64.0391 21.5078 63.875 22.3516 63.875 23.2266C63.875 24.1953 64.0391 25.0938 64.3672 25.9219C64.6953 26.75 65.1484 27.4688 65.7266 28.0781C66.3047 28.6875 66.9766 29.1719 67.7422 29.5312C68.5234 29.875 69.3516 30.0469 70.2266 30.0469C71.1016 30.0469 71.9219 29.875 72.6875 29.5312C73.4688 29.1719 74.1484 28.6875 74.7266 28.0781C75.3047 27.4688 75.7578 26.75 76.0859 25.9219C76.4297 25.0938 76.6016 24.1953 76.6016 23.2266Z" fill="#FF0000" class="astro-H24362AN"></path>
+        </svg>
+      </div>
+
+      <label aria-label="Hamburger Menu" id="nav-toggle" class="btn btn-circle swap swap-rotate fixed z-[999] top-4 right-4 hidden astro-H24362AN" aria-controls="primary-nav" aria-expanded="false">
+        <input type="checkbox" class="astro-H24362AN">
+        <!-- hamburger icon -->
+        <svg class="swap-off fill-current astro-H24362AN" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" class="astro-H24362AN"></path>
+        </svg>
+        <!-- close icon -->
+        <svg class="swap-on fill-current astro-H24362AN" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512">
+          <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" class="astro-H24362AN"></polygon>
+        </svg>
+      </label>
+
+      <nav class="mr-6 astro-H24362AN">
+        <ul id="primary-nav" class="flex grow gap-8 items-center justify-center z-[100] astro-H24362AN" data-visible="false">
+          <li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Home</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/blog/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Blog</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/search/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Search</span>
+  </a>
+</li><li class="after:block after:mx-auto after:h-[0.15em] after:bottom-0 after:w-0 after:bg-green-700 dark:after:bg-amber-400 after:transition-[all_ease_in_out_300ms] after:mt-1 hover:after:w-full astro-6PA5N7LT">
+  <a href="/tags/" class="flex hover:text-black dark:hover:text-white p-1 astro-6PA5N7LT">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
+    <span class="pl-2 pointer-events-none astro-6PA5N7LT">Tags</span>
+  </a>
+</li>
+          <li class="astro-H24362AN">
+            <!-- Theme, Light/Dark mode -->
+            <label id="themeSetting" class="swap swap-rotate astro-H24362AN">
+              <!-- this hidden checkbox controls the state -->
+              <input type="checkbox" class="astro-H24362AN">
+              <!-- sun icon -->
+              <svg data-set-theme="cmyk" data-act-class="ACTIVECLASS" class="swap-on fill-current w-6 h-6 astro-H24362AN" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" class="astro-H24362AN"></path>
+              </svg>
+              <!-- moon icon -->
+              <svg data-set-theme="night" data-act-class="ACTIVECLASS" class="swap-off fill-current w-6 h-6 astro-H24362AN" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" class="astro-H24362AN"></path>
+              </svg>
+            </label>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main id="main" class="container mx-auto astro-H24362AN">
+      <h1 class="text-3xl md:text-5xl 2xl:text-6xl mb-[0.8em] font-extrabold mx-auto w-fit">MySQL必知必会</h1><div class="flex flex-wrap justify-evenly mb-9 mt-2">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+      <time datetime="2023-02-20T00:00:00.000Z">20 February 2023</time>
+    </div>
+
+    <div class="flex flex-wrap gap-2">
+      <a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/必知必会/">必知必会</a><a class="p-[clamp(0.25rem,_0.25em,_0.5em)_0.5em] rounded-md text-stone-600 hover:text-stone-800 dark:text-stone-300 dark:hover:text-stone-100 astro-ZIEHN457" style="--tag-bg: #3CA5EA1a;--tag-prefix: #3CA5EA;" href="/tags/MySQL/">MySQL</a>
+    </div>
+  </div><div class="prose md:prose-lg 2xl:prose-xl px-4 mx-auto prose-pre:font-mono">
+    <h2 id="mysql必知必会">《MySQL必知必会》</h2>
+<h4 id="子查询杂记">子查询(杂记)</h4>
+<p><code>子查询总是从内向外处理，即先执行子查询，将得到的结果作为外部查询的筛选条件</code></p>
+<h4 id="联结连接">联结(连接)</h4>
+<h6 id="内部联结">内部联结</h6>
+<p>等值联结(queijoin)，基于两个表之间的相等测试，这种联结也称为内部联结。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">## 常用写法</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> vend_name, prod_name, prod_price </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> vendors, products </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">vendors</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">vend_id</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">products</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">vend_id</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">order by</span><span style="color: #ABB2BF"> vend_name, prod_name;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## 标准写法</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> vend_name, prod_name, prod_price </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> vendors </span><span style="color: #C678DD">inner join</span><span style="color: #ABB2BF"> products </span><span style="color: #C678DD">on</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">vendors</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">vend_id</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">products</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">vend_id</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">order by</span><span style="color: #ABB2BF"> vend_name, prod_name;</span></span></code></pre>
+<p><code>Mark: ANSI SQL规范首选Inner Join语法。此外，尽管使用where子句定义联结的确比较简单，但是使用明确的联结语法能够确保不会忘记联结条件，有时候这样做也能影响性能。</code></p>
+<h6 id="联结多个表">联结多个表</h6>
+<p>SQL对一条select语句中可以联结的表的数目没有限制。创建联结的基本规则也相同。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> prod_name, vend_name, prod_price, quantity </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> orderitems, products, vendors </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">products</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">vend_id</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">vendors</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">vend_id</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">orderitems</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">prod_id</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">products</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">prod_id</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> order_num </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">20005</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------+-------------+------------+----------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| prod_name      | vend_name   | prod_price | quantity |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------+-------------+------------+----------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| .</span><span style="color: #D19A66">5</span><span style="color: #ABB2BF"> ton anvil   | Anvils R Us |       </span><span style="color: #D19A66">5</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">99</span><span style="color: #ABB2BF"> |       </span><span style="color: #D19A66">10</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> ton anvil    | Anvils R Us |       </span><span style="color: #D19A66">9</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">99</span><span style="color: #ABB2BF"> |        </span><span style="color: #D19A66">3</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| TNT (</span><span style="color: #D19A66">5</span><span style="color: #ABB2BF"> sticks) | ACME        |      </span><span style="color: #D19A66">10</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> |        </span><span style="color: #D19A66">5</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Bird seed      | ACME        |      </span><span style="color: #D19A66">10</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> |        </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------+-------------+------------+----------+</span></span>
+<span class="line"><span style="color: #D19A66">4</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">rows</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span></code></pre>
+<p><code>Mark：Mysql在运行时关联指定的每个表以处理联结。这种处理可能是非常耗费资源的，因此应该仔细，不要联结不必要的表。联结的表越多，性能下降越厉害。</code></p>
+<p>有时候子查询并不总是执行复杂select操作的最有效的方法</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> cust_name, cust_contact </span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> customers </span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> cust_id </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> (</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> cust_id </span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> orders </span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> order_num </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> (</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> order_num </span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> orderitems </span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> prod_id </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">'TNT2'</span><span style="color: #ABB2BF">));</span></span>
+<span class="line"><span style="color: #ABB2BF">## </span><span style="color: #56B6C2">===></span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> cust_name, cust_contatct</span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> customers, orders, orderitems</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">customers</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">cust_id</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">order</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">cust_id</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">orderitems</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">order_num</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">orders</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">order_num</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> prod_id </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">'TNT2'</span><span style="color: #ABB2BF">;</span></span></code></pre>
+<h6 id="自联结">自联结</h6>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> prod_id, prod_name</span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> vend_id </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> (</span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> vend_id</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products</span></span>
+<span class="line"><span style="color: #ABB2BF">                </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> prod_id </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">'DTNTR'</span><span style="color: #ABB2BF">);</span></span>
+<span class="line"><span style="color: #ABB2BF">## </span><span style="color: #56B6C2">===></span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">p1</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">prod_id</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">p1</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">prod_name</span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> p1, products </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> p2</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">p1</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">vend_id</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">p2</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">vend_id</span></span>
+<span class="line"><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">p2</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">prod_id</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">'DTNTR'</span><span style="color: #ABB2BF">;</span></span></code></pre>
+<p><code>Mark：自联结通常作为外部语句用来替代从相同表中检索数据时使用的子查询语句。虽然最终的结果是相同的，但有时候处理联结远比处理子查询快得多。应该试一下两种方法，以确定哪一种的性能更好。</code></p>
+<h6 id="自然联结">自然联结</h6>
+<p>无论何时对表进行联结，应该至少有一个列出现在不止一个表中(被联结的列)。标注你的联结返回所有数据，甚至相同的列多次出现。自然联结排除多次出现，使每个列只返回一次。自然联结是这样一种联结，其中你只能选择那些唯一的列。这一般是通过对表使用通配符(select *)，对所有其他表的列使用明确的子集来完成的。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> c.*, </span><span style="color: #D19A66">o</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">order_num</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">o</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">order_date</span><span style="color: #ABB2BF">,</span></span>
+<span class="line"><span style="color: #ABB2BF">       </span><span style="color: #D19A66">oi</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">prod_id</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">oi</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">quantity</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">OI</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">item_price</span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> customer </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> c, order </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> o, orderitems </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> oi</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">c</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">cust_id</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">o</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">cust_id</span></span>
+<span class="line"><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">oi</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">order_num</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">o</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">order_num</span></span>
+<span class="line"><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> prod_id </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">'FB'</span><span style="color: #ABB2BF">;</span></span></code></pre>
+<p>在这个例子中，通配符只对第一个表使用。所有其他列明确列出，所以没有重复的列被检索出来。</p>
+<p>事实上，迄今为止我们建立的每个内部联结都是自然联结，很可能我们永远都不会用到不是自然联结的内部联结。</p>
+<h6 id="外部联结">外部联结</h6>
+<p>许多联结将一个表中的行与另一个表中行相关联。但有时候会需要包含没有关联行的那些行，这种类型的联结称为外部联结。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">## 内部联结，仅检索出匹配条件的记录</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">customers</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">cust_id</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">orders</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">order_num</span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> customers </span><span style="color: #C678DD">inner join</span><span style="color: #ABB2BF"> orders</span></span>
+<span class="line"><span style="color: #C678DD">on</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">customers</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">cust_id</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">orders</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">cust_id</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+-----------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| cust_id | order_num |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+-----------+</span></span>
+<span class="line"><span style="color: #ABB2BF">|   </span><span style="color: #D19A66">10001</span><span style="color: #ABB2BF"> |     </span><span style="color: #D19A66">20005</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|   </span><span style="color: #D19A66">10001</span><span style="color: #ABB2BF"> |     </span><span style="color: #D19A66">20009</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|   </span><span style="color: #D19A66">10003</span><span style="color: #ABB2BF"> |     </span><span style="color: #D19A66">20006</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|   </span><span style="color: #D19A66">10004</span><span style="color: #ABB2BF"> |     </span><span style="color: #D19A66">20007</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|   </span><span style="color: #D19A66">10005</span><span style="color: #ABB2BF"> |     </span><span style="color: #D19A66">20008</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+-----------+</span></span>
+<span class="line"><span style="color: #D19A66">5</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">rows</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## 外部联结，可以检索出未匹配上的记录</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">customers</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">cust_id</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">orders</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">order_num</span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> customers </span><span style="color: #C678DD">left outer join</span><span style="color: #ABB2BF"> orders</span></span>
+<span class="line"><span style="color: #C678DD">on</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">customers</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">cust_id</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">orders</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">cust_id</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+-----------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| cust_id | order_num |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+-----------+</span></span>
+<span class="line"><span style="color: #ABB2BF">|   </span><span style="color: #D19A66">10001</span><span style="color: #ABB2BF"> |     </span><span style="color: #D19A66">20005</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|   </span><span style="color: #D19A66">10001</span><span style="color: #ABB2BF"> |     </span><span style="color: #D19A66">20009</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|   </span><span style="color: #D19A66">10002</span><span style="color: #ABB2BF"> |      </span><span style="color: #C678DD">NULL</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|   </span><span style="color: #D19A66">10003</span><span style="color: #ABB2BF"> |     </span><span style="color: #D19A66">20006</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|   </span><span style="color: #D19A66">10004</span><span style="color: #ABB2BF"> |     </span><span style="color: #D19A66">20007</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|   </span><span style="color: #D19A66">10005</span><span style="color: #ABB2BF"> |     </span><span style="color: #D19A66">20008</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+-----------+</span></span>
+<span class="line"><span style="color: #D19A66">6</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">rows</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span></code></pre>
+<p>在使用外部联结<strong>outer join</strong>语法时，必须使用<strong>right</strong>或<strong>left</strong>关键字指定包括其所有行的表(right指出的是outer join 右边的表，而left指出的是outer join左边的表)</p>
+<h4 id="组合查询">组合查询</h4>
+<p>多数SQL查询都只包含从一个或多个表中返回数据的单条select语句。Mysql允许执行多个查询(多条select语句)，并将结果作为单个查询结果集返回。这些组合查询通常称为并(Union)或复合查询(compound query)。</p>
+<p>有两种情况，其中需要使用组合查询：</p>
+<ul>
+<li>在单个查询中从不同的表返回类似结构的数据；</li>
+<li>对单个表执行多个查询，按单个查询返回数据。</li>
+</ul>
+<p>举例：假如需要价格小于等于5的所有物品的一个列表，而且还想包括供应商1001和1002生产的所有物品(不考虑价格)。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">## 单条SQL</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> vend_id, prod_id, prod_price </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> prod_price </span><span style="color: #56B6C2">&#x3C;=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">5</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+---------+------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| vend_id | prod_id | prod_price |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+---------+------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1003</span><span style="color: #ABB2BF"> | FC      |       </span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">50</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1002</span><span style="color: #ABB2BF"> | FU1     |       </span><span style="color: #D19A66">3</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">42</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1003</span><span style="color: #ABB2BF"> | SLING   |       </span><span style="color: #D19A66">4</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">49</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1003</span><span style="color: #ABB2BF"> | TNT1    |       </span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">50</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+---------+------------+</span></span>
+<span class="line"><span style="color: #D19A66">4</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">rows</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> vend_id, prod_id, prod_price </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> vend_id </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">1001</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">1002</span><span style="color: #ABB2BF">);</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+---------+------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| vend_id | prod_id | prod_price |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+---------+------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1001</span><span style="color: #ABB2BF"> | ANV01   |       </span><span style="color: #D19A66">5</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">99</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1001</span><span style="color: #ABB2BF"> | ANV02   |       </span><span style="color: #D19A66">9</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">99</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1001</span><span style="color: #ABB2BF"> | ANV03   |      </span><span style="color: #D19A66">14</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">99</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1002</span><span style="color: #ABB2BF"> | FU1     |       </span><span style="color: #D19A66">3</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">42</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1002</span><span style="color: #ABB2BF"> | OL1     |       </span><span style="color: #D19A66">8</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">99</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+---------+------------+</span></span>
+<span class="line"><span style="color: #D19A66">5</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">rows</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## 组合查询</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> vend_id, prod_id, prod_price </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> prod_price </span><span style="color: #56B6C2">&#x3C;=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">5</span></span>
+<span class="line"><span style="color: #C678DD">union</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> vend_id, prod_id, prod_price </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> vend_id </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">1001</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">1002</span><span style="color: #ABB2BF">);</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+---------+------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| vend_id | prod_id | prod_price |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+---------+------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1003</span><span style="color: #ABB2BF"> | FC      |       </span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">50</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1002</span><span style="color: #ABB2BF"> | FU1     |       </span><span style="color: #D19A66">3</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">42</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1003</span><span style="color: #ABB2BF"> | SLING   |       </span><span style="color: #D19A66">4</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">49</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1003</span><span style="color: #ABB2BF"> | TNT1    |       </span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">50</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1001</span><span style="color: #ABB2BF"> | ANV01   |       </span><span style="color: #D19A66">5</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">99</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1001</span><span style="color: #ABB2BF"> | ANV02   |       </span><span style="color: #D19A66">9</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">99</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1001</span><span style="color: #ABB2BF"> | ANV03   |      </span><span style="color: #D19A66">14</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">99</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">|    </span><span style="color: #D19A66">1002</span><span style="color: #ABB2BF"> | OL1     |       </span><span style="color: #D19A66">8</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">99</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------+---------+------------+</span></span>
+<span class="line"><span style="color: #D19A66">8</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">rows</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## 作为参考，列出使用多条where子句而不是使用union的相同查询</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> vend_id, prod_id, prod_price </span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> prod_price </span><span style="color: #56B6C2">&#x3C;</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #D19A66">5</span></span>
+<span class="line"><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> vend_id </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">1001</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">1002</span><span style="color: #ABB2BF">);</span></span></code></pre>
+<p>此例中，使用union可能比使用where子句更为复杂，但对于更复杂的过滤条件，或者从多个表(而不是单个表)中检索数据的情形，使用union可能会使处理更简单。</p>
+<h6 id="union规则">union规则</h6>
+<ul>
+<li>union必须由两条或两条以上的select语句组成，语句之间用关键字union分隔</li>
+<li>union中的每个查询必须包含相同的列、表达式或聚集函数</li>
+<li>列数据类型必须兼容：类型不必完全相同，但必须是DBMS可以隐含地转换的类型</li>
+</ul>
+<p>从前面的例子中，可以看出来，第一条SQL查询结果是4条记录，第二条SQL查询结果是5条记录，而使用了union关键字之后，返回了8条记录而不是9条。union从查询结果集中自动去重了，这是union的默认行为，但是如果想要返回所有匹配的行，可使用union all而不是union</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> vend_id, prod_id, prod_price </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> prod_price </span><span style="color: #56B6C2">&#x3C;=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">5</span></span>
+<span class="line"><span style="color: #C678DD">union all</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> vend_id, prod_id, prod_price </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> vend_id </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">1001</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">1002</span><span style="color: #ABB2BF">);</span></span></code></pre>
+<p><code>Mark：union几乎总是完成与多个where条件相同的工作，但是union all完成了where完成不了的工作，如果确实需要需要每个条件的匹配行全部出现(包含重复)，则必须使用union all。</code></p>
+<h4 id="全文本检索全文索引">全文本检索(全文索引)</h4>
+<blockquote>
+<p>想使用全文本检索功能，表所使用的存储引擎必须是MyISAM</p>
+</blockquote>
+<p>使用全文本索引的语法要求：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">Syntax:</span></span>
+<span class="line"><span style="color: #ABB2BF">MATCH (col1,col2,...) AGAINST (expr </span><span style="color: #E06C75">[search_modifier]</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> Match(note_text) Against(</span><span style="color: #98C379">'rabbit'</span><span style="color: #ABB2BF">);</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| note_text                                                                                                            |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| Customer complaint: rabbit has been able </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> detect trap, food apparently less effective </span><span style="color: #C678DD">now</span><span style="color: #ABB2BF">.                         |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Quantity varies, sold </span><span style="color: #C678DD">by</span><span style="color: #ABB2BF"> the sack </span><span style="color: #C678DD">load</span><span style="color: #ABB2BF">.</span></span>
+<span class="line"><span style="color: #ABB2BF">All guaranteed </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> be bright </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> orange, </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> suitable for </span><span style="color: #C678DD">use</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> rabbit bait. |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------------------------------------------------------------------------------------------------------------+</span></span></code></pre>
+<p>使用Match()和Against()执行全文本搜索，其中Match()指定被搜索的列，Against()指定要使用的搜索表达式。传递给Match()的值必须与Fulltext()定义中的相同，如果指定多个列，则必须列出它们(而且次序正确)。</p>
+<p>上面的例子也可以用Like语句改写</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text</span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">like</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">'%rabbit%'</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| note_text                                                                                                            |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| Quantity varies, sold </span><span style="color: #C678DD">by</span><span style="color: #ABB2BF"> the sack </span><span style="color: #C678DD">load</span><span style="color: #ABB2BF">.</span></span>
+<span class="line"><span style="color: #ABB2BF">All guaranteed </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> be bright </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> orange, </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> suitable for </span><span style="color: #C678DD">use</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> rabbit bait. |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Customer complaint: rabbit has been able </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> detect trap, food apparently less effective </span><span style="color: #C678DD">now</span><span style="color: #ABB2BF">.                         |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #D19A66">2</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">rows</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span></code></pre>
+<p>改写后的like子句，同样可以检索出两行，但次序不同(虽然并不总是出现这种情况)。</p>
+<p>上述两条select语句都不包含order by子句。后者以不特别有用的顺序返回数据。前者(使用全文本搜索)返回以文本匹配的良好程度排序的数据。两个行都包含此词rabbit，但包含词rabbit作为第3个词的行的等级比作为第20个词的行高。这很重要。全文本搜索的一个重要部分就是对结果排序。具有较高等级的行先返回(因为这些行很可能是你真正想要的行)。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text,</span></span>
+<span class="line"><span style="color: #ABB2BF">       Match(note_text) Against(</span><span style="color: #98C379">'rabbit'</span><span style="color: #ABB2BF">) </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">rank</span></span>
+<span class="line"><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">-----------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| note_text                                                                                                                                                 | </span><span style="color: #56B6C2">rank</span><span style="color: #ABB2BF">               |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">-----------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| Customer complaint:</span></span>
+<span class="line"><span style="color: #ABB2BF">Sticks </span><span style="color: #C678DD">not</span><span style="color: #ABB2BF"> individually wrapped, too easy </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> mistakenly detonate all </span><span style="color: #C678DD">at</span><span style="color: #ABB2BF"> once.</span></span>
+<span class="line"><span style="color: #ABB2BF">Recommend individual wrapping.                          |                  </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Can shipped full, refills </span><span style="color: #C678DD">not</span><span style="color: #ABB2BF"> available.</span></span>
+<span class="line"><span style="color: #ABB2BF">Need </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> order new can </span><span style="color: #C678DD">if</span><span style="color: #ABB2BF"> refill needed.                                                                          |                  </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| </span><span style="color: #C678DD">Safe</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">is</span><span style="color: #ABB2BF"> combination locked, combination </span><span style="color: #C678DD">not</span><span style="color: #ABB2BF"> provided </span><span style="color: #C678DD">with</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">safe</span><span style="color: #ABB2BF">.</span></span>
+<span class="line"><span style="color: #ABB2BF">This </span><span style="color: #C678DD">is</span><span style="color: #ABB2BF"> rarely a problem </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> safes are typically blown up </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> dropped </span><span style="color: #C678DD">by</span><span style="color: #ABB2BF"> customers.         |                  </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Quantity varies, sold </span><span style="color: #C678DD">by</span><span style="color: #ABB2BF"> the sack </span><span style="color: #C678DD">load</span><span style="color: #ABB2BF">.</span></span>
+<span class="line"><span style="color: #ABB2BF">All guaranteed </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> be bright </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> orange, </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> suitable for </span><span style="color: #C678DD">use</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">as</span><span style="color: #ABB2BF"> rabbit bait.                                      | </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">5905543565750122</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Included fuses are short </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> have been known </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> detonate too quickly for some customers.</span></span>
+<span class="line"><span style="color: #ABB2BF">Longer fuses are available (item FU1) </span><span style="color: #C678DD">and</span><span style="color: #ABB2BF"> should be recommended. |                  </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Matches </span><span style="color: #C678DD">not</span><span style="color: #ABB2BF"> included, recommend purchase of matches </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> detonator (item DTNTR).                                                                            |                  </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Please note that </span><span style="color: #C678DD">no</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">returns</span><span style="color: #ABB2BF"> will be accepted </span><span style="color: #C678DD">if</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">safe</span><span style="color: #ABB2BF"> opened </span><span style="color: #C678DD">using</span><span style="color: #ABB2BF"> explosives.                                                                             |                  </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Multiple customer </span><span style="color: #C678DD">returns</span><span style="color: #ABB2BF">, anvils failing </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">drop</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">fast</span><span style="color: #ABB2BF"> enough </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> falling backwards </span><span style="color: #C678DD">on</span><span style="color: #ABB2BF"> purchaser. Recommend that customer considers </span><span style="color: #C678DD">using</span><span style="color: #ABB2BF"> heavier anvils.  |                  </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Item </span><span style="color: #C678DD">is</span><span style="color: #ABB2BF"> extremely heavy. Designed for dropping, </span><span style="color: #C678DD">not</span><span style="color: #ABB2BF"> recommended for </span><span style="color: #C678DD">use</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">with</span><span style="color: #ABB2BF"> slings, ropes, pulleys, </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> tightropes.                                       |                  </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Customer complaint: rabbit has been able </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> detect trap, food apparently less effective </span><span style="color: #C678DD">now</span><span style="color: #ABB2BF">.                                                              | </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">6408053636550903</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Shipped unassembled, requires common tools (including oversized hammer).                                                                                  |                  </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Customer complaint:</span></span>
+<span class="line"><span style="color: #ABB2BF">Circular hole </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">safe</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">floor</span><span style="color: #ABB2BF"> can apparently be easily cut </span><span style="color: #C678DD">with</span><span style="color: #ABB2BF"> handsaw.                                                                |                  </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Customer complaint:</span></span>
+<span class="line"><span style="color: #C678DD">Not</span><span style="color: #ABB2BF"> heavy enough </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> generate flying stars around head of victim. </span><span style="color: #C678DD">If</span><span style="color: #ABB2BF"> being purchased for dropping, recommend ANV02 </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> ANV03 </span><span style="color: #C678DD">instead</span><span style="color: #ABB2BF">.   |                  </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">| </span><span style="color: #C678DD">Call</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> individual trapped </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">safe</span><span style="color: #ABB2BF"> plummeting </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> the ground, suggests an escape hatch be added.</span></span>
+<span class="line"><span style="color: #ABB2BF">Comment forwarded </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> vendor.                            |                  </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">-----------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+</span></span>
+<span class="line"><span style="color: #D19A66">14</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">rows</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span></code></pre>
+<p>这里，在select而不是where子句中使用Match()和Against()。这使所有行都被返回(因为没有where子句)。Match()和Against()用来建立一个计算列(别名为rank)，此列包含全文本搜索计算出的等级值。等级由Mysql根据行中词的数目、唯一词的数目、整个索引中词的总数以及包含该词的行的数目计算出来。正如所见，不包含词rabbit的行等级为0。确实包含词rabbit的两个行每行都有一个等级值，文本中词靠前的行的等级值比词靠后的行的等级值高。</p>
+<p>这个例子有助于说明全文本搜索如何排除行(排除那些等级为0的行)，如何排序结果(按等级以降序排序)。</p>
+<p><code>Mark：如果指定多个搜索项，则包含多数匹配词的那些行将具有比包含较少词(或仅有一个匹配)的那些行高的等级值</code></p>
+<p>通过对比执行计划，全文本搜索比Like的速度要快得多</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">mysql</span><span style="color: #56B6C2">></span><span style="color: #ABB2BF"> explain </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">like</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">'%rabb</span></span>
+<span class="line"><span style="color: #98C379">it%'</span><span style="color: #ABB2BF">\G</span></span>
+<span class="line"><span style="color: #ABB2BF">*************************** </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">. </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> ***************************</span></span>
+<span class="line"><span style="color: #ABB2BF">           id: </span><span style="color: #D19A66">1</span></span>
+<span class="line"><span style="color: #ABB2BF">  select_type: </span><span style="color: #C678DD">SIMPLE</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">table</span><span style="color: #ABB2BF">: productnotes</span></span>
+<span class="line"><span style="color: #ABB2BF">   partitions: </span><span style="color: #C678DD">NULL</span></span>
+<span class="line"><span style="color: #ABB2BF">         </span><span style="color: #C678DD">type</span><span style="color: #ABB2BF">: ALL</span></span>
+<span class="line"><span style="color: #ABB2BF">possible_keys: </span><span style="color: #C678DD">NULL</span></span>
+<span class="line"><span style="color: #ABB2BF">          </span><span style="color: #C678DD">key</span><span style="color: #ABB2BF">: </span><span style="color: #C678DD">NULL</span></span>
+<span class="line"><span style="color: #ABB2BF">      key_len: </span><span style="color: #C678DD">NULL</span></span>
+<span class="line"><span style="color: #ABB2BF">          ref: </span><span style="color: #C678DD">NULL</span></span>
+<span class="line"><span style="color: #ABB2BF">         </span><span style="color: #C678DD">rows</span><span style="color: #ABB2BF">: </span><span style="color: #D19A66">14</span></span>
+<span class="line"><span style="color: #ABB2BF">     filtered: </span><span style="color: #D19A66">11</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">11</span></span>
+<span class="line"><span style="color: #ABB2BF">        Extra: </span><span style="color: #C678DD">Using</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">where</span></span>
+<span class="line"><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> warning (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">mysql</span><span style="color: #56B6C2">></span><span style="color: #ABB2BF"> explain </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> Match(note_text) Against(</span><span style="color: #98C379">'rabbit'</span><span style="color: #ABB2BF">)\G</span></span>
+<span class="line"><span style="color: #ABB2BF">*************************** </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">. </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> ***************************</span></span>
+<span class="line"><span style="color: #ABB2BF">           id: </span><span style="color: #D19A66">1</span></span>
+<span class="line"><span style="color: #ABB2BF">  select_type: </span><span style="color: #C678DD">SIMPLE</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">table</span><span style="color: #ABB2BF">: productnotes</span></span>
+<span class="line"><span style="color: #ABB2BF">   partitions: </span><span style="color: #C678DD">NULL</span></span>
+<span class="line"><span style="color: #ABB2BF">         </span><span style="color: #C678DD">type</span><span style="color: #ABB2BF">: </span><span style="color: #C678DD">fulltext</span></span>
+<span class="line"><span style="color: #ABB2BF">possible_keys: note_text</span></span>
+<span class="line"><span style="color: #ABB2BF">          </span><span style="color: #C678DD">key</span><span style="color: #ABB2BF">: note_text</span></span>
+<span class="line"><span style="color: #ABB2BF">      key_len: </span><span style="color: #D19A66">0</span></span>
+<span class="line"><span style="color: #ABB2BF">          ref: const</span></span>
+<span class="line"><span style="color: #ABB2BF">         </span><span style="color: #C678DD">rows</span><span style="color: #ABB2BF">: </span><span style="color: #D19A66">1</span></span>
+<span class="line"><span style="color: #ABB2BF">     filtered: </span><span style="color: #D19A66">100</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span></span>
+<span class="line"><span style="color: #ABB2BF">        Extra: </span><span style="color: #C678DD">Using</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">where</span></span>
+<span class="line"><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> warning (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">mysql</span><span style="color: #56B6C2">></span></span></code></pre>
+<p>全文本搜索仅检索了一行，就找到了需要的行，使用Like则是全表扫描，当然这没有可比性，一个是通过where顾虑，一个是走索引，但是这种涉及到文本检索的情况，足以证明全文索引能加快检索速度。</p>
+<h6 id="查询扩展">查询扩展</h6>
+<p>查询扩展用来设法放宽所返回的全文本搜索结果的范围。考虑下面的情况。你想找出所有提到anvils的注释。只有一个注释包含anvils，但你还想找出可能与你搜索有关的其他行，即使它们不包含词anvils。</p>
+<p>在使用查询扩展时，MySQL对数据和索引进行两边扫描来完成搜索：</p>
+<ul>
+<li>首先，进行一个基本的全文本搜索，找出与搜索条件匹配的所有行；</li>
+<li>其次，MySQL检查这些匹配行并选择所有有用的词；</li>
+<li>而其次，MySQL再进行全文本搜索，这次不仅使用原来的条件，而且还使用所有有用的词。</li>
+</ul>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> match(note_text) against(</span><span style="color: #98C379">'anvils'</span><span style="color: #ABB2BF">);</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| note_text                                                                                                                                                |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| Multiple customer </span><span style="color: #C678DD">returns</span><span style="color: #ABB2BF">, anvils failing </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">drop</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">fast</span><span style="color: #ABB2BF"> enough </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> falling backwards </span><span style="color: #C678DD">on</span><span style="color: #ABB2BF"> purchaser. Recommend that customer considers </span><span style="color: #C678DD">using</span><span style="color: #ABB2BF"> heavier anvils. |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> match(note_text) against(</span><span style="color: #98C379">'anvils'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">with</span><span style="color: #ABB2BF"> query expansion);</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| note_text                                                                                                                                                |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| Multiple customer </span><span style="color: #C678DD">returns</span><span style="color: #ABB2BF">, anvils failing </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">drop</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">fast</span><span style="color: #ABB2BF"> enough </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> falling backwards </span><span style="color: #C678DD">on</span><span style="color: #ABB2BF"> purchaser. Recommend that customer considers </span><span style="color: #C678DD">using</span><span style="color: #ABB2BF"> heavier anvils. |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Customer complaint:</span></span>
+<span class="line"><span style="color: #ABB2BF">Sticks </span><span style="color: #C678DD">not</span><span style="color: #ABB2BF"> individually wrapped, too easy </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> mistakenly detonate all </span><span style="color: #C678DD">at</span><span style="color: #ABB2BF"> once.</span></span>
+<span class="line"><span style="color: #ABB2BF">Recommend individual wrapping.                         |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Customer complaint:</span></span>
+<span class="line"><span style="color: #C678DD">Not</span><span style="color: #ABB2BF"> heavy enough </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> generate flying stars around head of victim. </span><span style="color: #C678DD">If</span><span style="color: #ABB2BF"> being purchased for dropping, recommend ANV02 </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> ANV03 </span><span style="color: #C678DD">instead</span><span style="color: #ABB2BF">.  |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Please note that </span><span style="color: #C678DD">no</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">returns</span><span style="color: #ABB2BF"> will be accepted </span><span style="color: #C678DD">if</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">safe</span><span style="color: #ABB2BF"> opened </span><span style="color: #C678DD">using</span><span style="color: #ABB2BF"> explosives.                                                                            |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Customer complaint: rabbit has been able </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> detect trap, food apparently less effective </span><span style="color: #C678DD">now</span><span style="color: #ABB2BF">.                                                             |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Customer complaint:</span></span>
+<span class="line"><span style="color: #ABB2BF">Circular hole </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">safe</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">floor</span><span style="color: #ABB2BF"> can apparently be easily cut </span><span style="color: #C678DD">with</span><span style="color: #ABB2BF"> handsaw.                                                               |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Matches </span><span style="color: #C678DD">not</span><span style="color: #ABB2BF"> included, recommend purchase of matches </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> detonator (item DTNTR).                                                                           |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">----------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #D19A66">7</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">rows</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span></code></pre>
+<p>这次返回了7行。第一行包含词anvils，因此等级最高。第二行与anvils无关，但因为它包含第一行中的两个词（ customer和recommend），所以也被检索出来。第3行也包含这两个相同的词，但它们在文本中的位置更靠后且分开得更远，因此也包含这一行，但等级为第三。第三行确实也没有涉及anvils（按它们的产品名）。</p>
+<h6 id="布尔文本搜索">布尔文本搜索</h6>
+<p>MySQL支持全文本搜索的另外一种形式，称为布尔方式(boolean mode)。以布尔方式，可以提供关于如下内容的细节：</p>
+<ul>
+<li>要匹配的词；</li>
+<li>要排斥的词(如果某行包含这个词，则不返回该行，即使它包含其他指定的词也是如此)；</li>
+<li>排列提示(指定某些词比其他词重要，更要的的词等级更高)；</li>
+<li>表达式分组；</li>
+<li>另外一些内容。</li>
+</ul>
+<p><code>Mark： 布尔方式不同于迄今为止使用的全文本搜索语句的地方在于，即使没有定义fulltext索引，也可以使用它。但这是一种非常缓慢的操作(其性能将随着数据量的增加而降低)</code></p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> match(note_text) against(</span><span style="color: #98C379">'heavy'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">boolean</span><span style="color: #ABB2BF"> mode);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| note_text                                                                                                                                               |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| Item </span><span style="color: #C678DD">is</span><span style="color: #ABB2BF"> extremely heavy. Designed for dropping, </span><span style="color: #C678DD">not</span><span style="color: #ABB2BF"> recommended for </span><span style="color: #C678DD">use</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">with</span><span style="color: #ABB2BF"> slings, ropes, pulleys, </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> tightropes.                                     |</span></span>
+<span class="line"><span style="color: #ABB2BF">| Customer complaint:</span></span>
+<span class="line"><span style="color: #C678DD">Not</span><span style="color: #ABB2BF"> heavy enough </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> generate flying stars around head of victim. </span><span style="color: #C678DD">If</span><span style="color: #ABB2BF"> being purchased for dropping, recommend ANV02 </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> ANV03 </span><span style="color: #C678DD">instead</span><span style="color: #ABB2BF">. |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #D19A66">2</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">rows</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span></code></pre>
+<p>此全文本搜索检索包含词heavy的所有行。其中使用了关键字in boolean mode，但实际上没有指定布尔操作符，因此其结果与没有指定布尔方式的结果相同。</p>
+<p><code>Mark：虽然这个例子的结果与没有in boolean mode的相同，但其行为有一个重要的差别</code></p>
+<p>为了匹配包含heavy但不包含以rope开始的词的行</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotest</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> match(note_text) against(</span><span style="color: #98C379">'heavy -rope*'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">boolean</span><span style="color: #ABB2BF"> mode);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| note_text                                                                                                                                               |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| Customer complaint:</span></span>
+<span class="line"><span style="color: #C678DD">Not</span><span style="color: #ABB2BF"> heavy enough </span><span style="color: #C678DD">to</span><span style="color: #ABB2BF"> generate flying stars around head of victim. </span><span style="color: #C678DD">If</span><span style="color: #ABB2BF"> being purchased for dropping, recommend ANV02 </span><span style="color: #C678DD">or</span><span style="color: #ABB2BF"> ANV03 </span><span style="color: #C678DD">instead</span><span style="color: #ABB2BF">. |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">---------------------------------------------------------------------------------------------------------------------------------------------------------+</span></span>
+<span class="line"><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span></code></pre>
+<p>使用-rope*明确地只是MySQL排除包含rope*的行。</p>
+<p>全文本布尔操作符</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>布尔操作符</th><th>说明</th></tr></thead><tbody><tr><td>+</td><td>包含，词必须存在</td></tr><tr><td>-</td><td>排除，词必须不存在</td></tr><tr><td>></td><td>包含，而且增加等级值</td></tr><tr><td>&#x3C;</td><td>包含，且减少等级值</td></tr><tr><td>()</td><td>把词组成子表达式(允许这些子表达式作为一个组被包含、排除、排列等)</td></tr><tr><td>~</td><td>取消一个词的排序值</td></tr><tr><td>*</td><td>词尾的通配符</td></tr><tr><td>""</td><td>定义一个短语(与单个词的列表不一样，它匹配整个短语以便包含或排除这个短语)</td></tr></tbody></table>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> match(note_text) against(</span><span style="color: #98C379">'+rabbit +bait'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">boolean</span><span style="color: #ABB2BF"> mode);</span></span>
+<span class="line"><span style="color: #ABB2BF">## 这个搜索匹配包含词rabbit和bait的行</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> match(note_text) against(</span><span style="color: #98C379">'rabbit bait'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">boolean</span><span style="color: #ABB2BF"> mode);</span></span>
+<span class="line"><span style="color: #ABB2BF">## 没有指定操作符，这个搜索匹配包含rabbit和bait中的至少一个词的行</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> match(note_text) against(</span><span style="color: #98C379">'"rabbit bait"'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">boolean</span><span style="color: #ABB2BF"> mode);</span></span>
+<span class="line"><span style="color: #ABB2BF">## 匹配短语rabbit abit而不是匹配两个词</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> match(note_text) against(</span><span style="color: #98C379">'>rabbit &#x3C;carrot'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">boolean</span><span style="color: #ABB2BF"> mode);</span></span>
+<span class="line"><span style="color: #ABB2BF">## 匹配rabbit和carrot，增加前者等级，降低后者等级</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> note_text </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> productnotes</span></span>
+<span class="line"><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> match(note_text) against(</span><span style="color: #98C379">'+safe +(&#x3C;combination)'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">boolean</span><span style="color: #ABB2BF"> mode);</span></span>
+<span class="line"><span style="color: #ABB2BF">## 匹配词safe和combination，降低后者的等级。</span></span></code></pre>
+<p><code>Mark：在布尔方式中，不按等级值降序排序返回的行</code></p>
+<p>关于全文本搜搜的某些重要说明：</p>
+<ul>
+<li>在索引全文本数据时，短词被忽略且从索引中排除。短词定义为那些具有3个或3个以下字符的词(如果需要，这个数值可以更改)。</li>
+<li>MySQL带有一个内建的非用词(stopword)列表，这些词在索引全文本数据时总是被忽略。如果需要，可以覆盖这个列表。</li>
+<li>许多词出现的频率很高，搜索它们没有用处(返回太多结果)。因此，MySQL规定了一条50%规则，如果一个词出现在50%以上的行中，则将它作为一个非用词忽略。50%规则不用于In Boolean Mode。</li>
+<li>如果表中的行数少于3行，则全文本搜索不返回结果(因为每个词或者不出现，或者至少出现在50%的行中)。</li>
+<li>忽略词中的单引号。例如，don’t 索引为 dont。</li>
+<li>不具有词分隔符的语言不能恰当地返回全文本搜索结果。</li>
+<li>如前所述，仅在MyISAM引擎中支持全文本搜索。</li>
+</ul>
+<h4 id="插入数据">插入数据</h4>
+<p>提高整体性能：</p>
+<p>数据库经常被多个客户访问，对处理什么请求以及用什么次序处理进行管理是MySQL的任务。Insert操作可能很耗时(特别是有很多索引需要更新时)，而且它可能降低等待处理的select语句的性能。如果数据检索是最重要的，则可以通过在insert和into之间添加关键字low_priority，指示MySQL降低Insert语句的优先级，insert low_priority into，此方法也适用于update和delete。</p>
+<p>单条Insert语句处理多个插入比使用多条Insert语句快。</p>
+<h4 id="更新和删除数据">更新和删除数据</h4>
+<p>如果用Update语句更新多行时，并且在更新这些行中的一行或多行时出现一个错误，则整个Update操作被取消(错误发生前更新的所有行被恢复到它们原来的值)。为即使是发生错误，也继续进行更新，可以使用ignore关键字，update ignore 表名 set 列名=修改值 where 列名=条件</p>
+<p>delete 删除表中所有记录的性能不如truncate，是因为truncate是直接将表删除然后重新创建一张空表，而delete是逐行删除记录。</p>
+<h4 id="视图">视图</h4>
+<p>视图本身不包含数据，查询视图返回的数据都是从其他表汇总检索出来的，如果表中的数据进行过修改，视图将返回改变过的数据。</p>
+<p><strong>性能问题</strong>：因为视图不包含数据，所以每次查询视图时，都必须处理查询所需要的任一个检索。如果用了多个联结和过滤创建了复杂的视图或者嵌套了视图，可能会发现性能下降得很厉害。</p>
+<p>视图的规则和限制：</p>
+<ul>
+<li>与表一样，必须唯一命名。</li>
+<li>对于可以创建的视图数目没有限制。</li>
+<li>为了创建视图，必须具有足够的访问权限。这些限制通常由DBA授予。</li>
+<li>视图可以嵌套，即可以利用从其他视图中检索数据的查询来构造一个视图。</li>
+<li>order by可以用在视图中，但如果从该视图检索数据select中页含有order by，那么该视图中的order by将被覆盖。</li>
+<li>视图不能索引，也不能有关联的触发器或默认值。</li>
+<li>视图可以和表一起使用。</li>
+</ul>
+<p>更新视图，即更新其基表，对视图的增删改都是对其基表进行增删改。但是，并非所有的视图都是可更新的。基本上可以说，如果MySQL不能正确地确定被更新的基数据，则不允许更新(包括插入和更新)。这实际上意味着，如果视图定义中有以下操作，则不能进行视图的更新：</p>
+<ul>
+<li>分组(使用group by 和 having)</li>
+<li>联结</li>
+<li>子查询</li>
+<li>并</li>
+<li>聚集函数</li>
+<li>distinct</li>
+<li>导出(计算)列</li>
+</ul>
+<h4 id="存储过程">存储过程</h4>
+<p>变量 (Variable) 内存中一个特定的位置，用来临时存储数据。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">delimiter //</span></span>
+<span class="line"><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">procedure</span><span style="color: #ABB2BF"> productpricing(</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">OUT</span><span style="color: #ABB2BF"> pl </span><span style="color: #C678DD">decimal</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66">8</span><span style="color: #ABB2BF">,</span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">),</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">OUT</span><span style="color: #ABB2BF"> ph </span><span style="color: #C678DD">decimal</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66">8</span><span style="color: #ABB2BF">,</span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">),</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">OUT</span><span style="color: #ABB2BF"> pa </span><span style="color: #C678DD">decimal</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66">8</span><span style="color: #ABB2BF">,</span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #C678DD">begin</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">min</span><span style="color: #ABB2BF">(prod_price) </span><span style="color: #C678DD">into</span><span style="color: #ABB2BF"> pl </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">max</span><span style="color: #ABB2BF">(prod_price) </span><span style="color: #C678DD">into</span><span style="color: #ABB2BF"> ph </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">avg</span><span style="color: #ABB2BF">(prod_price) </span><span style="color: #C678DD">into</span><span style="color: #ABB2BF"> pa </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> products;</span></span>
+<span class="line"><span style="color: #C678DD">end</span><span style="color: #ABB2BF"> //</span></span>
+<span class="line"><span style="color: #ABB2BF">delimiter ;</span></span></code></pre>
+<p>此存储过程接受3个参数：pl存储产品最低价格，ph存储产品最高价格，pa存储产品平均价格。每个参数必须具有指定的类型，这里使用十进制。关键字 <strong>OUT</strong> 指出相应的参数用来从存储过程传出一个值(返回给调用者)。MySQL支持 <strong>IN</strong> (传递给存储过程)、<strong>OUT</strong> (从存储过程传出)、<strong>INOUT</strong> (对存储过程传入和传出) 类型的参数。存储过程的代码位于begin和end语句内。</p>
+<p>为调用此存储过程，必须指定3个变量名</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">call</span><span style="color: #ABB2BF"> productpricing(</span><span style="color: #E06C75">@pricelow</span><span style="color: #ABB2BF">,</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #E06C75">@pricehigh</span><span style="color: #ABB2BF">,</span></span>
+<span class="line"><span style="color: #ABB2BF">                    </span><span style="color: #E06C75">@priceaverage</span><span style="color: #ABB2BF">);</span></span>
+<span class="line"><span style="color: #ABB2BF">## 所有的变量都必须以 @ 开始</span></span>
+<span class="line"><span style="color: #ABB2BF">## 执行完存储过程后，就可以直接使用变量</span></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #E06C75">@pricehigh</span><span style="color: #ABB2BF">, </span><span style="color: #E06C75">@pricelow</span><span style="color: #ABB2BF">, </span><span style="color: #E06C75">@priceaverage</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">------------+-----------+---------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| </span><span style="color: #E06C75">@pricehigh</span><span style="color: #ABB2BF"> | </span><span style="color: #E06C75">@pricelow</span><span style="color: #ABB2BF"> | </span><span style="color: #E06C75">@priceaverage</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">------------+-----------+---------------+</span></span>
+<span class="line"><span style="color: #ABB2BF">|      </span><span style="color: #D19A66">55</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> |      </span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">50</span><span style="color: #ABB2BF"> |         </span><span style="color: #D19A66">16</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">13</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">------------+-----------+---------------+</span></span>
+<span class="line"><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span></code></pre>
+<p>下面再举一个例子</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">delimiter //</span></span>
+<span class="line"><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">procedure</span><span style="color: #ABB2BF"> ordertotal(</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">IN</span><span style="color: #ABB2BF"> onumber </span><span style="color: #C678DD">int</span><span style="color: #ABB2BF">,</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">OUT</span><span style="color: #ABB2BF"> ototal </span><span style="color: #C678DD">decimal</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66">8</span><span style="color: #ABB2BF">,</span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #C678DD">begin</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">sum</span><span style="color: #ABB2BF">(item_price*quantity)</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> orderitems</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> order_num </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> onumber</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">into</span><span style="color: #ABB2BF"> ototal;</span></span>
+<span class="line"><span style="color: #C678DD">end</span><span style="color: #ABB2BF"> //</span></span>
+<span class="line"><span style="color: #ABB2BF">delimiter ;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">call</span><span style="color: #ABB2BF"> ordertotal(</span><span style="color: #D19A66">20005</span><span style="color: #ABB2BF">, </span><span style="color: #E06C75">@total</span><span style="color: #ABB2BF">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #E06C75">@ototal</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">--------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| </span><span style="color: #E06C75">@total</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">--------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| </span><span style="color: #D19A66">149</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">87</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">--------+</span></span>
+<span class="line"><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span></code></pre>
+<p>一个较为复杂的存储过程</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">delimiter //</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">-- Name: ordertotal</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">-- Parameters: onumber = order number</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">--                taxable = 0 if not taxable, 1 if taxable</span></span>
+<span class="line"><span style="color: #7F848E; font-style: italic">--                ototal = order total variable</span></span>
+<span class="line"><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">procedure</span><span style="color: #ABB2BF"> ordertotal(</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">IN</span><span style="color: #ABB2BF"> onumber </span><span style="color: #C678DD">INT</span><span style="color: #ABB2BF">,</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">IN</span><span style="color: #ABB2BF"> taxable </span><span style="color: #C678DD">BOOLEAN</span><span style="color: #ABB2BF">,</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">OUT</span><span style="color: #ABB2BF"> ototal </span><span style="color: #C678DD">DECIMAL</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66">8</span><span style="color: #ABB2BF">,</span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">) comment </span><span style="color: #98C379">'Obtain order total, optionally adding tax'</span></span>
+<span class="line"><span style="color: #C678DD">begin</span></span>
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">-- declare variable for total</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> total </span><span style="color: #C678DD">decimal</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66">8</span><span style="color: #ABB2BF">,</span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">);</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">-- declare tax percentage</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> taxrate </span><span style="color: #C678DD">int</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">default</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">6</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">-- get the order total</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">sum</span><span style="color: #ABB2BF">(item_price*quantity)</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> orderitems</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">where</span><span style="color: #ABB2BF"> order_num </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> onumber</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">into</span><span style="color: #ABB2BF"> total;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">-- is this taxable?</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">if</span><span style="color: #ABB2BF"> taxable </span><span style="color: #C678DD">then</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #7F848E; font-style: italic">-- yes, so add taxrate to the total</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> total+(total/</span><span style="color: #D19A66">100</span><span style="color: #ABB2BF">*taxrate) </span><span style="color: #C678DD">into</span><span style="color: #ABB2BF"> total;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">end</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">if</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">-- and finally, save to out variable</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> total </span><span style="color: #C678DD">into</span><span style="color: #ABB2BF"> ototal;</span></span>
+<span class="line"><span style="color: #C678DD">end</span><span style="color: #ABB2BF"> //</span></span>
+<span class="line"><span style="color: #ABB2BF">delimiter ;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">call</span><span style="color: #ABB2BF"> ordertotal(</span><span style="color: #D19A66">20005</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">, </span><span style="color: #E06C75">@total</span><span style="color: #ABB2BF">);</span></span>
+<span class="line"><span style="color: #ABB2BF">Query OK, </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> affected (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">mysql</span><span style="color: #56B6C2">></span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #E06C75">@total</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">--------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| </span><span style="color: #E06C75">@total</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">--------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| </span><span style="color: #D19A66">149</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">87</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">--------+</span></span>
+<span class="line"><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #C678DD">call</span><span style="color: #ABB2BF"> ordertotal(</span><span style="color: #D19A66">20005</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">, </span><span style="color: #E06C75">@total</span><span style="color: #ABB2BF">);</span></span>
+<span class="line"><span style="color: #ABB2BF">Query OK, </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> affected (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">mysql</span><span style="color: #56B6C2">></span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #E06C75">@total</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">--------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| </span><span style="color: #E06C75">@total</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">--------+</span></span>
+<span class="line"><span style="color: #ABB2BF">| </span><span style="color: #D19A66">158</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">86</span><span style="color: #ABB2BF"> |</span></span>
+<span class="line"><span style="color: #ABB2BF">+</span><span style="color: #7F848E; font-style: italic">--------+</span></span>
+<span class="line"><span style="color: #D19A66">1</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">in</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> (</span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">00</span><span style="color: #ABB2BF"> sec)</span></span></code></pre>
+<h4 id="游标">游标</h4>
+<p>使用游标涉及几个明确的步骤。</p>
+<ul>
+<li>在能够使用游标前，必须声明(定义)它。这个过程实际上没有检索数据，它只是定义要使用的select语句。</li>
+<li>一旦声明后，必须打开游标以供使用。这个过程用前面定义的select语句把数据实际检索出来。</li>
+<li>对于填有数据的游标，根据需要取出(检索)各行。</li>
+<li>在结束游标使用时，必须关闭游标。</li>
+</ul>
+<p>在声明游标后，可根据需要频繁地打开和关闭游标。在游标打开后，可根据需要频繁地执行取操作。</p>
+<p>创建游标：用declare语句创建。declare命名游标，并定义相应的select语句，根据需要带where和其他子句。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">procedure</span><span style="color: #ABB2BF"> processorders()</span></span>
+<span class="line"><span style="color: #C678DD">begin</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> ordernumbers </span><span style="color: #C678DD">cursor</span></span>
+<span class="line"><span style="color: #ABB2BF">    for</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> order_num </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> orders;</span></span>
+<span class="line"><span style="color: #C678DD">end</span></span></code></pre>
+<p>这个存储过程用declare语句定义和命名游标，这里为ordernumbers。存储过程处理完成后，游标就消失（因为它局限于存储过程）。在定义游标之后，可以打开它。</p>
+<p>打开游标：open cursor</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">open</span><span style="color: #ABB2BF"> ordernumbers;</span></span></code></pre>
+<p>在处理open语句时执行查询，存储检索出的数据以供浏览和滚动。</p>
+<p>游标使用完之后，使用如下语句关闭游标：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">close</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">cursor</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #C678DD">close</span><span style="color: #ABB2BF"> ordernumbers;</span></span></code></pre>
+<p>close释放游标使用的所有内部内存和资源，因此在每个游标不再需要时都应该关闭。</p>
+<p>在一个游标关闭后，如果没有重新打开，则不能使用它。但是，使用声明过的游标不需要再次声明，用open语句打开就可以了。</p>
+<p><code>Mark：如果你不明确关闭游标，MySQL将会在到达END语句时自动关闭它。</code></p>
+<p>修改前面一个例子：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">procedure</span><span style="color: #ABB2BF"> processorders()</span></span>
+<span class="line"><span style="color: #C678DD">begin</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">-- declare the cursor</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> ordernumbers </span><span style="color: #C678DD">cursor</span></span>
+<span class="line"><span style="color: #ABB2BF">    for</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> order_num </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> orders;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">-- open the cursor</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">open</span><span style="color: #ABB2BF"> ordernumbers;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #7F848E; font-style: italic">-- close the cursor</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">close</span><span style="color: #ABB2BF"> ordernumbers;</span></span>
+<span class="line"><span style="color: #C678DD">end</span></span></code></pre>
+<p>使用游标数据：</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">procedure</span><span style="color: #ABB2BF"> processorders()</span></span>
+<span class="line"><span style="color: #C678DD">begin</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> o </span><span style="color: #C678DD">int</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> ordernumbers </span><span style="color: #C678DD">cursor</span></span>
+<span class="line"><span style="color: #ABB2BF">    for</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> order_num </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> orders;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">open</span><span style="color: #ABB2BF"> ordernumbers;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">fetch</span><span style="color: #ABB2BF"> ordernumbers </span><span style="color: #C678DD">into</span><span style="color: #ABB2BF"> o;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">close</span><span style="color: #ABB2BF"> ordernumbers;</span></span>
+<span class="line"><span style="color: #C678DD">end</span></span></code></pre>
+<p>使用fetch用来检索当前行的order_num列（将自动从第一行开始）到一个名为o的局部声明变量中。对检索出的数据不做任何处理。</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">delimiter //</span></span>
+<span class="line"><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">procedure</span><span style="color: #ABB2BF"> processorders()</span></span>
+<span class="line"><span style="color: #C678DD">begin</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> done </span><span style="color: #C678DD">boolean</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">default</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> o </span><span style="color: #C678DD">int</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> ordernumbers </span><span style="color: #C678DD">cursor</span></span>
+<span class="line"><span style="color: #ABB2BF">    for</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> order_num </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> orders;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">continue</span><span style="color: #ABB2BF"> handler for sqlstate </span><span style="color: #98C379">'02000'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> done </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">open</span><span style="color: #ABB2BF"> ordernumbers;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">repeat</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">fetch</span><span style="color: #ABB2BF"> ordernumbers </span><span style="color: #C678DD">into</span><span style="color: #ABB2BF"> o;</span></span>
+<span class="line"><span style="color: #ABB2BF">    until done </span><span style="color: #C678DD">end</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">repeat</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">close</span><span style="color: #ABB2BF"> ordernumbers;</span></span>
+<span class="line"><span style="color: #C678DD">end</span><span style="color: #ABB2BF"> //</span></span>
+<span class="line"><span style="color: #ABB2BF">delimiter ;</span></span></code></pre>
+<p>为了进一步把这些内容组织起来，这里给出更详细的版本</p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">delimiter //</span></span>
+<span class="line"><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">procedure</span><span style="color: #ABB2BF"> processorders()</span></span>
+<span class="line"><span style="color: #C678DD">begin</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> done </span><span style="color: #C678DD">boolean</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">default</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">0</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> o </span><span style="color: #C678DD">int</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> t </span><span style="color: #C678DD">decimal</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66">8</span><span style="color: #ABB2BF">,</span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> ordernumbers </span><span style="color: #C678DD">cursor</span></span>
+<span class="line"><span style="color: #ABB2BF">    for</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> order_num </span><span style="color: #C678DD">from</span><span style="color: #ABB2BF"> orders;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">declare</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">continue</span><span style="color: #ABB2BF"> handler for sqlstate </span><span style="color: #98C379">'02000'</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> done </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">table</span><span style="color: #ABB2BF"> </span><span style="color: #61AFEF">if</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">not</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">exists</span><span style="color: #ABB2BF"> ordertotals(</span></span>
+<span class="line"><span style="color: #ABB2BF">        order_num </span><span style="color: #C678DD">int</span><span style="color: #ABB2BF">,</span></span>
+<span class="line"><span style="color: #ABB2BF">        total </span><span style="color: #C678DD">decimal</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66">8</span><span style="color: #ABB2BF">,</span><span style="color: #D19A66">2</span><span style="color: #ABB2BF">)</span></span>
+<span class="line"><span style="color: #ABB2BF">    );</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">open</span><span style="color: #ABB2BF"> ordernumbers;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">repeat</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">fetch</span><span style="color: #ABB2BF"> ordernumbers </span><span style="color: #C678DD">into</span><span style="color: #ABB2BF"> o;</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">call</span><span style="color: #ABB2BF"> ordertotal(o, </span><span style="color: #D19A66">1</span><span style="color: #ABB2BF">, t);</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">insert</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">into</span><span style="color: #ABB2BF"> ordertotals(order_num, total)</span></span>
+<span class="line"><span style="color: #ABB2BF">        </span><span style="color: #C678DD">values</span><span style="color: #ABB2BF">(o, t);</span></span>
+<span class="line"><span style="color: #ABB2BF">        until done </span><span style="color: #C678DD">end</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">repeat</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">close</span><span style="color: #ABB2BF"> ordernumbers;</span></span>
+<span class="line"><span style="color: #C678DD">end</span><span style="color: #ABB2BF"> //</span></span>
+<span class="line"><span style="color: #ABB2BF">delimiter ;</span></span></code></pre>
+<p>这个例子中，增加了一个变量t，存储每个订单的合计。此外，还创建了一个新表，名为ordertotals。这个表将保存存储过程生成的结果。fetch像以前一样取每个order_num，然后用call执行另一个存储过程来计算每个订单的带税的合计。最后用insert保存每个订单的订单号和合计。</p>
+<p>此存储过程不返回数据，但它能够创建和填充另一个表，可以用一条简单的select语句查看该表。</p>
+<h4 id="触发器">触发器</h4>
+<h6 id="创建触发器">创建触发器</h6>
+<ul>
+<li>唯一的触发器名</li>
+<li>触发器关联的表</li>
+<li>触发器应该响应的活动(delete、insert或update)</li>
+<li>触发器何时执行</li>
+</ul>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> trigger newproduct </span><span style="color: #C678DD">after</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">insert</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">on</span><span style="color: #ABB2BF"> products</span></span>
+<span class="line"><span style="color: #ABB2BF">for each </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #98C379">'product added'</span><span style="color: #ABB2BF">;</span></span></code></pre>
+<p>在每次insert products表后显示一次’product added’；为什么是每一行都要显示，是因为使用了for each row。</p>
+<p><code>Mark：只有表才支持触发器，视图不支持（临时表也不支持）</code></p>
+<p>单一的触发器不能与多个事件或多个表关联，所以，如果你需要一个对insert和update操作执行的触发器，则应该定义两个触发器。</p>
+<p><code>Mark：如果before触发器失败，则MySQL将不执行请求的操作。此外，如果before触发器或语句本身失败，MySQL将不执行after触发器（如果有的话）</code></p>
+<h6 id="删除触发器">删除触发器</h6>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">drop</span><span style="color: #ABB2BF"> trigger newproduct;</span></span></code></pre>
+<p>触发器不能更新或覆盖。为了修改一个触发器，必须先删除它，然后再重新创建。</p>
+<h6 id="使用触发器">使用触发器</h6>
+<p>######## Insert触发器</p>
+<p>insert触发器在执行insert语句之前或之后执行。需要知道以下几点：</p>
+<ul>
+<li>在insert触发器代码内，可引用一个名为new的虚拟表，访问被插入的行；</li>
+<li>在before insert触发器中，new中的值也可以被更新（允许更改被插入的值）；</li>
+<li>对于auto_increment列，new在insert执行之前包含0，在inset执行之后包含新的自动生成值。</li>
+</ul>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> trigger neworder </span><span style="color: #C678DD">after</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">insert</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">on</span><span style="color: #ABB2BF"> orders</span></span>
+<span class="line"><span style="color: #ABB2BF">for each </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">select</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">new</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">order_num</span><span style="color: #ABB2BF">;</span></span></code></pre>
+<p>此代码创建一个名为neworder的触发器，按照after insert on orders 执行。触发器从new.order_num取得这个值并返回它。此触发器必须按照after insert 执行，因为在before insert语句执行之前，新order_num还没有生成。对于orders的每次插入使用这个触发器总是返回新的订单号。</p>
+<p><code>Mark： Before or After？ 通常，将before用于数据验证和净化（目的是保证插入表中的数据确实是需要的数据）</code></p>
+<p>######## delete触发器</p>
+<p>delete触发器在delete语句执行之前或之后执行，需要知道以下两点：</p>
+<ul>
+<li>在delete触发器代码内，你可以引用一个名为old的虚拟表，访问被删除的行；</li>
+<li>old中的值全都是只读的，不能更新。</li>
+</ul>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">delimiter //</span></span>
+<span class="line"><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> trigger deleteorder </span><span style="color: #C678DD">before</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">delete</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">on</span><span style="color: #ABB2BF"> orders</span></span>
+<span class="line"><span style="color: #ABB2BF">for each </span><span style="color: #C678DD">row</span></span>
+<span class="line"><span style="color: #C678DD">begin</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">insert</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">into</span><span style="color: #ABB2BF"> archive_orders(order_num, order_date, cust_id)</span></span>
+<span class="line"><span style="color: #ABB2BF">    </span><span style="color: #C678DD">values</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66">old</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">order_num</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">old</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">order_date</span><span style="color: #ABB2BF">, </span><span style="color: #D19A66">old</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">cust_id</span><span style="color: #ABB2BF">);</span></span>
+<span class="line"><span style="color: #C678DD">end</span><span style="color: #ABB2BF"> //</span></span>
+<span class="line"><span style="color: #ABB2BF">delimiter ;</span></span></code></pre>
+<p>在任意订单被删除前执行此触发器。使用一条insert语句将old中的值保存到一个名为archive_orders的存档表中。</p>
+<p>使用before delete触发器的有点（相对于after delete触发器来说），如果由于某种原因，订单不能存档，delete本身将被放弃。</p>
+<p><code>Mark：触发器deleteorder使用begin和end语句标记触发体。在这个例子中不是必须的，不过也没有害处。使用begin end块的好处是触发器能容纳多条SQL语句</code></p>
+<p>######## update触发器</p>
+<p>update触发器在update语句执行之前或之后执行。需要知道以下几点：</p>
+<ul>
+<li>在update触发器代码中，可以引用一个名为old的虚拟表访问以前（update语句前）的值，引用一个名为new的虚拟表访问新更新的值；</li>
+<li>在before update触发器中，new中的值可能也被更新（允许更改将要用于update语句中的值）；</li>
+<li>old中的值全都是只读，不能更新。</li>
+</ul>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #C678DD">create</span><span style="color: #ABB2BF"> trigger updateoder </span><span style="color: #C678DD">before</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">update</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">on</span><span style="color: #ABB2BF"> orders</span></span>
+<span class="line"><span style="color: #ABB2BF">for each </span><span style="color: #C678DD">row</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">set</span><span style="color: #ABB2BF"> </span><span style="color: #D19A66">new</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">vend_state</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">=</span><span style="color: #ABB2BF"> </span><span style="color: #56B6C2">Upper</span><span style="color: #ABB2BF">(</span><span style="color: #D19A66">new</span><span style="color: #ABB2BF">.</span><span style="color: #D19A66">vend_state</span><span style="color: #ABB2BF">);</span></span></code></pre>
+<p>在每次更新之前都对字段进行大写处理</p>
+<h4 id="管理事务">管理事务</h4>
+<p>事务处理是一种机制，用来管理必须成批执行的MySQL操作，以保证数据不包含不完整的操作结果。利用事务处理，可以保证一组操作不会中途停止，它们或者作为整体执行，或者完全不执行。如果没有错误发生，整租语句提交给数据库表。如果发生错误，则进行回退以恢复数据库到某个已知且安全的状态。</p>
+<p>在使用事务和事务处理时，有几个需要知道术语：</p>
+<ul>
+<li>事务（transaction）指一组SQL语句；</li>
+<li>回退（rollback）撤销指定SQL语句的过程；</li>
+<li>提交（commit）将未存储的SQL语句结果写入数据库表；</li>
+<li>保留点（savepoint）事务处理中设置的临时占位符（placeholder），你可以对它发布回退（与回退整个事务处理不同）。</li>
+</ul>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">## 标记一个事务的开始</span></span>
+<span class="line"><span style="color: #C678DD">start</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">transaction</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## 回退</span></span>
+<span class="line"><span style="color: #C678DD">rollback</span><span style="color: #ABB2BF">；</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## 事务回退仅支持DML语句，即 </span><span style="color: #C678DD">insert</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">update</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">delete</span></span>
+<span class="line"><span style="color: #ABB2BF">## 但是DDL语句，是立即生效机制，所以不会回退</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## 提交</span></span>
+<span class="line"><span style="color: #C678DD">commit</span><span style="color: #ABB2BF">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## 保留点</span></span>
+<span class="line"><span style="color: #ABB2BF">savepoint delete1;</span></span>
+<span class="line"><span style="color: #ABB2BF">## 回退到保留点</span></span>
+<span class="line"><span style="color: #C678DD">rollback</span><span style="color: #ABB2BF"> delete1;</span></span></code></pre>
+<p>简单的rollback和commit语句就可以写入或撤销整个事务处理。但是，只是对简单的事务处理才这样做，更复杂的事务可能需要部分提交或回退。</p>
+<p>为了支持回退部分事务，必须在事务处理块中合适的位置放置占位符。这样，如果要回退，可以回退到某个占位符。这些占位符称为保留点。</p>
+<p><code>Mark：保留点越多越好？可以在MySQL代码中设置任意多的保留点，越多越好。因为保留点越多，你就越能按自己的意愿灵活进行回退</code></p>
+<p><code>Mark：释放保留点   保留点在事务处理完成（执行一条rollback或commit）后自动释放。也可以使用release savepoint明确的释放保留点</code></p>
+<p>正常情况下，MySQL默认设置为自动提交模式，可以通过设置autocommit值来动态修改是否自动提交。1：开启自动提交，0：关闭自动提交。</p>
+<h4 id="字符集">字符集</h4>
+<p>字符集的继承关系：</p>
+<p>字段继承--->表继承--->库</p>
+<p>简而言之，创建库的时候默认不设置字符集，则使用服务器配置文件中的默认值</p>
+<p>创建表的时候不设置字符集，则使用数据库配置的字符集</p>
+<p>创建表中的字段时，不单独设置字符集，则使用表的字符集</p>
+<h4 id="权限">权限</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>权限</th><th>说明</th></tr></thead><tbody><tr><td>all</td><td>除grant option外的所有权限</td></tr><tr><td>alter</td><td>使用alter table</td></tr><tr><td>alter routine</td><td>使用alter procedure和drop procedure</td></tr><tr><td>create</td><td>使用create table</td></tr><tr><td>create routine</td><td>使用create procedure</td></tr><tr><td>create temporary tables</td><td>使用create temporary table</td></tr><tr><td>create user</td><td>使用create user、drop user、rename user和revoke all privileges</td></tr><tr><td>create view</td><td>使用create view</td></tr><tr><td>delete</td><td>使用delete</td></tr><tr><td>drop</td><td>使用drop table</td></tr><tr><td>execute</td><td>使用call和存储过程</td></tr><tr><td>file</td><td>使用select into outfile和load data infile</td></tr><tr><td>grant option</td><td>使用grant和revoke</td></tr><tr><td>index</td><td>使用create index和drop index</td></tr><tr><td>insert</td><td>使用insert</td></tr><tr><td>lock tables</td><td>使用lock tables</td></tr><tr><td>process</td><td>使用 show full processlist</td></tr><tr><td>reload</td><td>使用flush</td></tr><tr><td>replication client</td><td>服务位置的访问</td></tr><tr><td>replication slave</td><td>由复制从属使用</td></tr><tr><td>select</td><td>使用select</td></tr><tr><td>show databases</td><td>使用show databases</td></tr><tr><td>show view</td><td>使用show create view</td></tr><tr><td>shutdown</td><td>使用mysqladmin shutdown(用来关闭MySQL)</td></tr><tr><td>super</td><td>使用change master、kill、logs、purge、master和set global。还允许mysqladmin调试登录</td></tr><tr><td>update</td><td>使用update</td></tr><tr><td>usage</td><td>无访问权限</td></tr></tbody></table>
+<p><code>未来的授权：在使用grant和revoke时，用户账号必须存在，但对所涉及的对象没有这个要求。这允许管理在创建数据库和表之前设计和实现安全措施。这样做的副作用是，当某个数据库或表被删除时(用Drop语句)，相关的访问权限依然存在。而且，如果将来重建这些库表，这些访问权限依然生效</code></p>
+<h4 id="数据库维护">数据库维护</h4>
+<p><code>首先刷新未写数据：为了保证所有数据被写到磁盘（包括索引数据），可能需要在进行备份前使用flush tables语句</code></p>
+<pre is:raw="" class="astro-code" style="background-color: #282c34; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;"><code><span class="line"><span style="color: #ABB2BF">## analyze用来检查表键是否正确</span></span>
+<span class="line"><span style="color: #ABB2BF">analyze </span><span style="color: #C678DD">table</span><span style="color: #ABB2BF"> orders;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## </span><span style="color: #C678DD">check</span><span style="color: #ABB2BF"> table用来针对许多问题对表进行检查</span></span>
+<span class="line"><span style="color: #C678DD">check</span><span style="color: #ABB2BF"> </span><span style="color: #C678DD">table</span><span style="color: #ABB2BF"> orders, orderitems;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## 如果MyISAM表访问产生不正确和不一致的结果，需要用repair table来修复相应的表</span></span>
+<span class="line"><span style="color: #ABB2BF">repair </span><span style="color: #C678DD">table</span><span style="color: #ABB2BF"> orders;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #ABB2BF">## 如果从一个表中删除大量数据，应该使用optimize table来回收所用的空间，从而优化表的性能</span></span>
+<span class="line"><span style="color: #ABB2BF">optimize </span><span style="color: #C678DD">table</span><span style="color: #ABB2BF"> orders;</span></span></code></pre>
+<h4 id="数据类型整理">数据类型整理</h4>
+<p>字符串</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>数据类型</th><th>说明</th></tr></thead><tbody><tr><td>char</td><td>1~255个字符定长字符串。长度必须在创建时指定，否则MySQL假定为char(1)</td></tr><tr><td>enum</td><td>接受最多64k个字符串组成的一个预定义结合的某个字符串</td></tr><tr><td>longtext</td><td>与text相同，但最大长度为4GB</td></tr><tr><td>mediumtext</td><td>与text相同，但最大长度为16K</td></tr><tr><td>set</td><td>接受最多64个字符串组成的一个预定义集合的零个或多个字符串</td></tr><tr><td>text</td><td>最大长度为64K的变长文本</td></tr><tr><td>tinytext</td><td>与text相同，但最大长度为255字节</td></tr><tr><td>varchar</td><td>长度可变，最多不超过255字节。如果在创建时指定为varchar(n)，则可存储0~n个字符的变长字符串（其中n≤255）</td></tr></tbody></table>
+<p>数值</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>数据类型</th><th>说明</th></tr></thead><tbody><tr><td>bit</td><td>位字段，1~64位</td></tr><tr><td>bigint</td><td>整数值，支持-8223372036854775808<del>9223372036854775807，如果是unsigned，为0</del>1844674407370955615的数</td></tr><tr><td>boolean或bool</td><td>布尔标志，或者为0或者为1，主要用于开/关(on/off)标志</td></tr><tr><td>decimal或dec</td><td>精度可变的浮点值</td></tr><tr><td>double</td><td>双精度浮点值</td></tr><tr><td>float</td><td>单精度浮点值</td></tr><tr><td>int或integer</td><td>整数值，支持-2147483648<del>2147483647，如果是unsigned，为0</del>4294967295</td></tr><tr><td>mediumint</td><td>整数值，支持-83388608<del>8388607，如果是unsigned，为0</del>16777215</td></tr><tr><td>real</td><td>4字节的浮点值</td></tr><tr><td>smallint</td><td>整数值，支持-32768<del>32767，如果是unsigned，为0</del>65535</td></tr><tr><td>tinyint</td><td>整数值，支持-128<del>127，如果是unsigned，为0</del>255</td></tr></tbody></table>
+<p>日期和时间</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>数据类型</th><th>说明</th></tr></thead><tbody><tr><td>date</td><td>表示1000-01-01~9999-12-31的日期，格式为YYYY-MM-DD</td></tr><tr><td>datetime</td><td>date和time的组合</td></tr><tr><td>timestamp</td><td>功能和datetime相同（但范围较小）</td></tr><tr><td>time</td><td>格式为HH：MM：SS</td></tr><tr><td>year</td><td>用2位数字表示，范围是70(1970年)<del>69(2069年)，用4位数字表示范围是1901</del>2155年</td></tr></tbody></table>
+<p>二进制</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>数据类型</th><th>说明</th></tr></thead><tbody><tr><td>blob</td><td>Blob最大长度为64KB</td></tr><tr><td>mediumblob</td><td>Blob最大长度为16MB</td></tr><tr><td>longblob</td><td>Blob最大长度为4GB</td></tr><tr><td>tinyblob</td><td>Blob最大长度为255字节</td></tr></tbody></table>
+<hr>
+  </div>
+    </main>
+
+    <svg xmlns="http://www.w3.org/2000/svg" id="scrollButton" viewBox="0 0 512 512" class="w-10 h-10 fill-primary fixed bottom-5 right-5 animate-[jump_1500ms_infinite] cursor-pointer bg-base-100 rounded-full astro-H24362AN" style="display: none">
+      <path d="M256 0C114.6 0 0 114.6 0 256c0 141.4 114.6 256 256 256s256-114.6 256-256C512 114.6 397.4 0 256 0zM382.6 254.6c-12.5 12.5-32.75 12.5-45.25 0L288 205.3V384c0 17.69-14.33 32-32 32s-32-14.31-32-32V205.3L174.6 254.6c-12.5 12.5-32.75 12.5-45.25 0s-12.5-32.75 0-45.25l103.1-103.1C241.3 97.4 251.1 96 256 96c4.881 0 14.65 1.391 22.65 9.398l103.1 103.1C395.1 221.9 395.1 242.1 382.6 254.6z" class="astro-H24362AN"></path>
+    </svg>
+
+    <footer class="border-t px-4 py-6 mt-6 astro-H24362AN">
+      <p class="text-center text-sm astro-H24362AN">
+        &copy; 2023
+        gwalnut
+      </p>
+      <p class="text-center text-xs astro-H24362AN">
+        Built with <a class="text-cyan-600 hover:text-black dark:hover:text-white astro-H24362AN" href="https://astro.build" target="_blank" rel="noreferrer noopener">Astro v1.1.1
+        </a>
+      </p>
+    </footer>
+  </body>
+</html>
+
+
+
