@@ -4,21 +4,23 @@ on:
   # Trigger the workflow every time you push to the `main` branch
   # Using a different branch name? Replace `main` with your branch’s name
   push:
-    branches: [master]
+    branches: ["master"]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     # Allow this job to push changes to your repository
     permissions:
       contents: write
+      pages: write
+      id-token: write
 
     steps:
       - name: Check out your repository using git
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Use Node.js 16
         uses: actions/setup-node@v2
