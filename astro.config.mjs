@@ -7,9 +7,9 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   integrations: [tailwind(), sitemap()],
   // site: "https://moofywoofy.github.io",
-  site: "",
+  site: "https://JonasCaptain.github.io",
   // base: "/Bob-blog",
-  base: "",
+  base: "/",
   markdown: {
     shikiConfig: {
       theme: "one-dark-pro",

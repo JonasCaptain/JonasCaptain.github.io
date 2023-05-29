@@ -13,6 +13,7 @@ export interface Props {
 const { content, lazyLoading } = Astro.props as Props;
 
 const description = content.frontmatter.description || parse(await content.compiledContent()).querySelector('p:first-of-type')?.innerText;
+const date = new Date(content.frontmatter.date).toLocaleString('zh-CN', { hour12: false }).replace(/\//g, '-');;
 ---
 
 <div class="card sm:card-side bg-base-200 max-w-[90%] w-[52rem] mx-auto scale-1 hover:scale-105 transition-[scale_250ms]
@@ -37,6 +38,7 @@ const description = content.frontmatter.description || parse(await content.compi
     <p class="line-clamp-4 md:line-clamp-3">
       {description}
     </p>
+    <span>发布日期：{date}</span>
     <div class="card-actions justify-end items-center">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 stroke-warning" fill="none" viewBox="0 0 24 24"
         stroke-width="2">

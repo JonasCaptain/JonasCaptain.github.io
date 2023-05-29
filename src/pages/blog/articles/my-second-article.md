@@ -6,6 +6,7 @@ image: https://api.lorem.space/image/drink?w=400&h=225
 tags:
   - second
   - featured
+draft: true
 ---
 
 ```javascript

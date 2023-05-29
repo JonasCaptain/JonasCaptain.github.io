@@ -12,7 +12,7 @@ const { metaData: { authorName }, social } = config;
 <BaseLayout title="Home" activeLink="home">
 
 	<section class="flex flex-col sm:flex-row justify-center max-w-[90%] w-[52rem] mx-auto gap-12 mb-48">
-		<img width="200" height="200" src="images/bob.jpg" alt="avatar"
+		<img width="200" height="200" src="images/volcano.png" alt="avatar"
 			class="rounded-md h-fit self-center justify-self-center">
 		<div class="flex flex-col flex-wrap flex-grow">
 			<h1
@@ -20,11 +20,9 @@ const { metaData: { authorName }, social } = config;
 				Hi there, I'm 
 				<span class="font-bold" style="line-height: 1.5;">{authorName}</span>
 			</h1>
-			<p class="text-center">
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-				Quidem cum hic, odio dignissimos iure, est inventore rerum deleniti itaque amet dolorem suscipit nemo ex
-				tempora.
-				Tempora fugiat veniam impedit porro.</p>
+			<p class="text-left">
+				这里只做经验、技术分享，本人能力有限，没办法去实现评论或者留言的功能。这里的博客，更加倾向于本人对自己的知识进行存储、梳理，为了不误人子弟，请不要轻信文章中的内容。所有的信息/知识，一定要先理解，再运用，结合实际结果再决定是否吸收。
+			</p>
 			<div class="flex flex-wrap justify-center gap-5 mt-4">
 				{social.map(ele => <a class="w-8 h-8 flex scale-1 hover:scale-125 transition-[scale] justify-center" href={ele.link}
 					target="_blank" rel="noreferrer noopener">
