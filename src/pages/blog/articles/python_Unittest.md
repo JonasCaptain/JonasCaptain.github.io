@@ -24,8 +24,8 @@ tags:
 
 ## 目录结构
 
-- \__init\__.py：通过 \_\_all\_\_ 控制了导包的时候能导入哪些类
-- \__mian\__.py：这个与Unittest框架关系不大，可以作为了解，有了此文件，可以将unittest目录当做一个Package使用，python -m unittest。详情可以查询一下，\__main\__.py文件的作用
+- `__init__.py`：通过 `__all__` 控制了导包的时候能导入哪些类
+- `__mian__.py`：这个与Unittest框架关系不大，可以作为了解，有了此文件，可以将unittest目录当做一个Package使用，python -m unittest。详情可以查询一下，`__main__.py`文件的作用
 - case.py：通过继承的方式，将子类中的test_打头的方法组合上setUp和tearDown形成 testFixture，以testFixture方式执行测试
 - loader.py：负责加载各种标准方式的测试类，并将它们封装成TestSuite
 - main.py：单元测试的执行入口

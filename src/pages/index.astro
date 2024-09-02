@@ -4,45 +4,67 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import config from "src/config";
 import { Frontmatter, sortDateDescending, capitalizeString } from "src/misc";
 
-const allPosts = await Astro.glob<Frontmatter>('../pages/blog/articles/*.md');
-const posts = sortDateDescending(allPosts.filter((post) => post.frontmatter.draft != true && post.frontmatter.tags.includes('featured'))).slice(0, 3);
-const { metaData: { authorName }, social } = config;
+const allPosts = await Astro.glob<Frontmatter>("../pages/blog/articles/*.md");
+const posts = sortDateDescending(
+  allPosts.filter((post) => post.frontmatter.draft != true && post.frontmatter.tags.includes("featured")),
+).slice(0, 3);
+const {
+  metaData: { authorName },
+  social,
+} = config;
 ---
 
-<BaseLayout title="Home" activeLink="home">
+<BaseLayout
+  title="Home"
+  activeLink="home">
+  <section class="flex flex-col sm:flex-row justify-center max-w-[90%] w-[52rem] mx-auto gap-12 mb-48">
+    <img
+      width="200"
+      height="200"
+      src="images/volcano.png"
+      alt="avatar"
+      class="rounded-md h-fit self-center justify-self-center"
+    />
+    <div class="flex flex-col flex-wrap flex-grow">
+      <h1
+        class="text-center bg-gradient-to-r from-sky-500 to-indigo-500 bg-clip-text text-transparent text-5xl mb-[0.7em]">
+        Hi there, I'm
+        <span
+          class="font-bold"
+          style="line-height: 1.5;"
+          >{authorName}
+        </span>
+      </h1>
+      <p class="text-left">
+        这里只做经验、技术分享，本人能力有限，没办法去实现评论或者留言的功能。这里的博客，更加倾向于本人对自己的知识进行存储、梳理，为了不误人子弟，请不要轻信文章中的内容。所有的信息/知识，一定要先理解，再运用，结合实际结果再决定是否吸收。
+      </p>
+      <div class="flex flex-wrap justify-center gap-5 mt-4">
+        {
+          social.map((ele) => (
+            <a
+              class="w-8 h-8 flex scale-1 hover:scale-125 transition-[scale] justify-center"
+              href={ele.link}
+              target="_blank"
+              rel="noreferrer noopener">
+              <span class="sr-only">{`Link to my ${
+                ele.sr ?? capitalizeString(ele.link.replace(/.+\/\/|www.|\..+/g, ""))
+              } account`}</span>
+              <Fragment set:html={ele.svg} />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
-	<section class="flex flex-col sm:flex-row justify-center max-w-[90%] w-[52rem] mx-auto gap-12 mb-48">
-		<img width="200" height="200" src="images/volcano.png" alt="avatar"
-			class="rounded-md h-fit self-center justify-self-center">
-		<div class="flex flex-col flex-wrap flex-grow">
-			<h1
-				class="text-center bg-gradient-to-r from-sky-500 to-indigo-500 bg-clip-text text-transparent text-5xl mb-[0.7em]">
-				Hi there, I'm 
-				<span class="font-bold" style="line-height: 1.5;">{authorName}</span>
-			</h1>
-			<p class="text-left">
-				这里只做经验、技术分享，本人能力有限，没办法去实现评论或者留言的功能。这里的博客，更加倾向于本人对自己的知识进行存储、梳理，为了不误人子弟，请不要轻信文章中的内容。所有的信息/知识，一定要先理解，再运用，结合实际结果再决定是否吸收。
-			</p>
-			<div class="flex flex-wrap justify-center gap-5 mt-4">
-				{social.map(ele => <a class="w-8 h-8 flex scale-1 hover:scale-125 transition-[scale] justify-center" href={ele.link}
-					target="_blank" rel="noreferrer noopener">
-					<span class="sr-only">{`Link to my ${ele.sr?? capitalizeString(ele.link.replace(/.+\/\/|www.|\..+/g, ''))} account`}</span>
-					<Fragment set:html={ele.svg} />
-				</a> )}
-			</div>
-		</div>
-	</section>
+  <section>
+    <h2
+      class="mx-auto text-center mb-8 bg-gradient-orange text-transparent bg-clip-text text-4xl border-b-2 border-red-300 font-semibold w-fit">
+      Featured Articles
+    </h2>
 
-
-	<section>
-		<h2
-			class="mx-auto text-center mb-8 bg-gradient-orange text-transparent bg-clip-text text-4xl border-b-2 border-red-300 font-semibold w-fit">
-			Featured Articles
-		</h2>
-
-		<div class="flex flex-wrap flex-col justify-center gap-12">
-			{posts.map(post =>
-			<ArticleCard content={post} />)}
-		</div>
-	</section>
+    <div class="flex flex-wrap flex-col justify-center gap-12">
+      {posts.map((post) => <ArticleCard content={post} />)}
+    </div>
+  </section>
 </BaseLayout>
