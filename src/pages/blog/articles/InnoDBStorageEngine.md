@@ -39,7 +39,7 @@ InnoDB存储引擎是多线程的模型，因此其后台有多个不同的后�
 
    在InnoDB 1.1版本中，即使将Innodb_purge_threads设为大于1，InnoDB存储引擎启动时也会将其设为1，并在错误文件中出现如下类似提示：
 
-   ```log
+   ```
    120529 22:54:16 [Warning] option 'innodb-purge-threads': unsigned value 4 adjusted to 1
    ```
 
@@ -71,7 +71,7 @@ InnoDB存储引擎是多线程的模型，因此其后台有多个不同的后�
 
    在InnoDB存储引擎中，缓冲池中页的大小默认为16KB，同样使用LRU算法对缓冲池进行管理。稍有不同的是InnoDB存储引擎对传统的LRU算法做了一些优化。在InnoDB存储引擎中，LRU列表中还加入了midpoint位置。新读取到的页，虽然是最新访问的页，但并不是直接放入到LRU列表的首部，而是放入LRU列表的midpoint位置。这个算法在InnoDB存储引擎下称为midpoint insertion strategy。在默认配置下，该位置在LRU列表长度的5/8处。midpoint位置可由参数innodb_old_blocks_pct控制。
 
-   ```mysql
+   ```shell
    mysql>show variables like 'innodb_old_blocks_pct'\G
    ************************** 1. row **************************
    Variable_name: innodb_old_blocks_pct
@@ -83,7 +83,7 @@ InnoDB存储引擎是多线程的模型，因此其后台有多个不同的后�
 
    这样做的原因是，因为直接将读取到的页放入到LRU的首部，那么某些SQL操作可能会是缓冲池中的页被刷新出，从而影响缓冲池的效率。常见的这类操作为索引或数据的扫描操作。这类操作需要访问表中的许多页，甚至是全部的页，而这些页通常来说又仅在这次查询操作中需要，并不是活跃的热点数据。如果页被放入LRU列表的首部，那么非常可能将所需要的热点数据页从LRU列表中移除，而在下一次需要读取该页时，InnoDB存储引擎需要再次访问磁盘。为了解决这个问题，InnoDB存储引擎引入了另一个参数来以进一步管理LRU列表，这个参数是innodb_old_blocks_time，用于表示页读取到mid位置后需要等待多久才会被加入到LRU列表的热端。因此当需要执行上述所说的SQL操作时，可以通过下面的方法尽可能是LRU列表中的热点数据不被刷出。
 
-   ```mysql
+   ```shell
    mysql> set global innodb_old_blocks_time=1000;
    Query OK, 0 rows affected (0.00 sec)
 
@@ -95,14 +95,14 @@ InnoDB存储引擎是多线程的模型，因此其后台有多个不同的后�
 
    如果用户预估自己活跃的热点数据不止63%，那么在执行SQL语句前，还可以通过下面的语句来减少热点页不可能被刷出的概率。
 
-   ```mysql
+   ```shell
    mysql> set global innodb_old_blocks_pct=20;
    Query OK, 0 rows affected (0.00 sec)
    ```
 
    LRU列表用来管理已经读取的页，但当数据库刚启动时，LRU列表是空的，即没有任何页。这时页都存放在Free列表中。当需要从缓冲池中分页时，首先从Free列表中查找是否有可用的空闲页，若有则将该页从Free列表中删除，放入到LRU列表中。否则，根据LRU算法，淘汰LRU列表末尾的页，将该内存空间分配给新的页。当页从LRU列表的old部分加入到new部分时，称此时发生的操作为 **page made young**，而因为innodb_old_blocks_time的设置而导致页没有从old部分移动到new部分的操作称为 **page not made young**。可以通过命令 show engine innodb status来观察LRU列表及Free列表的使用情况和运行状态。
 
-   ```mysql
+   ```shell
    mysql> show engine innodb status \G
    =====================================
    2021-10-09 16:05:00 0x7feb9bb47700 INNODB MONITOR OUTPUT
@@ -248,7 +248,7 @@ InnoDB存储引擎是多线程的模型，因此其后台有多个不同的后�
 
    从InnoDB 1.2版本开始，还可以通过表INNODB_BUFFER_POOL_STATS来观察缓冲池的运行状态
 
-   ```mysql
+   ```shell
    mysql> select POOL_ID, HIT_RATE,
    -> PAGES_MADE_YOUNG, PAGES_NOT_MADE_YOUNG
    -> FROM information_schema.INNODB_BUFFER_POOL_STATS\G
@@ -261,7 +261,7 @@ InnoDB存储引擎是多线程的模型，因此其后台有多个不同的后�
 
    此外，还可以通过表INNODB_BUFFER_PAGE_LRU来观察每个LRU列表中每个页的具体信息，例如通过下面的语句可以看到缓冲池LRU列表中SPACE为1的表的页类型：
 
-   ```mysql
+   ```shell
    mysql> select TABLE_NAME,SPACE,PAGE_NUMBER,PAGE_TYPE
        -> FROM INNODB_BUFFER_PAGE_LRU where SPACE = 1;
    +-------------------+-------+-------------+--------------------------+
@@ -276,7 +276,7 @@ InnoDB存储引擎是多线程的模型，因此其后台有多个不同的后�
 
    InnoDB存储引擎从1.0.X版本开始支持压缩页的功能，即将原本16KB的页压缩为1KB、2KB、4KB、8KB。由于页的大小发生了变化，LRU列表也有了些许改变。对于非16KB的页，是通过unzip_LRU列表进行管理的。通过命令show engine innodb status可以观察到如下内容：
 
-   ```mysql
+   ```shell
    Buffer pool hit rate 1000 / 1000, young-making rate 71 / 1000 not 0 / 1000
    Pages read ahead 0.00/s, evicted without access 0.00/s, Random read ahead 0.00/s
    LRU len: 1539, unzip_LRU len: 156
@@ -299,7 +299,7 @@ InnoDB存储引擎是多线程的模型，因此其后台有多个不同的后�
 
    同样可以通过information_schema.INNODB_BUFFER_PAGE_LRU来观察unzip_LRU列表中的页，如：
 
-   ```mysql
+   ```shell
    mysql> select TABLE_NAME,SPACE,PAGE_NUMBER,COMPRESSED_SIZE
        -> from INNODB_BUFFER_PAGE_LRU
        -> where COMPRESSED_SIZE <> 0;
@@ -317,13 +317,13 @@ InnoDB存储引擎是多线程的模型，因此其后台有多个不同的后�
 
    同LRU列表一样，Flush列表也可以通过show engine innodb status来查看，后面的数字表示了脏页的数量。
 
-   ```mysql
+   ```shell
    Modified db pages  0
    ```
 
    information_schema库下并没有类似INNODB_BUFFER_PAGE_LRU表来显示脏页的数量及脏页的类型，但正如前面描述的那样，脏页同样存在与LRU列表中，故用户可以通过元数据表INNODB_BUFFER_PAGE_LRU来查看，唯一不同的是需要加入OLDEST_MODIFICATION大于0的SQL查询条件，如：
 
-   ```mysql
+   ```shell
    mysql> select TABLE_NAME,SPACE,PAGE_NUMBER,PAGE_TYPE
        -> from INNODB_BUFFER_PAGE_LRU
        -> where OLDEST_MODIFICATION > 0;
@@ -375,7 +375,7 @@ InnoDB存储引擎是多线程的模型，因此其后台有多个不同的后�
 
 当数据库发生宕机时，数据库不需要重做所有的日志，因为Checkpoint之前的页都已经刷新回磁盘。故数据库只需对checkpoint后的重做日志进行恢复。此外，当缓冲池不够用时，根据LRU算法会移除最近最少使用的页，若此页为脏页，那么需要强制执行Checkpoint，将脏页也就是页的新版本刷新回磁盘。重做日志出现不可用的情况是因为当前事务数据库对重做日志的设计都是循环使用的，并不是让其无限增大。重做日志可以被重用的部分都是不再需要的部分，当发生宕机时这部分日志就可以被覆盖重用。若此时重做日志还需要使用，那么必须强制产生Checkpoint，将缓冲池中的页至少刷新到当前重做日志的位置。对于InnoDB存储引擎而言，其是通过LSN(Log Sequence Number)来标记版本的。而LSN是8字节的数字，其单位是字节。每个页有LSN，重做日志也有LSN，Checkpoint也有LSN。可以通过show engine innodb status来观察：
 
-```mysql
+```shell
 ---
 LOG
 ---
@@ -408,7 +408,7 @@ Master Thread 发生的Checkpoint，差不多以每秒或每十秒的速度从�
 
 FLUSH_LRU_LIST Checkpoint是因为InnoDB存储引擎需要保证LRU列表中需要有差不多100个空闲页可以使用。在InnoDB 1.1.X 版本之前，需要检查LRU列表中是否有足够的可用空间操作发生在用户查询线程中，显然这会阻塞用户的查询操作。倘若没有100个可用空闲页，那么InnoDB存储引擎会将LRU列表尾端的页移除。如果这些页中有脏页，那么需要进行Checkpoint，而这些页是来自LRU列表的，因此成为FLUSH_LRU_LIST Checkpoint。从MySQL5.6版本，也就是InnoDB 1.2.X开始，这个检查放在了一个单独的Page Cleaner线程中进行，并且用户可以通过参数innodb_lru_scan_depth控制LRU列表中可用页的数量，该值默认为1024，如：
 
-```mysql
+```shell
 mysql> show variables like 'innodb_lru_scan_depth'\G
 **************************** 1. row ****************************
 Variable_name: innodb_lru_scan_depth
@@ -439,7 +439,7 @@ MySQL官方版本并不能查看刷新页是从Flush列表中还是从LRU列表�
 
 最后一种Checkpoint的情况是Dirty Page too much，脏页太多，导致InnoDB存储引擎强制进行Checkpoint。其目的总得来说还是为了保证缓冲池中有足够可用的页。其由参数innodb_max_dirty_pages_pct控制：
 
-```mysql
+```shell
 mysql> show variables like 'innodb_max_dirty_pages_pct'\G
 **************************** 1. row ****************************
 Variable_name: innodb_max_dirty_pages_pct
@@ -468,7 +468,7 @@ InnoDB存储引擎的关键特性包括：
 
 不过并不是每张表上只有一个聚集索引，更多情况下，一张表上有多个非聚集的辅助索引（Secondary index）。比如，用户需要按照b这个字段进行查找，并且b这个字段不是唯一的。
 
-```mysql
+```shell
 create table t (
     a int auto_increament,
     b varcahr(30),
@@ -497,7 +497,7 @@ InnoDB从1.0.X开始引入了Change Buffer，可将其视为Insert Buffer升级�
 
 从1.2.X版本开始，可以通过参数 innodb_change_buffer_max_size 来控制Change Buffer最大使用内存的数量。
 
-```mysql
+```shell
 mysql> show VARIABLES like 'innodb_change_buffer_max_size'
 **************************** 1. row ****************************
 Variable_name: innodb_max_dirty_pages_pct
@@ -506,7 +506,7 @@ Variable_name: innodb_max_dirty_pages_pct
 
 innodb_change_buffer_max_size默认值为25，表示最多使用1/4的缓冲池内存空间。而需要注意的是，该参数的最大有效值为50。
 
-```mysql
+```shell
 ## show engine innodb status
 -------------------------------------
 INSERT BUFFER AND ADAPTIVE HASH INDEX
@@ -548,7 +548,7 @@ Insert Buffer Bitmap 页用来追踪每个辅助索引页的可用空间，并�
 
 **Double Write**由两部分组成，一部分是内存中的doublewrite buffer，大小为2MB，另一部分是物理磁盘上共享表空间中连续的128个页，即2个区（extent），大小同样为2MB。在对缓冲池的脏页进行刷新时，并不直接写入磁盘，而是会通过memory函数将脏页先复制到内存中的doublewrite buffer，之后通过doublewrite buffer再分两次，每次1MB顺序地写入共享表空间的物理磁盘上，然后马上调用fsync函数，同步磁盘，避免缓冲写带来的问题。在这个过程中，因为doublewrite页是连续的，因此这个过程是顺序写的，开销并不是很大。在完成doublewrite页的写入后，再将doublewrite buffer中的页写入哥哥表空间文件中此时的写入则是离散的。可以通过命令show global status like 'innodb_dblwr%'来观察。
 
-```mysql
+```shell
 mysql> show global status like 'innodb_dblwr%';
 **************************** 1. row ****************************
 Variable_name: innodb_dblwr_pages_written
@@ -588,7 +588,7 @@ AHI有一个要求，即对这个页的连续访问模式必须是一样的。�
 
 根据InnoDB存储引擎官方文档显示，启用AHI后，读取和写入速度可以提高2倍，辅助索引的连续操作性能可以提高5倍。AHI是非常好的优化模式，其设计思想是数据库自优化(self-tuning)，即无需DBA对数据库进行人为调整。通过命令show engine innodb status观察使用情况。
 
-```mysql
+```shell
 -------------------------------------
 INSERT BUFFER AND ADAPTIVE HASH INDEX
 -------------------------------------

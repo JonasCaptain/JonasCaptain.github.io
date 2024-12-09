@@ -31,7 +31,7 @@ tags:
 
 1. 查出死锁的线程并kill掉
 
-   ```mysql
+   ```shell
    SELECT trx_MySQL_thread_id FROM information_schema.INNODB_TRX;
    ```
 
@@ -41,7 +41,7 @@ tags:
    
    生产环境不推荐使用过大的 inoodb_lock_wait_timeout 参数值，该参数支持在会话级别修改，方便应用在会话级别单独设置某些特殊操作的行锁等待超时时间。如下：
    
-   ```mysql
+   ```shell
    set innodb_lock_wait_timeout = 1000;
    ```
 
