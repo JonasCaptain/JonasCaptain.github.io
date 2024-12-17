@@ -6,8 +6,8 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), sitemap()],
-  // site: "https://moofywoofy.github.io",
-  site: "https://JonasCaptain.github.io",
+  // site: "https://JonasCaptain.github.io",
+  site: "https://gwalnut.ip-ddns.com",
   // base: "/Bob-blog",
   // base: "/",
   markdown: {
