@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   integrations: [tailwind(), sitemap()],
   // site: "https://JonasCaptain.github.io",
-  site: "https://gwalnut.ip-ddns.com",
+  site: "http://blog.gwalnut.ip-ddns.com",
   // base: "/Bob-blog",
   // base: "/",
   markdown: {
