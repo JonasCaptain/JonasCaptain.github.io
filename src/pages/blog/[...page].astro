@@ -22,7 +22,7 @@ const { page } = Astro.props as Props;
 <BaseLayout title="Blog" activeLink="blog">
   {page.currentPage == 1 ? <h1
     class="text-center text-3xl font-semibold bg-gradient-orange text-transparent bg-clip-text mb-8">
-    Recent Articles</h1> : null}
+    文章列表</h1> : null}
 
   <div class="flex flex-wrap flex-col justify-center gap-12">
     {page.data.map(post =>
